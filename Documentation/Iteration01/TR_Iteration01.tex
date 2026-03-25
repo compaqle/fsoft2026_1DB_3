@@ -1,0 +1,86 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\geometry{margin=2.5cm}
+
+\title{
+    \vspace{-2cm}
+    \textbf{Software Development Fundamentals (FSOFT)}\\
+    \large Technical Report - Iteration 01 (M1)\\
+    \Large \textbf{Supermarket Inventory and Sales Management System}
+}
+
+\author{
+    Team: [Insert Team Name/ID] \\
+    Members: [Member 1], [Member 2], [Member 3], [Member 4] \\
+    ISEP - DEI
+}
+
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This technical report describes the first iteration (M1) of the project to develop an inventory and sales management application for a supermarket. It focuses on requirements analysis, identification of actors, and definition of use cases, following Software Engineering principles and Object-Oriented Programming in C++.
+\end{abstract}
+
+\section{Introduction}
+The objective of this project is to develop a robust C++ application to manage the daily operations of a supermarket, including stock control, sales management, and customer loyalty. This first iteration focuses on the \textit{Requirements Engineering} phase, essential to ensure that the final software meets the needs of end-users (administrators and operators).
+
+\section{Requirements Analysis}
+
+\subsection{Actors}
+We have identified the following primary actors interacting with the system:
+\begin{itemize}
+    \item \textbf{Administrator (Admin):} User with full privileges. Responsible for managing products, users, promotions, and analyzing reports.
+    \item \textbf{Cashier:} User responsible for the front-of-store, recording sales, and customer management.
+    \item \textbf{System:} Secondary actor that monitors temporal events (product expiration and stock levels).
+\end{itemize}
+
+\subsection{Use Cases}
+The system functionality is defined by the following use cases:
+\begin{description}
+    \item[UC01: Manage Products] (Admin) Allow creation, editing, removal, and listing of products in the inventory.
+    \item[UC02: Manage Users] (Admin) Management of access accounts for employees.
+    \item[UC03: Manage Promotions] (Admin) Configuration of automatic discounts.
+    \item[UC04: Consult Reports] (Admin) Viewing sales statistics and performance.
+    \item[UC05: Consult Logs] (Admin) Auditing critical changes in the system.
+    \item[UC06: Register Sale] (Cashier) Processing purchases, calculating totals, and applying discounts.
+    \item[UC07: Issue Receipt] (Cashier) Generation of proof of sale in text format.
+    \item[UC08: Manage Customers] (Cashier) Registration and loyalty of customers (NIF/ID).
+\end{description}
+
+\section{System Requirements}
+
+\subsection{Functional Requirements (FR)}
+\begin{enumerate}[label=FR\arabic*:]
+    \item The system shall store code, category, price, and expiration date for each product.
+    \item The system shall issue visual warnings for low stock or products nearing expiration.
+    \item The system shall automatically calculate the sale total, subtracting promotion discounts.
+    \item The system shall ensure data persistence in plain text files.
+    \item The system shall maintain a detailed audit log of all price changes.
+\end{enumerate}
+
+\subsection{Non-Functional Requirements (NFR)}
+\begin{enumerate}[label=NFR\arabic*:]
+    \item \textbf{Language:} Developed exclusively in C++.
+    \item \textbf{Interface:} Command Line Interface (CLI) based with menu navigation.
+    \item \textbf{Portability:} Compatible with Linux/Unix environments.
+    \item \textbf{Security:} Access control via credentials (Username/Password).
+\end{enumerate}
+
+\section{UML Artifacts}
+\textit{[Note: The Use Case Diagram should be included here as an image exported from Lucidchart/Draw.io]}
+
+\section{Conclusion}
+In this iteration, we established the functional foundation of the system. The clear definition of actors and requirements will allow, in Iteration 02, to proceed to the detailed design of classes and initial implementation of business logic.
+
+\end{document}
