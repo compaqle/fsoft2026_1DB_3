@@ -36,54 +36,77 @@ This technical report describes the first iteration (M1) of the project to devel
 \end{abstract}
 
 \section{Introduction}
-The objective of this project is to develop a robust C++ application to manage the daily operations of a supermarket, including stock control, sales management, and customer loyalty. This first iteration focuses on the \textit{Requirements Engineering} phase, essential to ensure that the final software meets the needs of end-users (administrators and operators).
+The objective of this project is to develop a robust C++ application to manage the daily operations of a supermarket, including stock control, sales management, and customer loyalty. This technical report details the first iteration (M1), which corresponds to the \textit{Requirements Engineering} and \textit{Analysis} phases of the Software Development Life Cycle (SDLC). The primary goal is to establish a solid functional foundation through Object-Oriented Analysis (OOA), ensuring that the software alignment with stakeholder needs.
 
-\section{Requirements Analysis}
+\section{Software Development Process}
+Following the FSOFT course guidelines, this project adopts an \textbf{Iterative and Incremental} development model. This approach allows for continuous refinement of requirements and design across multiple cycles (Iterations 01 to 03).
 
-\subsection{Actors}
-We have identified the following primary actors interacting with the system:
+\subsection{Methodology and Tools}
 \begin{itemize}
-    \item \textbf{Administrator (Admin):} User with full privileges. Responsible for managing products, users, promotions, and analyzing reports.
-    \item \textbf{Cashier:} User responsible for the front-of-store, recording sales, and customer management.
-    \item \textbf{System:} Secondary actor that monitors temporal events (product expiration and stock levels).
+    \item \textbf{Process:} Object-Oriented Analysis (OOA) was employed to identify domain concepts and system behaviors.
+    \item \textbf{Version Control:} Git is used as the Version Control System (VCS), with a remote repository hosted on GitHub to facilitate collaboration and maintain a historical record of changes, adhering to best practices such as descriptive commit messages.
+    \item \textbf{Modelling:} Unified Modeling Language (UML) is used to represent the system's structural and behavioral aspects.
+\end{itemize}
+
+\section{Requirements Analysis (OOA)}
+In this phase, we acquired domain knowledge and reasoned about the supermarket business logic to define the system scope.
+
+\subsection{System Actors}
+We have identified the following actors (primary and secondary) interacting with the system boundary:
+\begin{itemize}
+    \item \textbf{Administrator (Admin):} A primary actor with full privileges. Responsible for managing the product catalog, user accounts, promotions, and auditing the system through logs and reports.
+    \item \textbf{Cashier:} A primary actor responsible for the point-of-sale (POS) operations, including recording sales, managing customer loyalty data, and issuing receipts.
+    \item \textbf{System:} A secondary (temporal) actor that automatically monitors background events, such as low stock levels and product expiration dates.
 \end{itemize}
 
 \subsection{Use Cases}
-The system functionality is defined by the following use cases:
+The functional requirements are mapped into Use Cases, representing the goals of the actors:
 \begin{description}
-    \item[UC01: Manage Products] (Admin) Allow creation, editing, removal, and listing of products in the inventory.
-    \item[UC02: Manage Users] (Admin) Management of access accounts for employees.
-    \item[UC03: Manage Promotions] (Admin) Configuration of automatic discounts.
-    \item[UC04: Consult Reports] (Admin) Viewing sales statistics and performance.
-    \item[UC05: Consult Logs] (Admin) Auditing critical changes in the system.
-    \item[UC06: Register Sale] (Cashier) Processing purchases, calculating totals, and applying discounts.
-    \item[UC07: Issue Receipt] (Cashier) Generation of proof of sale in text format.
-    \item[UC08: Manage Customers] (Cashier) Registration and loyalty of customers (NIF/ID).
+    \item[UC01: Manage Products] (Admin) Create, update, delete, and list products (Code, Category, Price, Expiry).
+    \item[UC02: Manage Users] (Admin) Manage employee access levels and credentials.
+    \item[UC03: Manage Promotions] (Admin) Define discount rules applied during the sale process.
+    \item[UC04: Consult Reports] (Admin) Analyze aggregated sales data and performance metrics.
+    \item[UC05: Consult Logs] (Admin) Audit system changes for security and accountability.
+    \item[UC06: Register Sale] (Cashier) Process a new transaction, identifying products and applying promotions.
+    \item[UC07: Issue Receipt] (Cashier) Generate a formal proof of purchase for the customer.
+    \item[UC08: Manage Customers] (Cashier) Register customers via NIF for loyalty points or tax identification.
 \end{description}
+
+\section{Domain Model Discovery}
+As part of the OOA primary tasks, we identified the following core domain objects that will be further detailed in the Design phase (Iteration 02):
+\begin{itemize}
+    \item \textbf{Product:} Represents items in stock with attributes like \texttt{ID}, \texttt{description}, \texttt{stockQuantity}, and \texttt{expiryDate}.
+    \item \textbf{Sale:} Represents a transaction, composed of multiple \texttt{SaleItems}.
+    \item \textbf{User:} Represents the system's users (Admin/Cashier) with \texttt{username} and \texttt{hashedPassword}.
+    \item \textbf{Promotion:} Encapsulates discount logic.
+\end{itemize}
 
 \section{System Requirements}
 
 \subsection{Functional Requirements (FR)}
+Derived from the use cases, the system must fulfill:
 \begin{enumerate}[label=FR\arabic*:]
-    \item The system shall store code, category, price, and expiration date for each product.
-    \item The system shall issue visual warnings for low stock or products nearing expiration.
-    \item The system shall automatically calculate the sale total, subtracting promotion discounts.
-    \item The system shall ensure data persistence in plain text files.
-    \item The system shall maintain a detailed audit log of all price changes.
+    \item The system shall provide persistent storage for product data (category, price, expiration).
+    \item The system shall trigger alerts for low stock (below a defined threshold) or near-expiry items.
+    \item The system shall calculate the subtotal and final total of a sale in real-time.
+    \item Data persistence must be implemented using plain text files (\texttt{.txt} or \texttt{.csv}).
+    \item Every price modification must be recorded in an immutable audit log.
 \end{enumerate}
 
 \subsection{Non-Functional Requirements (NFR)}
+Reflecting the technical constraints of the project:
 \begin{enumerate}[label=NFR\arabic*:]
-    \item \textbf{Language:} Developed exclusively in C++.
-    \item \textbf{Interface:} Command Line Interface (CLI) based with menu navigation.
-    \item \textbf{Portability:} Compatible with Linux/Unix environments.
-    \item \textbf{Security:} Access control via credentials (Username/Password).
+    \item \textbf{Language:} Implemented exclusively in C++, utilizing modern standards (C++11/14) and safe memory management (avoiding raw pointers where possible, as per T2).
+    \item \textbf{Interface:} A text-based Command Line Interface (CLI) organized with hierarchical menus.
+    \item \textbf{Platform:} Compatibility with Linux/Unix environments (targeted at ISEP laboratory environments).
+    \item \textbf{Security:} Role-based access control (RBAC) requiring authentication for all sensitive operations.
 \end{enumerate}
 
 \section{UML Artifacts}
-\textit{[Note: The Use Case Diagram should be included here as an image exported from Lucidchart/Draw.io]}
+The Use Case Diagram (UCD) serves as the primary artifact for this iteration, visualizing the relationship between actors and system functionalities.
+\textit{[Note: The Use Case Diagram image should be placed here]}
 
 \section{Conclusion}
-In this iteration, we established the functional foundation of the system. The clear definition of actors and requirements will allow, in Iteration 02, to proceed to the detailed design of classes and initial implementation of business logic.
+In this first iteration, we established the functional foundation of the Supermarket Management System. By applying OOA principles, we clearly defined the actors and requirements. This analysis provides the necessary blueprint for Iteration 02, where we will move into Object-Oriented Design (OOD) and the initial C++ implementation.
 
 \end{document}
