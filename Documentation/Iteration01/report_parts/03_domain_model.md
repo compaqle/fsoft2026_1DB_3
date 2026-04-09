@@ -8,6 +8,3 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 - **Entidades:** Em MAIÚSCULAS (ex: PRODUTO, VENDA, CAIXA).
 - **Atributos:** Em minúsculas (ex: preco, nome, quantidade).
 - **Relacionamentos:** Identificados por verbos e com indicação de multiplicidade.
-
-
-fjciejco
