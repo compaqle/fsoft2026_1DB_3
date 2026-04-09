@@ -2,7 +2,7 @@
 
 O Modelo de Domínio representa conceptualmente as entidades do mundo real e as suas interações no contexto do supermercado.
 
-*(Inserir aqui o diagrama UML de Domínio)*
+![Diagrama UML de Domínio](diagramas/domain_diagram.png)
 
 ## Regras de Notação Aplicadas:
 - **Entidades:** Em MAIÚSCULAS (ex: PRODUTO, VENDA, CAIXA).
