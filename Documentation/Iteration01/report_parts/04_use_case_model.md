@@ -2,6 +2,8 @@
 
 Nesta secção detalhamos as interações entre os atores e o sistema.
 
+![Diagrama de Casos de Uso](../diagramas/usecase_diagram.png)
+
 | ID | Caso de Uso | Ator(es) | Descrição Resumida |
 | :--- | :--- | :--- | :--- |
 | **UC01** | Gerir Catálogo | Admin | Permite criar, listar e remover produtos (com ID automático). |
@@ -15,4 +17,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 ## Diagramas de Sequência de Sistema (SSD)
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
 
-*(Inserir aqui diagramas SSD para UC01 e UC05)*
+### UC05: Realizar Venda
+![SSD Realizar Venda](../diagramas/ssd_venda.png)
+
+*(Inserir aqui diagrama SSD para UC01)*
