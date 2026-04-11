@@ -14,12 +14,16 @@ As User Stories descrevem as necessidades dos stakeholders e o valor que esperam
 - **US04:** Como Administrador, eu quero aceder a estatísticas globais dos caixas para avaliar o desempenho da equipa.
 - **US05:** Como Administrador, eu quero gerir os registos de caixas (adicionar/apagar) para controlar quem tem acesso ao sistema de vendas.
 - **US06:** Como Administrador, eu quero comprar stock para produtos existentes para garantir a disponibilidade de artigos.
+- **US11:** Como Administrador, eu quero gerir o registo de Clientes (criar/editar/apagar) para fidelização.
+- **US15:** Como Administrador, eu quero gerir Promoções (datas e percentagens) para dinamizar vendas.
 
 ### 1.2. Papel: Caixa
 - **US07:** Como Caixa, eu quero listar produtos e consultar preços para informar corretamente os clientes.
 - **US08:** Como Caixa, eu quero realizar vendas (registando produtos e quantidades) para processar as compras dos clientes.
 - **US09:** Como Caixa, eu quero concluir vendas com diferentes métodos de pagamento e emitir recibos para documentar a transação.
 - **US10:** Como Caixa, eu quero consultar o meu histórico e info individual para monitorizar o meu desempenho.
+- **US12:** Como Caixa, eu quero associar uma venda a um Cliente para que este possa acumular ou usar pontos.
+- **US17:** Como Caixa, eu quero que o sistema aplique automaticamente descontos de promoções ativas.
 
 ---
 
@@ -35,20 +39,23 @@ Os requisitos funcionais especificam o comportamento do sistema para satisfazer 
 | **UC05** | Realizar Venda | Caixa | Inicia transação, adiciona itens, calcula total e regista pagamento. |
 | **UC06** | Consultar Preço | Caixa | Pesquisa e exibe o preço unitário de um produto pelo seu ID. |
 | **UC07** | Ver Info Própria | Caixa | Exibe dados do funcionário logado e o seu total de vendas. |
+| **UC08** | Gerir Clientes | Admin | Permite o registo, edição e remoção de perfis de Cliente. |
+| **UC09** | Aplicar Fidelização | Caixa | Permite associar cliente à venda e descontar pontos acumulados. |
+| **UC11** | Gerir Promoções | Admin | Criação e gestão de descontos temporais por produto/categoria. |
 
 ---
 
 ## 3. Requisitos Não Funcionais (FURPS+)
 
 ### 3.1. Funcionalidade (+)
-*   **Persistência:** O sistema deve armazenar os dados em ficheiros de texto/csv (PRODUTOS.txt, CAIXAS.txt, VENDAS.txt).
+*   **Persistência:** O sistema deve armazenar os dados em ficheiros de texto/csv (PRODUTOS.txt, CAIXAS.txt, VENDAS.txt, CLIENTES.txt, PROMOCOES.txt).
 *   **Autenticação:** O sistema deve validar as credenciais no login para atribuir o menu correto (Admin ou Caixa).
 
 ### 3.2. Usabilidade (U)
 *   **Interface CLI:** O sistema deve apresentar menus numerados e intuitivos via consola.
 
 ### 3.3. Fiabilidade (R)
-*   **Tratamento de Exceções:** O sistema deve lançar e tratar exceções de domínio (ex: `ProductNotFoundException`) sem encerrar o programa.
+*   **Tratamento de Exceções:** O sistema deve lançar e tratar exceções de domínio (ex: `ProductNotFoundException`, `ClientNotFoundException`, `InvalidPromotionDateException`) sem encerrar o programa.
 
 ### 3.4. Performance (P)
 *   **Tempo de Resposta:** As operações de listagem e procura de ID devem ser executadas em menos de 1 segundo (considerando volumes de dados escolares).
@@ -57,6 +64,10 @@ Os requisitos funcionais especificam o comportamento do sistema para satisfazer 
 
 ## 4. Glossário (Rigor T5)
 *   **CAIXA:** Funcionário operador do sistema de vendas; também termo para o terminal de venda (POS).
+*   **CATEGORIA:** Agrupamento de produtos (ex: Alimentação, Bebidas).
+*   **CLIENTE:** Pessoa que adquire produtos, podendo estar registada para acumular pontos.
+*   **PONTOS:** Unidade de fidelização acumulada e convertível em descontos (ex: 1 ponto por cada 10€).
 *   **PRODUTO:** Artigo unitário inventariável com ID, Nome, Preço e Stock.
+*   **PROMOÇÃO:** Desconto percentual aplicado num intervalo de tempo.
 *   **RECIBO:** Comprovativo textual de uma venda concluída.
 *   **VENDA:** Registo transacional de um conjunto de produtos associados a um pagamento.

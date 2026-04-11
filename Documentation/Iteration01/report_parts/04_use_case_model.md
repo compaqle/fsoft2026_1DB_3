@@ -13,6 +13,11 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | **UC05** | Realizar Venda | Caixa | Inicia transação, adiciona itens, calcula total e regista pagamento. |
 | **UC06** | Consultar Preço | Caixa | Pesquisa e exibe o preço unitário de um produto pelo seu ID. |
 | **UC07** | Ver Info Própria | Caixa | Exibe dados do funcionário logado e o seu total de vendas. |
+| **UC08** | Gerir Clientes | Admin | Permite o registo, edição e remoção de perfis de Cliente com fidelização. |
+| **UC09** | Associar Cliente | Caixa | Durante a venda, permite ligar a transação a um Cliente existente. |
+| **UC10** | Aplicar Pontos | Caixa | Permite o uso de pontos acumulados para abater no valor final da fatura. |
+| **UC11** | Gerir Promoções | Admin | Permite criar, editar e apagar promoções temporais. |
+| **UC12** | Gerir Categorias | Admin | Permite agrupar produtos em categorias para fins de IVA e Descontos. |
 
 ## Diagramas de Sequência de Sistema (SSD)
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
