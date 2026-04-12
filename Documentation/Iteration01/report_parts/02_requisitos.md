@@ -34,7 +34,7 @@ Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 - **RF06:** O sistema deve gerir o ciclo de vida de uma VENDA (iniciar, adicionar itens, cancelar, concluir).
 - **RF07:** O sistema deve validar a disponibilidade de stock durante o registo de itens na VENDA.
 - **RF08:** O sistema deve registar o método de pagamento e emitir um RECIBO textual após a conclusão da venda.
-- **RF09:** O sistema deve autenticar utilizadores e restringir acesso a funcionalidades baseadas no papel (Admin/Caixa).
+- **RF09:** O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas no papel (Admin/Caixa).
 - **RF10:** O sistema deve garantir a persistência de dados em ficheiros externos.
 - **RF11:** O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos), garantindo que o NIF é único.
 - **RF12:** O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
@@ -48,7 +48,7 @@ Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 ## 2.3. Requisitos Não Funcionais (FURPS+)
 
 ### Functionality (F)
-- **RNF01 (Segurança e Controlo de Acesso):** O sistema deve restringir o acesso às funcionalidades de gestão apenas ao Administrador, exigindo autenticação transversal.
+- **RNF01 (Segurança e Controlo de Acesso):** O sistema deve restringir o acesso às funcionalidades de gestão apenas ao Administrador, através da seleção de perfil.
 - **RNF02 (Persistência de Dados):** O sistema deve garantir o armazenamento global de dados em ficheiros locais (CSV ou Binário), sendo rigorosamente proibido o uso de SGBDs externos.
 
 ### Usability (U)

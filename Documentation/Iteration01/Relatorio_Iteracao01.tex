@@ -1,0 +1,181 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{booktabs}
+
+\setcounter{tocdepth}{3}
+
+\begin{document}
+
+\mainmatter
+
+\title{Relatório Técnico - Iteração 01\\Sistema de Gestão de Supermercado}
+\titlerunning{Relatório Técnico - Iteração 01}
+
+\author{Grupo FSOFT}
+\institute{ISEP - Licenciatura em Engenharia de Telecomunicações e Informática}
+
+\maketitle
+
+\begin{abstract}
+Este relatório detalha a fase de engenharia de requisitos e análise do sistema de gestão de inventário e vendas para um supermercado, que será desenvolvido em C++ utilizando programação orientada a objetos. O documento mostra os objetivos do programa através de user stories, a especificação de requisitos funcionais e não funcionais utilizando o modelo FURPS+, e a representação do domínio do problema. Esta etapa é fundamental para estabelecer uma ligação entre as expectativas do cliente fictício e a solução que irá ser proposta pela nossa equipa.
+\\
+\textbf{Palavras-chave:} C++, Engenharia de Requisitos, FURPS+, Modelação de Domínio, Gestão de Supermercado, Programação Orientada a Objetos.
+\end{abstract}
+
+\section{Introdução}
+Este relatório documenta o processo de análise e especificação de um programa de gestão de inventário e vendas para um supermercado. O nosso programa será elaborado na linguagem de programação C++, usando programação orientada a objeto (POO) e respeitando o padrão Model-View-Controller (MVC). 
+
+Na gestão de inventário e vendas de um supermercado existem vários desafios como a manutenção das dados de inventário, monitorização das vendas e organização eficiente dos processos de caixa.
+
+\section{Análise de Requisitos}
+
+\subsection{User Stories}
+
+\subsubsection{Administrador (Admin)}
+\begin{itemize}
+    \item \textbf{US01:} Como Administrador, eu quero criar novos produtos para que possa atualizar o catálogo do supermercado.
+    \item \textbf{US02:} Como Administrador, eu quero apagar produtos do sistema para que artigos descontinuados deixem de constar na base de dados.
+    \item \textbf{US03:} Como Administrador, eu quero listar todos os produtos existentes para que possa consultar o inventário atual.
+    \item \textbf{US04:} Como Administrador, eu quero aceder a estatísticas globais dos caixas para avaliar o desempenho da equipa.
+    \item \textbf{US05:} Como Administrador, eu quero gerir os registos de caixas (adicionar/apagar) para controlar quem tem acesso ao sistema de vendas.
+    \item \textbf{US06:} Como Administrador, eu quero comprar stock para produtos existentes para garantir a disponibilidade de artigos.
+\end{itemize}
+
+\subsubsection{Caixa}
+\begin{itemize}
+    \item \textbf{US07:} Como Caixa, eu quero listar produtos e consultar preços para informar corretamente os clientes.
+    \item \textbf{US08:} Como Caixa, eu quero realizar vendas (registando produtos e quantidades) para processar as compras dos clientes.
+    \item \textbf{US09:} Como Caixa, eu quero concluir vendas com diferentes métodos de pagamento e emitir recibos para documentar a transação.
+    \item \textbf{US10:} Como Caixa, eu quero consultar o meu histórico e info individual para monitorizar o meu desempenho.
+    \item \textbf{US11:} Como Administrador, eu quero gerir o registo de Clientes (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
+    \item \textbf{US12:} Como Caixa, eu quero associar uma venda a um Cliente (via NIF ou ID) para que este possa acumular pontos.
+    \item \textbf{US13:} Como Caixa, eu quero consultar o saldo de pontos de um Cliente para informar o cliente sobre benefícios disponíveis.
+    \item \textbf{US14:} Como Cliente, eu quero utilizar os meus pontos acumulados como desconto numa venda para reduzir o valor total a pagar.
+    \item \textbf{US15:} Como Administrador, eu quero criar e gerir Promoções (percentagem, data início, data fim) para incentivar as vendas.
+    \item \textbf{US16:} Como Administrador, eu quero associar Promoções a Produtos específicos ou a Categorias inteiras.
+    \item \textbf{US17:} Como Caixa, eu quero que o sistema aplique automaticamente os descontos ativos no momento da venda sem intervenção manual.
+\end{itemize}
+
+\subsection{Requisitos Funcionais (RF)}
+Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
+\begin{itemize}
+    \item \textbf{RF01:} O sistema deve permitir a criação de um novo PRODUTO (nome, preço), gerando um \texttt{id} único automaticamente.
+    \item \textbf{RF02:} O sistema deve permitir a remoção de um PRODUTO pelo seu \texttt{id}.
+    \item \textbf{RF03:} O sistema deve listar todos os PRODUTOS com os seus respetivos detalhes e stock.
+    \item \textbf{RF04:} O sistema deve permitir o registo e remoção de utilizadores com perfil de CAIXA.
+    \item \textbf{RF05:} O sistema deve calcular estatísticas de performance (faturação e volume) por CAIXA e globais.
+    \item \textbf{RF06:} O sistema deve gerir o ciclo de vida de uma VENDA (iniciar, adicionar itens, cancelar, concluir).
+    \item \textbf{RF07:} O sistema deve validar a disponibilidade de stock durante o registo de itens na VENDA.
+    \item \textbf{RF08:} O sistema deve registar o método de pagamento e emitir um RECIBO textual após a conclusão da venda.
+    \item \textbf{RF09:} O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas no papel (Admin/Caixa).
+    \item \textbf{RF10:} O sistema deve garantir a persistência de dados em ficheiros externos.
+    \item \textbf{RF11:} O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos), garantindo que o NIF é único.
+    \item \textbf{RF12:} O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
+    \item \textbf{RF13:} O sistema deve calcular e atribuir pontos ao CLIENTE após uma venda concluída (ex: 1 ponto por cada 10€).
+    \item \textbf{RF14:} O sistema deve permitir o resgate de pontos para descontos diretos no valor total da VENDA.
+    \item \textbf{RF15:} O sistema deve permitir a criação de PROMOÇÕES com intervalo de datas (início e fim) e percentagem de desconto.
+    \item \textbf{RF16:} O sistema deve validar se uma PROMOÇÃO está ativa (data atual dentro do intervalo) antes de aplicar o desconto.
+    \item \textbf{RF17:} O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
+    \item \textbf{RF18:} O sistema deve garantir que, no caso de múltiplas promoções aplicáveis, apenas a mais vantajosa para o cliente é aplicada.
+\end{itemize}
+
+\subsection{Requisitos Não Funcionais (FURPS+)}
+
+\subsubsection{Functionality (F)}
+\begin{itemize}
+    \item \textbf{RNF01 (Segurança e Controlo de Acesso):} O sistema deve restringir o acesso às funcionalidades de gestão apenas ao Administrador, através da seleção de perfil.
+    \item \textbf{RNF02 (Persistência de Dados):} O sistema deve garantir o armazenamento global de dados em ficheiros locais (CSV ou Binário), sendo rigorosamente proibido o uso de SGBDs externos.
+\end{itemize}
+
+\subsubsection{Usability (U)}
+\begin{itemize}
+    \item \textbf{RNF03 (Estrutura de Menus):} O sistema deve limitar a navegação a um máximo de 3 níveis de profundidade de menus, acessíveis por seleção numérica única (0-9).
+    \item \textbf{RNF04 (Tempo de Aprendizagem):} Um utilizador sem formação prévia deve ser capaz de concluir uma venda (UC05) em menos de 180 segundos utilizando apenas as instruções presentes no ecrã.
+\end{itemize}
+
+\subsubsection{Reliability (R)}
+\begin{itemize}
+    \item \textbf{RNF05 (Recuperação de Erro):} O sistema deve validar todos os tipos de dados de entrada (ex: carateres em campos numéricos) e solicitar nova introdução em menos de 500ms, sem perda do estado da transação ativa.
+    \item \textbf{RNF06 (Integridade de Dados):} O sistema deve garantir que 100\% das transações concluídas são registadas no ficheiro de persistência antes de libertar a memória da venda ativa.
+\end{itemize}
+
+\subsubsection{Performance (P)}
+\begin{itemize}
+    \item \textbf{RNF07 (Tempo de Resposta):} Operações de pesquisa de produtos no inventário (UC06) e carregamento de ficheiros de persistência devem ser executadas num tempo de resposta inferior a 1,0 segundo.
+    \item \textbf{RNF08 (Eficiência de Memória):} A aplicação não deve exceder um consumo de 128MB de memória RAM durante a execução de operações críticas de listagem.
+\end{itemize}
+
+\subsubsection{Supportability (S)}
+\begin{itemize}
+    \item \textbf{RNF09 (Padrão Arquitetural):} A implementação deve respeitar a separação MVC, onde 0\% da lógica de negócio reside nas classes de View e 0\% das operações de I/O (\texttt{std::cout}/\texttt{std::cin}) residem nas classes de Model.
+    \item \textbf{RNF10 (Acoplamento):} As classes de Domínio devem ser independentes do meio de persistência escolhido, permitindo a substituição do formato CSV por Binário sem alterar a lógica de negócio.
+    \item \textbf{RNF11 (Portabilidade/Build):} O projeto deve ser compilável através de CMake (versão 3.10 ou superior) em ambiente Linux (GCC/Clang) e Windows (MSVC).
+\end{itemize}
+
+\subsubsection{+ (Restrições de Implementação)}
+\begin{itemize}
+    \item \textbf{RNF12 (Norma da Linguagem):} O código fonte deve ser compatível com a norma C++17 (ISO/IEC 14882:2017).
+\end{itemize}
+
+\section{Modelação de Domínio}
+O Modelo de Domínio representa conceptualmente as entidades do mundo real e as suas interações no contexto do supermercado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{diagramas/modeloDeDominio.png}
+    \caption{Diagrama UML de Domínio}
+    \label{fig:domain_model}
+\end{figure}
+
+\subsection{Regras de Notação Aplicadas}
+\begin{itemize}
+    \item \textbf{Entidades:} Em MAIÚSCULAS (ex: PRODUTO, VENDA, CAIXA, CLIENTE, PROMOÇÃO, CATEGORIA).
+    \item \textbf{Atributos:} Em minúsculas (ex: preco, nome, quantidade, nif, pontos, percentagem, data\_inicio, data\_fim).
+    \item \textbf{Relacionamentos:} Identificados por verbos e com indicação de multiplicidade (ex: CLIENTE realiza VENDA; PRODUTO pertence a CATEGORIA; PROMOÇÃO aplica-se a PRODUTO).
+\end{itemize}
+
+\section{Modelo de Casos de Uso}
+Nesta secção detalhamos as interações entre os atores e o sistema.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{ID} & \textbf{Caso de Uso} & \textbf{Ator(es)} & \textbf{Descrição Resumida} \\ \midrule
+        UC01 & Gerir Catálogo & Admin & Permite criar, editar, listar e remover produtos. \\
+        UC02 & Consultar Estatísticas & Admin & Gera relatórios de faturação e volume por caixa. \\
+        UC03 & Gerir Utilizadores & Admin & Permite o registo e remoção de contas de perfil 'Caixa'. \\
+        UC04 & Repor Stock & Admin & Incrementa a quantidade disponível de um produto. \\
+        UC05 & Realizar Venda & Caixa & Inicia transação, adiciona itens, regista pagamento. \\
+        UC06 & Consultar Preço & Caixa & Pesquisa e exibe o preço unitário de um produto. \\
+        UC07 & Histórico & Caixa & Exibe dados do funcionário e histórico de vendas. \\
+        UC08 & Gerir Clientes & Admin & Registo, edição e remoção de perfis de Cliente. \\
+        UC09 & Associar Cliente & Caixa & Permite ligar a transação a um Cliente existente. \\
+        UC10 & Gerir Pontos & Caixa & Consultar saldo e aplicar pontos para desconto. \\
+        UC11 & Gerir Promoções & Admin & Permite criar, editar e apagar promoções temporais. \\
+        UC12 & Gerir Categorias & Admin & Agrupar produtos em categorias para IVA e Descontos. \\
+        UC13 & Selecionar Perfil & Admin, Caixa & Identifica o utilizador e o seu papel. \\
+        UC14 & Sair do Perfil & Admin, Caixa & Termina a sessão do utilizador atual. \\
+        UC15 & Consultar Recibo & Caixa & Permite visualizar o recibo de uma venda terminada. \\ \bottomrule
+    \end{tabular}
+    \caption{Lista de Casos de Uso}
+    \label{tab:use_cases}
+\end{table}
+
+\subsection{Diagramas de Sequência de Sistema (SSD)}
+Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema para os fluxos principais.
+
+\subsubsection{UC05: Realizar Venda}
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.8\textwidth]{diagramas/ssd_venda.png}
+    \caption{SSD Realizar Venda (Diagrama em anexo)}
+\end{figure}
+
+\end{document}
