@@ -25,7 +25,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 ## Diagramas de Sequência de Sistema (SSD)
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
 
-### UC05: Realizar Venda
+### UC05: Gerir Catálogo
 ![SSD Gerir Catálogo](../diagramas/uc01.drawio.png)
 
 ### UC05: Realizar Venda
