@@ -26,9 +26,34 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
 
 ### UC05: Gerir Catálogo
-![SSD Gerir Catálogo](../diagramas/uc01.drawio.png)
+![SSD Gerir Catálogo](../diagramas/uc01.drawio(1).png)
+
+### UC02: Consultar Estatísticas
+
+### UC03: Gerir Utilizadores
+
+### UC04: Repor Stock
 
 ### UC05: Realizar Venda
-![SSD Realizar Venda](../diagramas/ssd_venda.png)
+
+### UC06: Consultar Preço
+
+### UC07: Consultar Info e Histórico
+
+### UC08: Gerir Clientes
+
+### UC09: Associar Cliente
+
+### UC10: Gerir Pontos do Cliente
+
+### UC11: Gerir Promoções | Admin
+
+### UC12: Gerir Categorias
+
+### UC13: Selecionar Perfil
+
+### UC14: Sair do Perfil
+
+### UC15: Consultar Recibo
 
 *(Inserir aqui diagrama SSD para UC01)*
