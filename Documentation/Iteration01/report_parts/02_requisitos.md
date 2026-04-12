@@ -2,26 +2,26 @@
 
 ## 2.1. User Stories
 
-### Administrador (Admin)
-- **US01:** Como Administrador, eu quero criar novos produtos para poder atualizar o catálogo do supermercado.
-- **US02:** Como Administrador, eu quero apagar produtos do sistema para que os produtos que já não existam deixem de estar na base de dados.
-- **US03:** Como Administrador, eu quero listar todos os produtos existentes para que possa consultar o inventário.
-- **US04:** Como Administrador, eu quero aceder a estatísticas globais dos caixas para avaliar o desempenho do supermercado.
-- **US05:** Como Administrador, eu quero gerir os registos de caixas (adicionar/apagar) para controlar quem tem acesso ao sistema de vendas.
-- **US06:** Como Administrador, eu quero comprar stock para produtos existentes para garantir que não falta produtos.
-- **US11:** Como Administrador, eu quero gerir o registo de Clientes (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
-- **US15:** Como Administrador, eu quero criar e gerir Promoções (percentagem, data início, data fim) para incentivar as vendas.
-- **US16:** Como Administrador, eu quero associar Promoções a Produtos específicos ou a Categorias inteiras para incentivar as vendas de produtos específicos ou categorias inteiras.
+### Administrador (ADMIN)
+- **US01:** Como ADMIN, eu quero criar novos PRODUTOS para poder atualizar o catálogo do supermercado.
+- **US02:** Como ADMIN, eu quero apagar PRODUTOS do sistema para que os PRODUTOS que já não existam deixem de estar na base de dados.
+- **US03:** Como ADMIN, eu quero listar todos os PRODUTOS existentes para que possa consultar o inventário.
+- **US04:** Como ADMIN, eu quero aceder a estatísticas globais dos CAIXAS para avaliar o desempenho do supermercado.
+- **US05:** Como ADMIN, eu quero gerir os registos de CAIXAS (adicionar/apagar) para controlar quem tem acesso ao sistema de VENDAS.
+- **US06:** Como ADMIN, eu quero comprar stock para PRODUTOS existentes para garantir que não falta PRODUTOS.
+- **US11:** Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
+- **US15:** Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
+- **US16:** Como ADMIN, eu quero associar PROMOÇÕES a PRODUTOS específicos ou a CATEGORIAS inteiras para incentivar as VENDAS de PRODUTOS específicos ou CATEGORIAS inteiras.
 
 
-### Caixa
-- **US07:** Como Caixa, eu quero listar produtos e consultar preços para informar os clientes.
-- **US08:** Como Caixa, eu quero realizar vendas (registando produtos e quantidades) para processar as compras dos clientes.
-- **US09:** Como Caixa, eu quero concluir vendas com diferentes métodos de pagamento e emitir recibos para documentar a transação.
-- **US10:** Como Caixa, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-- **US12:** Como Caixa, eu quero associar uma venda a um Cliente (via NIF ou ID) para que este possa acumular pontos de fidelização.
-- **US13:** Como Caixa, eu quero consultar o saldo de pontos de um Cliente para informar o cliente sobre benefícios disponíveis.
-- **US17:** Como Caixa, eu quero que o sistema aplique automaticamente os descontos ativos no momento da venda sem intervenção manual.
+### CAIXA
+- **US07:** Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
+- **US08:** Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
+- **US09:** Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
+- **US10:** Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
+- **US12:** Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
+- **US13:** Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
+- **US17:** Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
 
 ## 2.2. Requisitos Funcionais (RF)
 Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
@@ -39,7 +39,7 @@ Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 - **RF11:** O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos), garantindo que o NIF é único.
 - **RF12:** O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
 - **RF13:** O sistema deve calcular e atribuir pontos ao CLIENTE após uma venda concluída (ex: 1 ponto por cada 10€).
-- **RF14:** O sistema deve permitir o resgate de pontos para descontos diretos no valor total da VENDA.
+- **RF14:** O sistema deve aplicar automaticamente o resgate de pontos para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
 - **RF15:** O sistema deve permitir a criação de PROMOÇÕES com intervalo de datas (início e fim) e percentagem de desconto.
 - **RF16:** O sistema deve validar se uma PROMOÇÃO está ativa (data atual dentro do intervalo) antes de aplicar o desconto.
 - **RF17:** O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
@@ -50,19 +50,16 @@ Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 ### Functionality (F)
 - **RNF02 (Persistência de Dados):** O sistema deve garantir que o armazenamento de dados será em ficheiros CSV locais.
 ### Usability (U)
-- **RNF03 (Estrutura de Menus):** O sistema deve permitir uma navegação por menus em consola, por seleção numérica única (0-9).
+- **RNF03 (Estrutura de Menus):** O sistema deve permitir uma navegação por menus na CLI, por seleção numérica (0-9).
 
 ### Reliability (R)
-- **RNF05 (Recuperação de Erro):** O sistema deve verificar os tipos de dados de entrada (ex: carateres em campos numéricos) e pedir uma nova introdução, sem perder o estado da transação ativa.
-- **RNF06 (Integridade de Dados):** O sistema deve garantir que todas as transações que forem concluídas serão registadas num ficheiro.
+- **RNF05 (Recuperação de Erro):** O sistema deve verificar os tipos de dados de entrada (ex: carateres em campos numéricos) e pedir uma nova introdução caso o tipo de dado esteja errado, sem perder o estado da transação ativa.
+- **RNF06 (Integridade de Dados):** O sistema deve garantir que todas as transações que forem concluídas devem ser registadas num ficheiro.
 
 ### Performance (P)
-- **RNF07 (Tempo de Resposta):** Operações de pesquisa de produtos no inventário (UC06) e carregamento de ficheiros de persistência devem ser executadas num tempo de resposta inferior a 1,0 segundo.
-- **RNF08 (Eficiência de Memória):** A aplicação não deve exceder um consumo de 128MB de memória RAM durante a execução de operações críticas de listagem.
+- **RNF08 (Eficiência de Memória):** A aplicação não deve consumir mais de 1GB de memória RAM durante a execução.
 
 ### Supportability (S)
-- **RNF09 (Padrão Arquitetural):** A implementação deve respeitar a separação MVC, onde 0% da lógica de negócio reside nas classes de View e 0% das operações de I/O (`std::cout`/`std::cin`) residem nas classes de Model.
-- **RNF10 (Acoplamento):** As classes de Domínio devem ser independentes do meio de persistência escolhido, permitindo a substituição do formato CSV por Binário sem alterar a lógica de negócio.
 - **RNF11 (Portabilidade/Build):** O projeto deve ser compilável através de CMake (versão 3.10 ou superior) em ambiente Linux (GCC/Clang) e Windows (MSVC).
 
 ### + (Restrições de Implementação)
