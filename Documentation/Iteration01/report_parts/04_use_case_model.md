@@ -26,6 +26,9 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
 
 ### UC05: Realizar Venda
+![SSD Gerir Catálogo](../diagramas/uc01.drawio.png)
+
+### UC05: Realizar Venda
 ![SSD Realizar Venda](../diagramas/ssd_venda.png)
 
 *(Inserir aqui diagrama SSD para UC01)*
