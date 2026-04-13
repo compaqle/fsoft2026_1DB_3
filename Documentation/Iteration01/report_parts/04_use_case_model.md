@@ -208,10 +208,10 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para os fluxos principais.
 
 ### UC01: Gerir Catálogo
-![SSD Gerir Catálogo](../diagramas/uc01.drawio.png)
+![SSD Gerir Catálogo](../diagramas/uc01.drawio(1).png)
 
 ### UC02: Consultar Estatísticas
-![SSD Consultar Estatísticas](../diagramas/uc02.drawio.png)
+![SSD Consultar Estatísticas](../diagramas/uc02.drawio(2).png)
 
 ### UC03: Gerir Utilizadores
 
