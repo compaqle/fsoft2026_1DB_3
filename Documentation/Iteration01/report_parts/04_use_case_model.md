@@ -216,6 +216,7 @@ Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como c
 ### UC03: Gerir Utilizadores
 
 ### UC04: Repor Stock
+![SSD Repor Stock](../diagramas/diagrama_04.png)
 
 ### UC05: Realizar VENDA
 ![SSD Realizar Venda](../diagramas/ssd_venda.png)
