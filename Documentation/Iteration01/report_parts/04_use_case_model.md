@@ -214,7 +214,7 @@ Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como c
 ![SSD Consultar Estatísticas](../diagramas/uc02.drawio(2).png)
 
 ### UC03: Gerir Utilizadores
-![SSD Gerir Utilizadores]('../diagramas/UC03- Gerir Utilizadores.drawio.png').
+![SSD Gerir Utilizadores](<../diagramas/UC03- Gerir Utilizadores.drawio.png>).
 
 
 ### UC04: Repor Stock
