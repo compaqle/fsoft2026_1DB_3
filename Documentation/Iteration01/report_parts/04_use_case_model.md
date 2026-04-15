@@ -216,31 +216,38 @@ Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como c
 ### UC03: Gerir Utilizadores
 ![SSD Gerir Utilizadores](<../diagramas/UC03- Gerir Utilizadores.drawio.png>).
 
-
 ### UC04: Repor Stock
 ![SSD Repor Stock](../diagramas/diagrama_04.png)
 
 ### UC05: Realizar VENDA
-![SSD Realizar Venda](../diagramas/ssd_venda.png)
+![SSD Realizar Venda](../diagramas/uc05.drawio.png)
 
 ### UC06: Consultar Preço
+![SSD Consultar Preço](../diagramas/uc06.drawio.png)
 
 ### UC07: Consultar Info e Histórico
+![SSD Consultar Info e Histórico](../diagramas/uc07.drawio.png)
 
 ### UC08: Gerir CLIENTES
+![SSD Gerir Clientes](../diagramas/uc08.drawio.png)
 
 ### UC09: Associar CLIENTE
+![SSD Associar Cliente](../diagramas/uc09.drawio.png)
 
 ### UC10: Consultar Pontos do CLIENTE
+![SSD Consultar Pontos do Cliente](../diagramas/uc10.drawio.png)
 
 ### UC11: Gerir PROMOÇÕES
+![SSD Gerir Promoções](../diagramas/uc11.drawio.png)
 
 ### UC12: Gerir CATEGORIAS
+![SSD Gerir Categorias](../diagramas/uc12.drawio.png)
 
 ### UC13: Selecionar Perfil
+![SSD Selecionar Perfil](../diagramas/uc13.drawio.png)
 
 ### UC14: Sair do Perfil
+![SSD Sair do Perfil](../diagramas/uc14.drawio.png)
 
 ### UC15: Consultar RECIBO
-
-*(Inserir aqui diagrama SSD para UC01)*
+![SSD Consultar Recibo](../diagramas/uc15.drawio.png)
