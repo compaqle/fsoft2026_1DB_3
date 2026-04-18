@@ -185,7 +185,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 5. O ADMIN introduz os dados. \newline
 6. O sistema valida os dados, gera um ID automático e grava. \newline
 7. O sistema confirma o sucesso da operação.
-}{3.a. O ADMIN seleciona "Editar": O sistema solicita o ID e novos dados. \newline 3.b. O ADMIN seleciona "Remover": O sistema solicita o ID e confirma a remoção.}{N/A (Happy case assumido).}
+}{3.a. O ADMIN seleciona "Editar": O sistema solicita o ID e novos dados. \newline 3.b. O ADMIN seleciona "Remover": O sistema solicita o ID e confirma a remoção.}{6.a. Dados inválidos (ex: preço ou stock negativo): o sistema alerta o erro e solicita nova introdução. \newline 6.b. Produto com o mesmo nome já existente: o sistema avisa o conflito.}
 
 \subsubsection{UC02: Consultar Estatísticas}
 \ucspec{ADMIN}{Consultar Estatísticas}{Permite visualizar relatórios de faturação global ou por CAIXA.}{ADMIN autenticado no sistema.}{N/A (Consulta).}{
@@ -193,7 +193,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 2. O sistema solicita o filtro desejado (global ou por utilizador CAIXA). \newline
 3. O ADMIN escolhe o filtro. \newline
 4. O sistema gera e apresenta o relatório de faturação e volume de vendas.
-}{N/A}{N/A}
+}{N/A}{4.a. Sem dados de vendas registados para o filtro selecionado: o sistema informa o estado vazio.}
 
 \subsubsection{UC03: Gerir Utilizadores}
 \ucspec{ADMIN}{Gerir Utilizadores}{Permite o registo e remoção de contas de perfil 'CAIXA'.}{ADMIN autenticado no sistema.}{Lista de utilizadores autorizados é atualizada.}{
@@ -203,7 +203,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 4. O ADMIN introduz os dados do novo CAIXA (nome, etc.). \newline
 5. O sistema valida os dados e cria a conta de perfil 'CAIXA'. \newline
 6. O sistema confirma a criação com sucesso.
-}{3.a. O ADMIN seleciona "Remover": O sistema solicita o ID do CAIXA e remove a conta.}{N/A}
+}{3.a. O ADMIN seleciona "Remover": O sistema solicita o ID do CAIXA e remove a conta.}{5.a. Nome de utilizador já existe: o sistema solicita um identificador único. \newline 3.a.1. ID do CAIXA não encontrado (no caso de remoção): o sistema apresenta erro.}
 
 \subsubsection{UC04: Repor Stock}
 \ucspec{ADMIN}{Repor Stock}{Incrementa a quantidade disponível de um PRODUTO existente.}{ADMIN autenticado no sistema.}{Stock do PRODUTO é incrementado.}{
@@ -212,7 +212,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 3. O ADMIN introduz a quantidade a adicionar ao stock. \newline
 4. O sistema atualiza o valor do stock na base de dados. \newline
 5. O sistema confirma o novo valor total de stock.
-}{N/A}{N/A}
+}{N/A}{1.a. ID do PRODUTO não existe: o sistema informa o erro e solicita nova pesquisa. \newline 3.a. Quantidade introduzida é inválida (ex: negativa): o sistema solicita novo valor.}
 
 \subsubsection{UC05: Realizar VENDA}
 \ucspec{CAIXA}{Realizar VENDA}{Processa uma transação de venda de PRODUTOS a um cliente.}{CAIXA autenticado no sistema.}{VENDA registada, stock atualizado e RECIBO emitido.}{
@@ -223,21 +223,21 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 5. O sistema calcula o total final (aplicando taxas e promoções). \newline
 6. O CAIXA regista o pagamento. \newline
 7. O sistema finaliza a VENDA e emite o RECIBO.
-}{6.a. O CAIXA cancela a VENDA: O sistema descarta os dados e liberta o stock reservado.}{N/A}
+}{6.a. O CAIXA cancela a VENDA: O sistema descarta os dados e liberta o stock reservado.}{2.a. ID do PRODUTO é inválido: o sistema avisa o CAIXA e permite nova introdução. \newline 2.b. Stock insuficiente: o sistema alerta para a falta de unidades e não adiciona ao carrinho.}
 
 \subsubsection{UC06: Consultar Preço}
 \ucspec{CAIXA}{Consultar Preço}{Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o ID do PRODUTO. \newline
 2. O sistema pesquisa o ID. \newline
 3. O sistema apresenta o nome e o preço unitário do PRODUTO.
-}{N/A}{N/A}
+}{N/A}{2.a. ID do PRODUTO não encontrado: o sistema informa o erro.}
 
 \subsubsection{UC07: Consultar Info e Histórico}
 \ucspec{CAIXA}{Consultar Info e Histórico}{Exibe dados do utilizador CAIXA e o histórico de VENDAS realizadas.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
 1. O CAIXA solicita o seu histórico. \newline
 2. O sistema apresenta os dados do perfil (ID, nome) e o total faturado. \newline
 3. O sistema apresenta a lista detalhada das VENDAS efetuadas por ele.
-}{N/A}{N/A}
+}{N/A}{3.a. CAIXA sem histórico de vendas: o sistema apresenta lista vazia.}
 
 \subsubsection{UC08: Gerir CLIENTES}
 \ucspec{ADMIN}{Gerir CLIENTES}{Permite o registo, edição e remoção de perfis de CLIENTE.}{ADMIN autenticado no sistema.}{Base de dados de CLIENTES atualizada.}{
@@ -247,7 +247,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 4. O ADMIN introduz o NIF e o nome do CLIENTE. \newline
 5. O sistema valida o NIF, inicializa o saldo de pontos a zero e guarda o perfil. \newline
 6. O sistema confirma o sucesso da operação.
-}{3.a. O ADMIN seleciona "Editar": O sistema permite mudar o nome do CLIENTE. \newline 3.b. O ADMIN seleciona "Remover": O sistema apaga o perfil do CLIENTE.}{N/A}
+}{3.a. O ADMIN seleciona "Editar": O sistema permite mudar o nome do CLIENTE. \newline 3.b. O ADMIN seleciona "Remover": O sistema apaga o perfil do CLIENTE.}{5.a. NIF já registado ou formato inválido: o sistema apresenta erro e solicita novo dado. \newline 3.a.1. CLIENTE não encontrado: o sistema alerta o ADMIN.}
 
 \subsubsection{UC09: Associar CLIENTE}
 \ucspec{CAIXA}{Associar CLIENTE}{Durante uma VENDA, associa o CLIENTE à transação.}{VENDA em curso.}{CLIENTE associado à VENDA.}{
@@ -255,14 +255,14 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 2. O CAIXA introduz o NIF do CLIENTE. \newline
 3. O sistema valida o NIF e apresenta o nome correspondente. \newline
 4. O sistema liga o CLIENTE à VENDA atual.
-}{N/A}{N/A}
+}{N/A}{3.a. NIF não encontrado no sistema: o sistema alerta o CAIXA (pode prosseguir sem cliente ou sugerir registo).}
 
 \subsubsection{UC10: Consultar Pontos do CLIENTE}
 \ucspec{CAIXA}{Consultar Pontos do CLIENTE}{Permite visualizar o saldo de pontos atual de um CLIENTE.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o NIF do CLIENTE. \newline
 2. O sistema pesquisa o perfil correspondente. \newline
 3. O sistema apresenta o saldo de pontos atual do CLIENTE.
-}{N/A}{N/A}
+}{N/A}{2.a. NIF não encontrado: o sistema informa o erro.}
 
 \subsubsection{UC11: Gerir PROMOÇÕES}
 \ucspec{ADMIN}{Gerir PROMOÇÕES}{Permite criar e configurar regras de desconto temporárias.}{ADMIN autenticado no sistema.}{Base de dados de PROMOÇÕES atualizada.}{
@@ -272,7 +272,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 4. O ADMIN define a percentagem de desconto e as datas de vigência. \newline
 5. O ADMIN associa a PROMOÇÃO a um PRODUTO ou CATEGORIA específica. \newline
 6. O sistema valida e guarda a regra de desconto.
-}{3.a. O ADMIN seleciona "Remover": O sistema apaga a regra de promoção selecionada.}{N/A}
+}{3.a. O ADMIN seleciona "Remover": O sistema apaga a regra de promoção selecionada.}{6.a. Datas inválidas (ex: data fim anterior à data início): o sistema alerta o ADMIN. \newline 5.a. PRODUTO ou CATEGORIA associada não existe: o sistema apresenta erro.}
 
 \subsubsection{UC12: Gerir CATEGORIAS}
 \ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS para fins de IVA e descontos.}{ADMIN autenticado no sistema.}{Lista de CATEGORIAS atualizada.}{
@@ -282,14 +282,14 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 4. O ADMIN introduz o nome da nova CATEGORIA e a respetiva taxa de IVA. \newline
 5. O sistema valida os dados e cria a CATEGORIA. \newline
 6. O sistema confirma a criação com sucesso.
-}{N/A}{N/A}
+}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA configuradas.}{5.a. Nome de CATEGORIA já existente: o sistema solicita nome diferente. \newline 4.a. Taxa de IVA inválida: o sistema solicita valor numérico correto.}
 
 \subsubsection{UC13: Selecionar Perfil}
 \ucspec{ADMIN, CAIXA}{Selecionar Perfil}{Permite ao utilizador identificar-se e aceder ao menu correspondente.}{Sistema no menu de seleção inicial.}{Utilizador autenticado e menu de funções ativo.}{
 1. O utilizador seleciona o seu perfil (ADMIN ou um CAIXA específico) de uma lista apresentada. \newline
 2. O sistema verifica as permissões do perfil. \newline
 3. O sistema apresenta o menu de operações adequado ao papel selecionado.
-}{N/A}{N/A}
+}{N/A}{1.a. Lista de perfis vazia: o sistema permite apenas a criação do primeiro ADMIN.}
 
 \subsubsection{UC14: Sair do Perfil}
 \ucspec{ADMIN, CAIXA}{Sair do Perfil}{Termina a sessão do utilizador atual.}{Utilizador com perfil ativo no sistema.}{Sessão terminada e sistema regressa ao menu de seleção inicial.}{
@@ -303,7 +303,7 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 1. O CAIXA seleciona uma venda do seu histórico recente. \newline
 2. O sistema pesquisa os dados da transação. \newline
 3. O sistema gera e apresenta o RECIBO detalhado no ecrã.
-}{N/A (Happy case assumido).}{N/A (Happy case assumido).}
+}{N/A}{2.a. Venda não encontrada ou erro na recuperação de dados: o sistema apresenta mensagem de erro.}
 
 \subsection{Diagramas de Sequência de Sistema (SSD)}
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para o cenário principal de cada Caso de Uso.
