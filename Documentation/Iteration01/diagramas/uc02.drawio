@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="gLzY6KWBv10CbBK-cKQt">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="787" dy="367" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,17 +10,11 @@
             <mxPoint x="460" y="195" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;1. Selecionar consultar estatisticas&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="150" x="185" y="170" as="geometry" />
-        </mxCell>
         <mxCell id="dupzYkKquYSHnxmJmB-P-15" edge="1" parent="1" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;startArrow=classic;startFill=1;endArrow=none;endFill=0;dashed=1;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="180" y="230" as="sourcePoint" />
             <mxPoint x="460" y="230.33" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;2. Mostrar opcoes relatorio&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="100" x="350" y="220" as="geometry" />
         </mxCell>
         <mxCell id="dupzYkKquYSHnxmJmB-P-22" edge="1" parent="1" source="dupzYkKquYSHnxmJmB-P-21" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;endArrow=none;endFill=0;dashed=1;">
           <mxGeometry relative="1" as="geometry">
@@ -54,36 +48,8 @@
             <mxPoint x="460" y="260" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;3. Gerar relatorio(filtro)&lt;/span&gt;" vertex="1">
+        <mxCell id="dupzYkKquYSHnxmJmB-P-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;span style=&quot;font-size: 8px;&quot;&gt;gerarRelatorio(filtro)&lt;/span&gt;" vertex="1">
           <mxGeometry height="30" width="185" x="185" y="250" as="geometry" />
-        </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-27" edge="1" parent="1" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;fontSize=12;" value="">
-          <mxGeometry relative="1" width="140" as="geometry">
-            <Array as="points">
-              <mxPoint x="530" y="260" />
-              <mxPoint x="530" y="280" />
-              <mxPoint x="510" y="280" />
-            </Array>
-            <mxPoint x="490" y="260" as="sourcePoint" />
-            <mxPoint x="490" y="280" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;&amp;nbsp;4. Calcular estatisticas&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="120" x="520" y="255" as="geometry" />
-        </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-29" edge="1" parent="1" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;fontSize=12;" value="">
-          <mxGeometry relative="1" width="140" as="geometry">
-            <Array as="points">
-              <mxPoint x="530" y="300" />
-              <mxPoint x="530" y="320" />
-              <mxPoint x="510" y="320" />
-            </Array>
-            <mxPoint x="490" y="300" as="sourcePoint" />
-            <mxPoint x="490" y="320" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;5. Obter dados&amp;nbsp;&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="80" x="510" y="310" as="geometry" />
         </mxCell>
         <mxCell id="dupzYkKquYSHnxmJmB-P-31" edge="1" parent="1" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;startArrow=classic;startFill=1;endArrow=none;endFill=0;dashed=1;">
           <mxGeometry relative="1" as="geometry">
@@ -91,14 +57,23 @@
             <mxPoint x="460" y="330.33000000000004" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dupzYkKquYSHnxmJmB-P-32" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;6. Exibir Relatorio(faturação, volume)&lt;/font&gt;" vertex="1">
+        <mxCell id="dupzYkKquYSHnxmJmB-P-32" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;esatísticas(faturação e volume)&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="137.5" x="310" y="305" as="geometry" />
         </mxCell>
-        <mxCell id="Ey4ZoZCtD9a0uIFWcwvA-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Admin" vertex="1">
-          <mxGeometry height="60" width="30" x="160" y="70" as="geometry" />
+        <mxCell id="Ey4ZoZCtD9a0uIFWcwvA-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="" vertex="1">
+          <mxGeometry height="60" width="30" x="160" y="40" as="geometry" />
         </mxCell>
-        <mxCell id="Ey4ZoZCtD9a0uIFWcwvA-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Sistema" vertex="1">
-          <mxGeometry height="40" width="120" x="415" y="110" as="geometry" />
+        <mxCell id="xgZyFuAr1iUKm10rsr8M-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 8px;&quot;&gt;selecionarConsultarEstatiscas()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="190" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="xgZyFuAr1iUKm10rsr8M-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value=":Admin" vertex="1">
+          <mxGeometry height="40" width="90" x="130" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xgZyFuAr1iUKm10rsr8M-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value=":System" vertex="1">
+          <mxGeometry height="40" width="110" x="420" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xgZyFuAr1iUKm10rsr8M-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;opções de filtro e relatório&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="350" y="210" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

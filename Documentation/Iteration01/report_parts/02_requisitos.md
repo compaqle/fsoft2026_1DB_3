@@ -1,18 +1,17 @@
 # Análise de Requisitos
 
-## 2.1. User Stories
+## User Stories
 
 ### Administrador (ADMIN)
 - **US01:** Como ADMIN, eu quero criar novos PRODUTOS para poder atualizar o catálogo do supermercado.
 - **US02:** Como ADMIN, eu quero apagar PRODUTOS do sistema para que os PRODUTOS que já não existam deixem de estar na base de dados.
 - **US03:** Como ADMIN, eu quero listar todos os PRODUTOS existentes para que possa consultar o inventário.
 - **US04:** Como ADMIN, eu quero aceder a estatísticas globais dos CAIXAS para avaliar o desempenho do supermercado.
-- **US05:** Como ADMIN, eu quero gerir os registos de CAIXAS (adicionar/apagar) para controlar quem tem acesso ao sistema de VENDAS.
+- **US05:** Como ADMIN, eu quero gerir os registos de CAIXAS (adição/remoção) para controlar quem tem acesso ao sistema de VENDAS.
 - **US06:** Como ADMIN, eu quero comprar stock para PRODUTOS existentes para garantir que não falta PRODUTOS.
 - **US11:** Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
 - **US15:** Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
 - **US16:** Como ADMIN, eu quero associar PROMOÇÕES a PRODUTOS específicos ou a CATEGORIAS inteiras para incentivar as VENDAS de PRODUTOS específicos ou CATEGORIAS inteiras.
-
 
 ### CAIXA
 - **US07:** Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
@@ -23,9 +22,7 @@
 - **US13:** Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
 - **US17:** Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
 
-## 2.2. Requisitos Funcionais (RF)
-Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
-
+## Requisitos Funcionais (RF)
 - **RF01:** O sistema deve permitir a criação de um novo PRODUTO (nome, preço), criando um `id` único automaticamente.
 - **RF02:** O sistema deve permitir a remoção de um PRODUTO pelo seu `id`.
 - **RF03:** O sistema deve listar todos os PRODUTOS com os seus respetivos detalhes e stock.
@@ -45,10 +42,11 @@ Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 - **RF17:** O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
 - **RF18:** O sistema deve garantir que, no caso de mais de uma promoções aplicáveis, apenas a que desconte mais dinheiro para o cliente é aplicada.
 
-## 2.3. Requisitos Não Funcionais (FURPS+)
+## Requisitos Não Funcionais (FURPS+)
 
 ### Functionality (F)
 - **RNF02 (Persistência de Dados):** O sistema deve garantir que o armazenamento de dados será em ficheiros CSV locais.
+
 ### Usability (U)
 - **RNF03 (Estrutura de Menus):** O sistema deve permitir uma navegação por menus na CLI, por seleção numérica (0-9).
 
