@@ -9,18 +9,19 @@
 - **US04:** Como ADMIN, eu quero aceder a estatísticas globais dos CAIXAS para avaliar o desempenho do supermercado.
 - **US05:** Como ADMIN, eu quero gerir os registos de CAIXAS (adição/remoção) para controlar quem tem acesso ao sistema de VENDAS.
 - **US06:** Como ADMIN, eu quero comprar stock para PRODUTOS existentes para garantir que não falta PRODUTOS.
-- **US11:** Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
-- **US15:** Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
-- **US16:** Como ADMIN, eu quero associar PROMOÇÕES a PRODUTOS específicos ou a CATEGORIAS inteiras para incentivar as VENDAS de PRODUTOS específicos ou CATEGORIAS inteiras.
+- **US07:** Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
+- **US08:** Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
+- **US09:** Como ADMIN, eu quero gerir CATEGORIAS de produtos para organizar o inventário e aplicar taxas.
 
 ### CAIXA
-- **US07:** Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
-- **US08:** Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
-- **US09:** Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
-- **US10:** Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-- **US12:** Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
-- **US13:** Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
-- **US17:** Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
+- **US10:** Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
+- **US11:** Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
+- **US12:** Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
+- **US13:** Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
+- **US14:** Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
+- **US15:** Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
+- **US16:** Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
+- **US17:** Como CAIXA, eu quero consultar o detalhe de RECIBOS de vendas passadas para esclarecer dúvidas dos clientes.
 
 ## Requisitos Funcionais (RF)
 - **RF01:** O sistema deve permitir a criação de um novo PRODUTO (nome, preço), criando um `id` único automaticamente.

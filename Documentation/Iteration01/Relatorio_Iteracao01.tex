@@ -47,20 +47,21 @@ Na gestão de inventário e vendas de um supermercado existem vários desafios c
     \item \textbf{US04:} Como ADMIN, eu quero aceder a estatísticas globais dos CAIXAS para avaliar o desempenho do supermercado.
     \item \textbf{US05:} Como ADMIN, eu quero gerir os registos de CAIXAS (adição/remoção) para controlar quem tem acesso ao sistema de VENDAS.
     \item \textbf{US06:} Como ADMIN, eu quero comprar stock para PRODUTOS existentes para garantir que não falta PRODUTOS.
-    \item \textbf{US11:} Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
-    \item \textbf{US15:} Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
-    \item \textbf{US16:} Como ADMIN, eu quero associar PROMOÇÕES a PRODUTOS específicos ou a CATEGORIAS inteiras para incentivar as VENDAS de PRODUTOS específicos ou CATEGORIAS inteiras.
+    \item \textbf{US07:} Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
+    \item \textbf{US08:} Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
+    \item \textbf{US09:} Como ADMIN, eu quero gerir CATEGORIAS de produtos para organizar o inventário e aplicar taxas.
 \end{itemize}
 
 \subsubsection{CAIXA}
 \begin{itemize}
-    \item \textbf{US07:} Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
-    \item \textbf{US08:} Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
-    \item \textbf{US09:} Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
-    \item \textbf{US10:} Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-    \item \textbf{US12:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
-    \item \textbf{US13:} Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
-    \item \textbf{US17:} Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
+    \item \textbf{US10:} Como CAIXA, eu quero listar PRODUTOS e consultar preços para informar os CLIENTES.
+    \item \textbf{US11:} Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
+    \item \textbf{US12:} Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
+    \item \textbf{US13:} Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
+    \item \textbf{US14:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
+    \item \textbf{US15:} Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
+    \item \textbf{US16:} Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
+    \item \textbf{US17:} Como CAIXA, eu quero consultar o detalhe de RECIBOS de vendas passadas para esclarecer dúvidas dos clientes.
 \end{itemize}
 
 \subsection{Requisitos Funcionais (RF)}
@@ -140,17 +141,17 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
         UC02 & Consultar Estatísticas & ADMIN & Gera relatórios de faturação e volume por CAIXA ou global. \\
         UC03 & Gerir Utilizadores & ADMIN & Permite o registo e remoção de contas de perfil 'CAIXA'. \\
         UC04 & Repor Stock & ADMIN & Incrementa a quantidade disponível de um PRODUTO existente. \\
-        UC05 & Realizar VENDA & CAIXA & Inicia transação, adiciona itens, calcula total e regista pagamento. \\
-        UC06 & Consultar Preço & CAIXA & Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID. \\
-        UC07 & Consultar Info e Histórico & CAIXA & Exibe dados do funcionário e histórico detalhado de VENDAS. \\
-        UC08 & Gerir CLIENTES & ADMIN & Permite o registo, edição e remoção de perfis de CLIENTE. \\
-        UC09 & Associar CLIENTE & CAIXA & Durante a VENDA, permite ligar a transação a um CLIENTE. \\
-        UC10 & Consultar Pontos do CLIENTE & CAIXA & Visualizar saldo de pontos e aplicação automática de desconto. \\
-        UC11 & Gerir PROMOÇÕES & ADMIN & Permite criar, editar e apagar PROMOÇÕES temporárias. \\
-        UC12 & Gerir CATEGORIAS & ADMIN & Agrupar PRODUTOS para fins de IVA e Descontos. \\
-        UC13 & Selecionar Perfil & ADMIN, CAIXA & Identifica o utilizador e o seu papel para aceder ao sistema. \\
-        UC14 & Sair do Perfil & ADMIN, CAIXA & Termina a sessão do utilizador atual. \\
-        UC15 & Consultar RECIBO & CAIXA & Consultar e visualizar o RECIBO de uma VENDA terminada. \\ \bottomrule
+        UC05 & Gerir CLIENTES & ADMIN & Permite o registo, edição e remoção de perfis de CLIENTE. \\
+        UC06 & Gerir PROMOÇÕES & ADMIN & Permite criar, editar e apagar PROMOÇÕES temporárias. \\
+        UC07 & Gerir CATEGORIAS & ADMIN & Agrupar PRODUTOS para fins de IVA e Descontos. \\
+        UC08 & Realizar VENDA & CAIXA & Inicia transação, adiciona itens, calcula total e regista pagamento. \\
+        UC09 & Consultar Preço & CAIXA & Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID. \\
+        UC10 & Ver Info Própria & CAIXA & Exibe dados do funcionário e total de VENDAS faturado. \\
+        UC11 & Associar CLIENTE & CAIXA & Durante a VENDA, permite ligar a transação a um CLIENTE. \\
+        UC12 & Consultar Pontos & CAIXA & Visualizar saldo de pontos do CLIENTE. \\
+        UC13 & Consultar RECIBO & CAIXA & Consultar e visualizar o RECIBO de uma VENDA terminada. \\
+        UC14 & Selecionar Perfil & ADMIN, CAIXA & Identifica o utilizador e o seu papel. \\
+        UC15 & Sair do Perfil & ADMIN, CAIXA & Termina a sessão do utilizador atual. \\ \bottomrule
     \end{tabularx}
     \caption{Lista de Casos de Uso}
     \label{tab:use_cases}
@@ -214,7 +215,37 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 5. O sistema confirma o novo valor total de stock.
 }{N/A}{1.a. ID do PRODUTO não existe: o sistema informa o erro e solicita nova pesquisa. \newline 3.a. Quantidade introduzida é inválida (ex: negativa): o sistema solicita novo valor.}
 
-\subsubsection{UC05: Realizar VENDA}
+\subsubsection{UC05: Gerir CLIENTES}
+\ucspec{ADMIN}{Gerir CLIENTES}{Permite o registo, edição e remoção de perfis de CLIENTE.}{ADMIN autenticado no sistema.}{Base de dados de CLIENTES atualizada.}{
+1. O ADMIN solicita gestão de CLIENTES. \newline
+2. O sistema mostra as opções (Registar, Editar, Remover). \newline
+3. O ADMIN seleciona "Registar". \newline
+4. O ADMIN introduz o NIF e o nome do CLIENTE. \newline
+5. O sistema valida o NIF, inicializa o saldo de pontos a zero e guarda o perfil. \newline
+6. O sistema confirma o sucesso da operação.
+}{3.a. O ADMIN seleciona "Editar": O sistema permite mudar o nome do CLIENTE. \newline 3.b. O ADMIN seleciona "Remover": O sistema apaga o perfil do CLIENTE.}{5.a. NIF já registado ou formato inválido: o sistema apresenta erro e solicita novo dado. \newline 3.a.1. CLIENTE não encontrado: o sistema alerta o ADMIN.}
+
+\subsubsection{UC06: Gerir PROMOÇÕES}
+\ucspec{ADMIN}{Gerir PROMOÇÕES}{Permite criar e configurar regras de desconto temporárias.}{ADMIN autenticado no sistema.}{Base de dados de PROMOÇÕES atualizada.}{
+1. O ADMIN solicita a gestão de PROMOÇÕES. \newline
+2. O sistema mostra as opções (Criar, Remover). \newline
+3. O ADMIN seleciona "Criar". \newline
+4. O ADMIN define a percentagem de desconto e as datas de vigência. \newline
+5. O ADMIN associa a PROMOÇÃO a um PRODUTO ou CATEGORIA específica. \newline
+6. O sistema valida e guarda a regra de desconto.
+}{3.a. O ADMIN seleciona "Remover": O sistema apaga a regra de promoção selecionada.}{6.a. Dates inválidas (ex: data fim anterior à data início): o sistema alerta o ADMIN. \newline 5.a. PRODUTO ou CATEGORIA associada não existe: o sistema apresenta erro.}
+
+\subsubsection{UC07: Gerir CATEGORIAS}
+\ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS para fins de IVA e descontos.}{ADMIN autenticado no sistema.}{Lista de CATEGORIAS atualizada.}{
+1. O ADMIN solicita a gestão de categorias. \newline
+2. O sistema apresenta as opções (Criar, Listar). \newline
+3. O ADMIN seleciona "Criar". \newline
+4. O ADMIN introduz o nome da nova CATEGORIA e a respetiva taxa de IVA. \newline
+5. O sistema valida os dados e cria a CATEGORIA. \newline
+6. O sistema confirma a criação com sucesso.
+}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA configuradas.}{5.a. Nome de CATEGORIA já existente: o sistema solicita nome diferente. \newline 4.a. Taxa de IVA inválida: o sistema solicita valor numérico correto.}
+
+\subsubsection{UC08: Realizar VENDA}
 \ucspec{CAIXA}{Realizar VENDA}{Processa uma transação de venda de PRODUTOS a um cliente.}{CAIXA autenticado no sistema.}{VENDA registada, stock atualizado e RECIBO emitido.}{
 1. O CAIXA inicia uma nova VENDA. \newline
 2. O CAIXA introduz o ID e quantidade de cada PRODUTO. \newline
@@ -225,85 +256,54 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 7. O sistema finaliza a VENDA e emite o RECIBO.
 }{6.a. O CAIXA cancela a VENDA: O sistema descarta os dados e liberta o stock reservado.}{2.a. ID do PRODUTO é inválido: o sistema avisa o CAIXA e permite nova introdução. \newline 2.b. Stock insuficiente: o sistema alerta para a falta de unidades e não adiciona ao carrinho.}
 
-\subsubsection{UC06: Consultar Preço}
+\subsubsection{UC09: Consultar Preço}
 \ucspec{CAIXA}{Consultar Preço}{Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o ID do PRODUTO. \newline
 2. O sistema pesquisa o ID. \newline
 3. O sistema apresenta o nome e o preço unitário do PRODUTO.
 }{N/A}{2.a. ID do PRODUTO não encontrado: o sistema informa o erro.}
 
-\subsubsection{UC07: Consultar Info e Histórico}
-\ucspec{CAIXA}{Consultar Info e Histórico}{Exibe dados do utilizador CAIXA e o histórico de VENDAS realizadas.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
-1. O CAIXA solicita o seu histórico. \newline
-2. O sistema apresenta os dados do perfil (ID, nome) e o total faturado. \newline
-3. O sistema apresenta a lista detalhada das VENDAS efetuadas por ele.
-}{N/A}{3.a. CAIXA sem histórico de vendas: o sistema apresenta lista vazia.}
+\subsubsection{UC10: Ver Info Própria}
+\ucspec{CAIXA}{Ver Info Própria}{Exibe dados do utilizador CAIXA e o total faturado acumulado.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
+1. O CAIXA solicita a sua informação. \newline
+2. O sistema apresenta os dados do perfil (ID, nome) e o total faturado acumulado.
+}{N/A}{N/A}
 
-\subsubsection{UC08: Gerir CLIENTES}
-\ucspec{ADMIN}{Gerir CLIENTES}{Permite o registo, edição e remoção de perfis de CLIENTE.}{ADMIN autenticado no sistema.}{Base de dados de CLIENTES atualizada.}{
-1. O ADMIN solicita gestão de CLIENTES. \newline
-2. O sistema mostra as opções (Registar, Editar, Remover). \newline
-3. O ADMIN seleciona "Registar". \newline
-4. O ADMIN introduz o NIF e o nome do CLIENTE. \newline
-5. O sistema valida o NIF, inicializa o saldo de pontos a zero e guarda o perfil. \newline
-6. O sistema confirma o sucesso da operação.
-}{3.a. O ADMIN seleciona "Editar": O sistema permite mudar o nome do CLIENTE. \newline 3.b. O ADMIN seleciona "Remover": O sistema apaga o perfil do CLIENTE.}{5.a. NIF já registado ou formato inválido: o sistema apresenta erro e solicita novo dado. \newline 3.a.1. CLIENTE não encontrado: o sistema alerta o ADMIN.}
-
-\subsubsection{UC09: Associar CLIENTE}
+\subsubsection{UC11: Associar CLIENTE}
 \ucspec{CAIXA}{Associar CLIENTE}{Durante uma VENDA, associa o CLIENTE à transação.}{VENDA em curso.}{CLIENTE associado à VENDA.}{
 1. O CAIXA solicita a associação de um CLIENTE. \newline
 2. O CAIXA introduz o NIF do CLIENTE. \newline
 3. O sistema valida o NIF e apresenta o nome correspondente. \newline
 4. O sistema liga o CLIENTE à VENDA atual.
-}{N/A}{3.a. NIF não encontrado no sistema: o sistema alerta o CAIXA (pode prosseguir sem cliente ou sugerir registo).}
+}{N/A}{3.a. NIF não encontrado no sistema: o sistema alerta o CAIXA.}
 
-\subsubsection{UC10: Consultar Pontos do CLIENTE}
-\ucspec{CAIXA}{Consultar Pontos do CLIENTE}{Permite visualizar o saldo de pontos atual de um CLIENTE.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
+\subsubsection{UC12: Consultar Pontos}
+\ucspec{CAIXA}{Consultar Pontos}{Permite visualizar o saldo de pontos atual de um CLIENTE.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o NIF do CLIENTE. \newline
 2. O sistema pesquisa o perfil correspondente. \newline
 3. O sistema apresenta o saldo de pontos atual do CLIENTE.
 }{N/A}{2.a. NIF não encontrado: o sistema informa o erro.}
 
-\subsubsection{UC11: Gerir PROMOÇÕES}
-\ucspec{ADMIN}{Gerir PROMOÇÕES}{Permite criar e configurar regras de desconto temporárias.}{ADMIN autenticado no sistema.}{Base de dados de PROMOÇÕES atualizada.}{
-1. O ADMIN solicita a gestão de PROMOÇÕES. \newline
-2. O sistema mostra as opções (Criar, Remover). \newline
-3. O ADMIN seleciona "Criar". \newline
-4. O ADMIN define a percentagem de desconto e as datas de vigência. \newline
-5. O ADMIN associa a PROMOÇÃO a um PRODUTO ou CATEGORIA específica. \newline
-6. O sistema valida e guarda a regra de desconto.
-}{3.a. O ADMIN seleciona "Remover": O sistema apaga a regra de promoção selecionada.}{6.a. Datas inválidas (ex: data fim anterior à data início): o sistema alerta o ADMIN. \newline 5.a. PRODUTO ou CATEGORIA associada não existe: o sistema apresenta erro.}
+\subsubsection{UC13: Consultar RECIBO}
+\ucspec{CAIXA}{Consultar RECIBO}{Permite visualizar o detalhe de uma venda efetuada anteriormente.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
+1. O CAIXA seleciona uma venda do seu histórico recente. \newline
+2. O sistema pesquisa os dados da transação. \newline
+3. O sistema gera e apresenta o RECIBO detalhado no ecrã.
+}{N/A}{2.a. Venda não encontrada ou erro na recuperação de dados: o sistema apresenta mensagem de erro.}
 
-\subsubsection{UC12: Gerir CATEGORIAS}
-\ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS para fins de IVA e descontos.}{ADMIN autenticado no sistema.}{Lista de CATEGORIAS atualizada.}{
-1. O ADMIN solicita a gestão de categorias. \newline
-2. O sistema apresenta as opções (Criar, Listar). \newline
-3. O ADMIN seleciona "Criar". \newline
-4. O ADMIN introduz o nome da nova CATEGORIA e a respetiva taxa de IVA. \newline
-5. O sistema valida os dados e cria a CATEGORIA. \newline
-6. O sistema confirma a criação com sucesso.
-}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA configuradas.}{5.a. Nome de CATEGORIA já existente: o sistema solicita nome diferente. \newline 4.a. Taxa de IVA inválida: o sistema solicita valor numérico correto.}
-
-\subsubsection{UC13: Selecionar Perfil}
+\subsubsection{UC14: Selecionar Perfil}
 \ucspec{ADMIN, CAIXA}{Selecionar Perfil}{Permite ao utilizador identificar-se e aceder ao menu correspondente.}{Sistema no menu de seleção inicial.}{Utilizador autenticado e menu de funções ativo.}{
 1. O utilizador seleciona o seu perfil (ADMIN ou um CAIXA específico) de uma lista apresentada. \newline
 2. O sistema verifica as permissões do perfil. \newline
 3. O sistema apresenta o menu de operações adequado ao papel selecionado.
 }{N/A}{1.a. Lista de perfis vazia: o sistema permite apenas a criação do primeiro ADMIN.}
 
-\subsubsection{UC14: Sair do Perfil}
+\subsubsection{UC15: Sair do Perfil}
 \ucspec{ADMIN, CAIXA}{Sair do Perfil}{Termina a sessão do utilizador atual.}{Utilizador com perfil ativo no sistema.}{Sessão terminada e sistema regressa ao menu de seleção inicial.}{
 1. O utilizador seleciona a opção "Sair" ou "Logout". \newline
 2. O sistema limpa os dados de sessão atuais. \newline
 3. O sistema regressa ao menu de seleção de perfil inicial.
 }{N/A}{N/A}
-
-\subsubsection{UC15: Consultar RECIBO}
-\ucspec{CAIXA}{Consultar RECIBO}{Permite visualizar o detalhe de uma venda efetuada anteriormente.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
-1. O CAIXA seleciona uma venda do seu histórico recente. \newline
-2. O sistema pesquisa os dados da transação. \newline
-3. O sistema gera e apresenta o RECIBO detalhado no ecrã.
-}{N/A}{2.a. Venda não encontrada ou erro na recuperação de dados: o sistema apresenta mensagem de erro.}
 
 \subsection{Diagramas de Sequência de Sistema (SSD)}
 Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para o cenário principal de cada Caso de Uso.
@@ -335,81 +335,85 @@ Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como c
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc05.png}
-    \caption{SSD UC05: Realizar VENDA}
+    \caption{SSD UC05: Gerir CLIENTES (Cenário de Registo)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc06.png}
-    \caption{SSD UC06: Consultar Preço}
+    \caption{SSD UC06: Gerir PROMOÇÕES (Cenário de Criação)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc07.png}
-    \caption{SSD UC07: Consultar Histórico}
+    \caption{SSD UC07: Gerir CATEGORIAS}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc08.png}
-    \caption{SSD UC08: Gerir CLIENTES (Cenário de Registo)}
+    \caption{SSD UC08: Realizar VENDA}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc09.png}
-    \caption{SSD UC09: Associar CLIENTE}
+    \caption{SSD UC09: Consultar Preço}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc10.png}
-    \caption{SSD UC10: Consultar Pontos}
+    \caption{SSD UC10: Ver Info Própria}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc11.png}
-    \caption{SSD UC11: Gerir PROMOÇÕES (Cenário de Criação)}
+    \caption{SSD UC11: Associar CLIENTE}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc12.png}
-    \caption{SSD UC12: Gerir CATEGORIAS (Cenário de Criação)}
+    \caption{SSD UC12: Consultar Pontos}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc13.png}
-    \caption{SSD UC13: Selecionar Perfil}
+    \caption{SSD UC13: Consultar RECIBO}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc14.png}
-    \caption{SSD UC14: Sair do Perfil}
+    \caption{SSD UC14: Selecionar Perfil}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc15.png}
-    \caption{SSD UC15: Consultar RECIBO}
+    \caption{SSD UC15: Sair do Perfil}
 \end{figure}
 
 \section{Glossário}
 Conforme as normas da unidade curricular, os termos estão listados em ordem alfabética e no singular.
 
 \begin{description}
-    \item[ADMINISTRAÇÃO] Papel de gestão e controlo total das operações do sistema.
+    \item[ADMIN] Papel de gestão e controlo total das operações do sistema.
     \item[CAIXA] Funcionário operador do sistema de vendas ou o terminal de ponto de venda (POS).
     \item[CATEGORIA] Agrupamento de produtos com características semelhantes (ex: Bebidas, Talho).
     \item[CLI (Command Line Interface)] Interface de utilizador baseada em texto.
     \item[CLIENTE] Pessoa que adquire produtos no supermercado, podendo estar registada no sistema para fidelização.
+    \item[ESTATÍSTICA] Relatório de desempenho de faturação e volume de vendas por período ou operador.
+    \item[ITEM DE VENDA] Entrada numa transação que associa um produto específico a uma quantidade e subtotal.
     \item[IVA (Imposto sobre o Valor Acrescentado)] Taxa aplicada sobre o preço dos produtos.
+    \item[MÉTODO DE PAGAMENTO] Forma como o cliente liquida o valor de uma venda (ex: Numerário, Cartão).
+    \item[NIF (Número de Identificação Fiscal)] Identificador numérico único utilizado para registo de clientes e faturação.
     \item[PONTOS] Unidade de medida de fidelização acumulada por compras e convertível em descontos.
-    \item[PRODUTO] Artigo unitário inventariável com ID único, Descrição, Preço e Stock.
+    \item[PRODUTO] Artigo unitário inventariável com ID único, descrição, preço e stock.
     \item[PROMOÇÃO] Desconto percentual aplicado a produtos ou categorias num intervalo de tempo.
     \item[RECIBO] Comprovativo textual de uma venda concluída entregue ao cliente.
     \item[VENDA] Registo de uma transação comercial que associa produtos e um método de pagamento.
