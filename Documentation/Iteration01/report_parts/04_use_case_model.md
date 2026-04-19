@@ -2,6 +2,9 @@
 
 Nesta secção detalhamos as interações entre os atores e o sistema.
 
+## Diagrama de Casos de Uso (Administrador)
+![Diagrama de Casos de Uso - Admin](../diagramas/use_case_diagram_admin.png)
+
 | ID | Caso de Uso | Ator(es) | Descrição Resumida |
 | :--- | :--- | :--- | :--- |
 | **UC01** | Gerir Catálogo | ADMIN | Permite criar, editar, listar e remover PRODUTOS. |
