@@ -9,8 +9,26 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{pdflscape}
 
 \setcounter{tocdepth}{3}
+
+% Comando personalizado para a tabela de especificação (estilo Teórica T5, slide 39)
+\newcommand{\ucspec}[7]{
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{Actor} & #1 \\ \hline
+        \textbf{Use case name} & #2 \\ \hline
+        \textbf{Description} & #3 \\ \hline
+        \textbf{Precondition} & #4 \\ \hline
+        \textbf{Postcondition} & #5 \\ \hline
+        \textbf{Main flow} & #6 \\ \hline
+        \textbf{Alternative path} & #7 \\ \hline
+    \end{tabularx}
+\end{table}
+}
 
 \begin{document}
 
@@ -37,7 +55,7 @@ Este relatório documenta o processo de análise e especificação de um program
 
 Na gestão de inventário e vendas de um supermercado existem vários desafios como a manutenção dos dados de inventário, monitorização das vendas e a necessidade de garantir que os dados são guardados corretamente em ficheiros externos. 
 
-Ao longo deste relatório, mostramos quais são os requisitos (funcionais e não funcionais), o modelo de domínio.
+Ao longo deste relatório, identificamos as histório do utilizador, os requisitos funcionais e não funcionais (usando o modelo FURPS+), o modelo de domínio e os casos de uso para os atores existentes. 
 
 \section{Análise de Requisitos}
 
@@ -49,11 +67,11 @@ Ao longo deste relatório, mostramos quais são os requisitos (funcionais e não
     \item \textbf{US02:} Como ADMIN, eu quero apagar PRODUTOS do sistema para que os PRODUTOS que já não existam deixem de estar na base de dados.
     \item \textbf{US03:} Como ADMIN, eu quero listar todos os PRODUTOS existentes para que possa consultar o inventário.
     \item \textbf{US04:} Como ADMIN, eu quero aceder a estatísticas globais dos CAIXAS para avaliar o desempenho do supermercado.
-    \item \textbf{US05:} Como ADMIN, eu quero gerir os registos de CAIXAS (adição/remoção) para controlar quem tem acesso ao sistema de VENDAS.
+    \item \textbf{US05:} Como ADMIN, eu quero adicionar e remover CAIXAs (adição/remoção) para controlar quem tem acesso ao sistema de VENDAS.
     \item \textbf{US06:} Como ADMIN, eu quero comprar stock para PRODUTOS existentes para garantir que não falta PRODUTOS.
-    \item \textbf{US07:} Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de fidelização atualizada.
+    \item \textbf{US07:} Como ADMIN, eu quero gerir o registo de CLIENTES (criar/editar/apagar) para manter a base de dados de CLIENTES atualizada.
     \item \textbf{US08:} Como ADMIN, eu quero criar e gerir PROMOÇÕES (percentagem, data início, data fim) para incentivar as VENDAS.
-    \item \textbf{US09:} Como ADMIN, eu quero gerir CATEGORIAS de produtos para organizar o inventário e aplicar taxas.
+    \item \textbf{US09:} Como ADMIN, eu quero gerir CATEGORIAS de produtos para organizar o inventário e aplicar impostos diferentemente para cada CATEGORIA.
 \end{itemize}
 
 \subsubsection{CAIXA}
@@ -62,79 +80,78 @@ Ao longo deste relatório, mostramos quais são os requisitos (funcionais e não
     \item \textbf{US11:} Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
     \item \textbf{US12:} Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
     \item \textbf{US13:} Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-    \item \textbf{US14:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF ou ID) para que este possa acumular pontos de fidelização.
-    \item \textbf{US15:} Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre benefícios disponíveis.
+    \item \textbf{US14:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF) para que este possa acumular pontos.
+    \item \textbf{US15:} Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre os pontos que ele tem.
     \item \textbf{US16:} Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
     \item \textbf{US17:} Como CAIXA, eu quero consultar o detalhe de RECIBOS de vendas passadas para esclarecer dúvidas dos clientes.
 \end{itemize}
 
 \subsection{Requisitos Funcionais (RF)}
-Os Requisitos Funcionais descrevem o comportamento detalhado do sistema:
 \begin{itemize}
-    \item \textbf{RF01:} O sistema deve permitir a criação de um novo PRODUTO (nome, preço), criando um \texttt{id} único automaticamente.
+    \item \textbf{RF01:} O sistema deve permitir a criação de um novo PRODUTO (nome, preço\_base), criando um \texttt{id} único automaticamente.
     \item \textbf{RF02:} O sistema deve permitir a remoção de um PRODUTO pelo seu \texttt{id}.
-    \item \textbf{RF03:} O sistema deve listar todos os PRODUTOS com os seus respetivos detalhes e stock.
+    \item \textbf{RF03:} O sistema deve listar todos os PRODUTOS com os seus respetivos detalhes e stock existente.
     \item \textbf{RF04:} O sistema deve permitir o registo e remoção de utilizadores com perfil de CAIXA.
-    \item \textbf{RF05:} O sistema deve calcular estatísticas de performance (faturação e volume) por CAIXA e globais.
+    \item \textbf{RF05:} O sistema deve calcular estatísticas de performance (faturação e volume) por CAIXA e globalmente.
     \item \textbf{RF06:} O sistema deve gerir o ciclo de vida de uma VENDA (iniciar, adicionar itens, cancelar, concluir).
     \item \textbf{RF07:} O sistema deve validar a disponibilidade de stock durante o registo de itens na VENDA.
-    \item \textbf{RF08:} O sistema deve registar o método de pagamento e emitir um RECIBO textual após a conclusão da venda.
-    \item \textbf{RF09:} O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas no papel (Admin/Caixa).
+    \item \textbf{RF08:} O sistema deve registar o método de pagamento e mostrar um RECIBO após a conclusão da venda.
+    \item \textbf{RF09:} O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas em ser um ADMIN ou um CAIXA.
     \item \textbf{RF10:} O sistema deve garantir a persistência de dados em ficheiros externos.
-    \item \textbf{RF11:} O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos), garantindo que o NIF é único.
+    \item \textbf{RF11:} O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos) e garantir que o NIF é único.
     \item \textbf{RF12:} O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
     \item \textbf{RF13:} O sistema deve calcular e atribuir pontos ao CLIENTE após uma venda concluída (ex: 1 ponto por cada 10€).
     \item \textbf{RF14:} O sistema deve aplicar automaticamente o resgate de pontos para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
     \item \textbf{RF15:} O sistema deve permitir a criação de PROMOÇÕES com intervalo de datas (início e fim) e percentagem de desconto.
     \item \textbf{RF16:} O sistema deve validar se uma PROMOÇÃO está ativa (data atual dentro do intervalo) antes de aplicar o desconto.
     \item \textbf{RF17:} O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
-    \item \textbf{RF18:} O sistema deve garantir que, no caso de mais de uma promoções aplicáveis, apenas a que desconte mais dinheiro para o cliente é aplicada.
+    \item \textbf{RF18:} O sistema deve garantir que, no caso de existir mais de uma promoções aplicáveis, apenas a que desconte mais dinheiro para o cliente é aplicada.
 \end{itemize}
 
 \subsection{Requisitos Não Funcionais (FURPS+)}
 
 \subsubsection{Functionality (F)}
 \begin{itemize}
-    \item \textbf{RNF02 (Persistência de Dados):} O sistema deve garantir que o armazenamento de dados será em ficheiros CSV locais.
+    \item \textbf{RNF01 (Persistência de Dados):} O sistema deve garantir que o armazenamento de dados será em ficheiros CSV locais.
 \end{itemize}
 
 \subsubsection{Usability (U)}
 \begin{itemize}
-    \item \textbf{RNF03 (Estrutura de Menus):} O sistema deve permitir uma navegação por menus na CLI, por seleção numérica (0-9).
+    \item \textbf{RNF02 (Estrutura de Menus):} O sistema deve permitir uma navegação por menus na CLI, por seleção numérica (0-9).
 \end{itemize}
 
 \subsubsection{Reliability (R)}
 \begin{itemize}
-    \item \textbf{RNF05 (Recuperação de Erro):} O sistema deve verificar os tipos de dados de entrada (ex: carateres em campos numéricos) e pedir uma nova introdução caso o tipo de dado esteja errado, sem perder o estado da transação ativa.
-    \item \textbf{RNF06 (Integridade de Dados):} O sistema deve garantir que todas as transações que forem concluídas devem ser registadas num ficheiro.
+    \item \textbf{RNF03 (Recuperação de Erro):} O sistema deve verificar os tipos de dados de entrada (ex: carateres em campos numéricos) e pedir uma nova introdução caso o tipo de dado esteja errado, sem perder o estado da transação ativa.
+    \item \textbf{RNF04 (Integridade de Dados):} O sistema deve garantir que todas as transações que forem concluídas devem ser registadas num ficheiro.
 \end{itemize}
 
 \subsubsection{Performance (P)}
 \begin{itemize}
-    \item \textbf{RNF08 (Eficiência de Memória):} A aplicação não deve consumir mais de 1GB de memória RAM durante a execução.
+    \item \textbf{RNF05 (Eficiência de Memória):} A aplicação não deve consumir mais de 1GB de memória RAM durante a execução.
 \end{itemize}
 
 \subsubsection{Supportability (S)}
 \begin{itemize}
-    \item \textbf{RNF11 (Portabilidade/Build):} O projeto deve ser compilável através de CMake (versão 3.10 ou superior) em ambiente Linux (GCC/Clang) e Windows (MSVC).
+    \item \textbf{RNF06 (Portabilidade/Build):} O projeto deve ser compilável através de CMake (versão 3.10 ou superior) em ambiente Linux (GCC/Clang) e Windows (MSVC).
 \end{itemize}
 
 \subsubsection{+ (Restrições de Implementação)}
 \begin{itemize}
-    \item \textbf{RNF12 (Norma da Linguagem):} O código fonte deve ser compatível com a norma C++17 (ISO/IEC 14882:2017).
+    \item \textbf{RNF07 (Norma da Linguagem):} O código fonte deve ser compatível com a norma C++17 (ISO/IEC 14882:2017).
 \end{itemize}
 
 \section{Modelação de Domínio}
-O Modelo de Domínio representa conceptualmente as entidades do mundo real e as suas interações no contexto do supermercado.
 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{diagramas/domain_model.png}}
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/domain_model.png}}
     \caption{Diagrama UML de Domínio}
     \label{fig:domain_model}
 \end{figure}
 
 \section{Modelo de Casos de Uso}
+Nesta secção detalhamos as interações entre os atores e o sistema.
 
 \begin{figure}[H]
     \centering
@@ -164,11 +181,11 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
         UC07 & Gerir CATEGORIAS & ADMIN & Agrupar PRODUTOS para fins de IVA e Descontos. \\
         UC08 & Realizar VENDA & CAIXA & Inicia transação, adiciona itens, calcula total e regista pagamento. \\
         UC09 & Consultar Preço & CAIXA & Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID. \\
-        UC10 & Ver Info Própria & CAIXA & Exibe dados do funcionário e total de VENDAS faturado. \\
+        UC10 & Ver Info Própria & CAIXA & Exibe dados do funcionário e total de vendas faturado. \\
         UC11 & Associar CLIENTE & CAIXA & Durante a VENDA, permite ligar a transação a um CLIENTE. \\
         UC12 & Consultar Pontos & CAIXA & Visualizar saldo de pontos do CLIENTE. \\
         UC13 & Consultar RECIBO & CAIXA & Consultar e visualizar o RECIBO de uma VENDA terminada. \\
-        UC14 & Selecionar Perfil & ADMIN, CAIXA & Identifica o utilizador e o seu papel. \\
+        UC14 & Selecionar Perfil & ADMIN, CAIXA & Identifica o utilizador e o seu papel para aceder ao sistema. \\
         UC15 & Sair do Perfil & ADMIN, CAIXA & Termina a sessão do utilizador atual. \\ \bottomrule
     \end{tabularx}
     \caption{Lista de Casos de Uso}
@@ -177,269 +194,316 @@ O Modelo de Domínio representa conceptualmente as entidades do mundo real e as 
 
 \subsection{Especificações de Casos de Uso}
 
-% Comando personalizado para a tabela de especificação (estilo Teórica T5, slide 39)
-\newcommand{\ucspec}[8]{
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{|l|X|}
-        \hline
-        \textbf{Actor} & #1 \\ \hline
-        \textbf{Use case name} & #2 \\ \hline
-        \textbf{Description} & #3 \\ \hline
-        \textbf{Precondition} & #4 \\ \hline
-        \textbf{Postcondition} & #5 \\ \hline
-        \textbf{Main flow} & #6 \\ \hline
-        \textbf{Alternative path} & #7 \\ \hline
-        \textbf{Exceptions} & #8 \\ \hline
-    \end{tabularx}
-\end{table}
-}
-
 \subsubsection{UC01: Gerir Catálogo}
-\ucspec{ADMIN}{Gerir Catálogo}{Permite ao ADMIN gerir os PRODUTOS (criar, editar, listar e remover).}{ADMIN autenticado no sistema.}{Catálogo de PRODUTOS atualizado na base de dados.}{
-1. O ADMIN solicita a gestão do catálogo. \newline
+\ucspec{ADMIN}{Gerir Catálogo}{Permite criar, editar, listar e remover PRODUTOS.}{ADMIN selecionado no sistema.}{Catálogo de PRODUTOS atualizado na base de dados.}{
+1. O ADMIN seleciona a opção "gestão do catálogo". \newline
 2. O sistema mostra as opções disponíveis (Criar, Editar, Listar, Remover). \newline
 3. O ADMIN seleciona "Criar". \newline
-4. O sistema solicita os dados (nome, preço, stock, categoria). \newline
+4. O sistema pede os dados (nome, preço base, stock inicial, categoria). \newline
 5. O ADMIN introduz os dados. \newline
-6. O sistema valida os dados, gera um ID automático e grava. \newline
+6. O sistema valida os dados, cria um ID automático e grava. \newline
 7. O sistema confirma o sucesso da operação.
-}{3.a. O ADMIN seleciona "Editar": O sistema solicita o ID e novos dados. \newline 3.b. O ADMIN seleciona "Remover": O sistema solicita o ID e confirma a remoção.}{6.a. Dados inválidos (ex: preço ou stock negativo): o sistema alerta o erro e solicita nova introdução. \newline 6.b. Produto com o mesmo nome já existente: o sistema avisa o conflito.}
+}{
+\textbf{3.a. Listar:} \newline
+1. O ADMIN seleciona "Listar". \newline
+2. O sistema apresenta a lista de todos os produtos e respetivos detalhes. \newline
+3. O UC termina. \newline\newline
+\textbf{3.b. Editar:} \newline
+1. O ADMIN seleciona a opção "Editar". \newline
+2. O sistema pede o ID do produto. \newline
+3. O ADMIN escreve o ID. \newline
+4. O sistema mostra os dados atuais e pede novos dados. \newline
+5. O ADMIN insere os novos dados. \newline
+6. O sistema valida e atualiza o produto. \newline
+7. O UC termina. \newline\newline
+\textbf{3.c. Remover:} \newline
+1. O ADMIN seleciona "Remover". \newline
+2. O sistema pede o ID do produto. \newline
+3. O ADMIN insere o ID. \newline
+4. O sistema confirmação. \newline
+5. O ADMIN confirma. \newline
+6. O sistema remove o produto \newline
+7. O UC termina.
+}
 
 \subsubsection{UC02: Consultar Estatísticas}
-\ucspec{ADMIN}{Consultar Estatísticas}{Permite visualizar relatórios de faturação global ou por CAIXA.}{ADMIN autenticado no sistema.}{N/A (Consulta).}{
-1. O ADMIN solicita a consulta de estatísticas. \newline
-2. O sistema solicita o filtro desejado (global ou por utilizador CAIXA). \newline
+\ucspec{ADMIN}{Consultar Estatísticas}{Permite visualizar relatórios de faturação global ou por CAIXA.}{ADMIN selecionado no sistema.}{N/A}{
+1. O ADMIN seleciona a opção de "consulta de estatísticas". \newline
+2. O sistema pede o filtro (global ou por utilizador CAIXA). \newline
 3. O ADMIN escolhe o filtro. \newline
-4. O sistema gera e apresenta o relatório de faturação e volume de vendas.
-}{N/A}{4.a. Sem dados de vendas registados para o filtro selecionado: o sistema informa o estado vazio.}
+4. O sistema cria e apresenta o relatório de faturação e quantidade de vendas.
+}{N/A}
 
 \subsubsection{UC03: Gerir Utilizadores}
-\ucspec{ADMIN}{Gerir Utilizadores}{Permite o registo e remoção de contas de perfil 'CAIXA'.}{ADMIN autenticado no sistema.}{Lista de utilizadores autorizados é atualizada.}{
-1. O ADMIN solicita a gestão de utilizadores. \newline
-2. O sistema mostra as opções (Registar, Remover). \newline
+\ucspec{ADMIN}{Gerir Utilizadores}{Permite registar e remover contas de perfil 'CAIXA'.}{ADMIN selecionado no sistema.}{Lista de CAIXAs é atualizada.}{
+1. O ADMIN seleciona a opção "gestão de utilizadores". \newline
+2. O sistema mostra as opções (Registar, Listar, Remover). \newline
 3. O ADMIN seleciona "Registar". \newline
-4. O ADMIN introduz os dados do novo CAIXA (nome, etc.). \newline
-5. O sistema valida os dados e cria a conta de perfil 'CAIXA'. \newline
+4. O ADMIN introduz os dados do novo CAIXA (nome). \newline
+5. O sistema verifica os dados e cria a conta de perfil 'CAIXA'. \newline
 6. O sistema confirma a criação com sucesso.
-}{3.a. O ADMIN seleciona "Remover": O sistema solicita o ID do CAIXA e remove a conta.}{5.a. Nome de utilizador já existe: o sistema solicita um identificador único. \newline 3.a.1. ID do CAIXA não encontrado (no caso de remoção): o sistema apresenta erro.}
+}{
+\textbf{3.b. Remover:} \newline
+1. O ADMIN seleciona a opção "Remover". \newline
+2. O sistema pede o ID do CAIXA. \newline
+3. O ADMIN escrve o ID. \newline
+4. O sistema pede confirmação. \newline
+5. O ADMIN confirma. \newline
+6. O sistema remove a conta e informa o sucesso. \newline
+7. O UC termina.
+}
 
 \subsubsection{UC04: Repor Stock}
-\ucspec{ADMIN}{Repor Stock}{Incrementa a quantidade disponível de um PRODUTO existente.}{ADMIN autenticado no sistema.}{Stock do PRODUTO é incrementado.}{
-1. O ADMIN pesquisa o PRODUTO pelo seu ID. \newline
-2. O sistema apresenta os dados atuais do PRODUTO. \newline
+\ucspec{ADMIN}{Repor Stock}{Aumenta a quantidade disponível de um PRODUTO existente.}{ADMIN selecionado no sistema.}{Stock do PRODUTO é incrementado.}{
+1. O ADMIN pesquisa o PRODUTO pelo ID. \newline
+2. O sistema mostra os dados atuais do PRODUTO. \newline
 3. O ADMIN introduz a quantidade a adicionar ao stock. \newline
 4. O sistema atualiza o valor do stock na base de dados. \newline
 5. O sistema confirma o novo valor total de stock.
-}{N/A}{1.a. ID do PRODUTO não existe: o sistema informa o erro e solicita nova pesquisa. \newline 3.a. Quantidade introduzida é inválida (ex: negativa): o sistema solicita novo valor.}
+}{N/A}
 
 \subsubsection{UC05: Gerir CLIENTES}
-\ucspec{ADMIN}{Gerir CLIENTES}{Permite o registo, edição e remoção de perfis de CLIENTE.}{ADMIN autenticado no sistema.}{Base de dados de CLIENTES atualizada.}{
-1. O ADMIN solicita gestão de CLIENTES. \newline
-2. O sistema mostra as opções (Registar, Editar, Remover). \newline
-3. O ADMIN seleciona "Registar". \newline
+\ucspec{ADMIN}{Gerir CLIENTES}{Permite registar, editar e remover perfis de CLIENTE.}{ADMIN selecionado no sistema.}{Base de dados de CLIENTES atualizada.}{
+1. O ADMIN escolhe a opção "gestão de CLIENTES". \newline
+2. O sistema mostra as opções (Registar, Editar, Listar, Remover). \newline
+3. O ADMIN seleciona a opção "Registar". \newline
 4. O ADMIN introduz o NIF e o nome do CLIENTE. \newline
-5. O sistema valida o NIF, inicializa o saldo de pontos a zero e guarda o perfil. \newline
+5. O sistema valida o NIF, coloca o saldo de pontos a zero e guarda o perfil. \newline
 6. O sistema confirma o sucesso da operação.
-}{3.a. O ADMIN seleciona "Editar": O sistema permite mudar o nome do CLIENTE. \newline 3.b. O ADMIN seleciona "Remover": O sistema apaga o perfil do CLIENTE.}{5.a. NIF já registado ou formato inválido: o sistema apresenta erro e solicita novo dado. \newline 3.a.1. CLIENTE não encontrado: o sistema alerta o ADMIN.}
+}{
+\textbf{3.a. Listar:} \newline
+1. O ADMIN seleciona a opção "Listar". \newline
+2. O sistema apresenta a lista de todos os CLIENTES (NIF, Nome, Pontos). \newline
+3. O UC termina. \newline\newline
+\textbf{3.b. Editar:} \newline
+1. O ADMIN seleciona a opção "Editar". \newline
+2. O sistema solicita o NIF do CLIENTE. \newline
+3. O ADMIN insere o NIF. \newline
+4. O sistema mostra os dados atuais e solicita novo nome. \newline
+5. O ADMIN insere o novo nome. \newline
+6. O sistema atualiza o perfil. \newline
+7. O UC termina. \newline\newline
+\textbf{3.c. Remover:} \newline
+1. O ADMIN seleciona a opção "Remover". \newline
+2. O sistema solicita o NIF do CLIENTE. \newline
+3. O ADMIN insere o NIF. \newline
+4. O sistema pede confirmação. \newline
+5. O ADMIN confirma. \newline
+6. O sistema remove o perfil e informa o sucesso. \newline
+7. O UC termina.
+}
 
 \subsubsection{UC06: Gerir PROMOÇÕES}
-\ucspec{ADMIN}{Gerir PROMOÇÕES}{Permite criar e configurar regras de desconto temporárias.}{ADMIN autenticado no sistema.}{Base de dados de PROMOÇÕES atualizada.}{
-1. O ADMIN solicita a gestão de PROMOÇÕES. \newline
-2. O sistema mostra as opções (Criar, Remover). \newline
+\ucspec{ADMIN}{Gerir PROMOÇÕES}{Permite criar e configurar regras de descontos temporários.}{ADMIN selecionado no sistema.}{Base de dados de PROMOÇÕES atualizada.}{
+1. O ADMIN escolhe a opção "Gestão de PROMOÇÕES". \newline
+2. O sistema mostra as opções (Criar, Listar, Remover). \newline
 3. O ADMIN seleciona "Criar". \newline
-4. O ADMIN define a percentagem de desconto e as datas de vigência. \newline
+4. O ADMIN define a percentagem de desconto e as datas de inicio e final. \newline
 5. O ADMIN associa a PROMOÇÃO a um PRODUTO ou CATEGORIA específica. \newline
-6. O sistema valida e guarda a regra de desconto.
-}{3.a. O ADMIN seleciona "Remover": O sistema apaga a regra de promoção selecionada.}{6.a. Dates inválidas (ex: data fim anterior à data início): o sistema alerta o ADMIN. \newline 5.a. PRODUTO ou CATEGORIA associada não existe: o sistema apresenta erro.}
+6. O sistema valida e guarda a regra de desconto. \newline
+7. O sistema confirma o sucesso.
+}{
+\textbf{3.a. Listar:} \newline
+1. O ADMIN seleciona "Listar". \newline
+2. O sistema apresenta a lista de todas as PROMOÇÕES ativas e agendadas. \newline
+3. O UC termina. \newline\newline
+\textbf{3.b. Remover:} \newline
+1. O ADMIN seleciona a opção "Remover". \newline
+2. O sistema solicita a identificação da promoção. \newline
+3. O ADMIN seleciona a promoção a remover. \newline
+4. O sistema pede confirmação. \newline
+5. O ADMIN confirma. \newline
+6. O sistema remove a regra de desconto e informa o sucesso. \newline
+7. O UC termina.
+}
 
 \subsubsection{UC07: Gerir CATEGORIAS}
-\ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS para fins de IVA e descontos.}{ADMIN autenticado no sistema.}{Lista de CATEGORIAS atualizada.}{
-1. O ADMIN solicita a gestão de categorias. \newline
+\ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS em CATEGORIAS para find de impostos e descontos.}{ADMIN selecionado no sistema.}{Lista de CATEGORIAS atualizada.}{
+1. O ADMIN escolhe a opção "gestão de categorias". \newline
 2. O sistema apresenta as opções (Criar, Listar). \newline
 3. O ADMIN seleciona "Criar". \newline
-4. O ADMIN introduz o nome da nova CATEGORIA e a respetiva taxa de IVA. \newline
+4. O ADMIN introduz o nome da nova CATEGORIA e a taxa de IVA dessa CATEGORIA. \newline
 5. O sistema valida os dados e cria a CATEGORIA. \newline
 6. O sistema confirma a criação com sucesso.
-}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA configuradas.}{5.a. Nome de CATEGORIA já existente: o sistema solicita nome diferente. \newline 4.a. Taxa de IVA inválida: o sistema solicita valor numérico correto.}
+}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA que existem.}
 
 \subsubsection{UC08: Realizar VENDA}
-\ucspec{CAIXA}{Realizar VENDA}{Processa uma transação de venda de PRODUTOS a um cliente.}{CAIXA autenticado no sistema.}{VENDA registada, stock atualizado e RECIBO emitido.}{
-1. O CAIXA inicia uma nova VENDA. \newline
+\ucspec{CAIXA}{Realizar VENDA}{Realiza uma VENDA de PRODUTOS a um CLIENTE ou a alguém que não é um CLIENTE.}{CAIXA selecionado no sistema.}{VENDA registada, o stock atualizado e RECIBO emitido.}{
+1. O CAIXA seleciona a opção de iniciar uma nova VENDA. \newline
 2. O CAIXA introduz o ID e quantidade de cada PRODUTO. \newline
 3. O sistema valida o item, calcula o subtotal e apresenta-o. \newline
 4. O CAIXA termina a introdução de itens. \newline
-5. O sistema calcula o total final (aplicando taxas e promoções). \newline
+5. O sistema calcula o total final (aplica impostos e promoções). \newline
 6. O CAIXA regista o pagamento. \newline
-7. O sistema finaliza a VENDA e emite o RECIBO.
-}{6.a. O CAIXA cancela a VENDA: O sistema descarta os dados e liberta o stock reservado.}{2.a. ID do PRODUTO é inválido: o sistema avisa o CAIXA e permite nova introdução. \newline 2.b. Stock insuficiente: o sistema alerta para a falta de unidades e não adiciona ao carrinho.}
+7. O sistema acaba a VENDA e emite o RECIBO.
+}{
+\textbf{6.a. Cancelar VENDA:} \newline
+1. O CAIXA solicita o cancelamento da venda antes do pagamento. \newline
+2. O sistema pede confirmação. \newline
+3. O CAIXA confirma. \newline
+4. O sistema descarta os dados da venda em curso e liberta o stock reservado. \newline
+5. O UC termina.
+}
 
 \subsubsection{UC09: Consultar Preço}
-\ucspec{CAIXA}{Consultar Preço}{Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
-1. O CAIXA introduz o ID do PRODUTO. \newline
+\ucspec{CAIXA}{Consultar Preço}{Pesquisa e mostra o preço de um PRODUTO pelo seu ID.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
+1. O CAIXA escreve o ID do PRODUTO. \newline
 2. O sistema pesquisa o ID. \newline
-3. O sistema apresenta o nome e o preço unitário do PRODUTO.
-}{N/A}{2.a. ID do PRODUTO não encontrado: o sistema informa o erro.}
+3. O sistema apresenta o nome e o preço do PRODUTO.
+}{N/A}
 
 \subsubsection{UC10: Ver Info Própria}
-\ucspec{CAIXA}{Ver Info Própria}{Exibe dados do utilizador CAIXA e o total faturado acumulado.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
-1. O CAIXA solicita a sua informação. \newline
+\ucspec{CAIXA}{Ver Info Própria}{Mostra os dados do utilizador CAIXA e o total de dinheiro das vendas acumulado.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
+1. O CAIXA solicita a opção de ver a sua informação. \newline
 2. O sistema apresenta os dados do perfil (ID, nome) e o total faturado acumulado.
-}{N/A}{N/A}
+}{N/A}
 
 \subsubsection{UC11: Associar CLIENTE}
-\ucspec{CAIXA}{Associar CLIENTE}{Durante uma VENDA, associa o CLIENTE à transação.}{VENDA em curso.}{CLIENTE associado à VENDA.}{
-1. O CAIXA solicita a associação de um CLIENTE. \newline
+\ucspec{CAIXA}{Associar CLIENTE}{Durante uma VENDA, associa o CLIENTE à transação.}{VENDA em curso.}{CLIENTE está associado à VENDA.}{
+1. O CAIXA solicita a opção de "associação de um CLIENTE." \newline
 2. O CAIXA introduz o NIF do CLIENTE. \newline
-3. O sistema valida o NIF e apresenta o nome correspondente. \newline
+3. O sistema valida o NIF e mostra o nome correspondente. \newline
 4. O sistema liga o CLIENTE à VENDA atual.
-}{N/A}{3.a. NIF não encontrado no sistema: o sistema alerta o CAIXA.}
+}{N/A}
 
 \subsubsection{UC12: Consultar Pontos}
-\ucspec{CAIXA}{Consultar Pontos}{Permite visualizar o saldo de pontos atual de um CLIENTE.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
+\ucspec{CAIXA}{Consultar Pontos}{Permite consultar o saldo de pontos atual de um CLIENTE.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o NIF do CLIENTE. \newline
 2. O sistema pesquisa o perfil correspondente. \newline
 3. O sistema apresenta o saldo de pontos atual do CLIENTE.
-}{N/A}{2.a. NIF não encontrado: o sistema informa o erro.}
+}{N/A}
 
 \subsubsection{UC13: Consultar RECIBO}
-\ucspec{CAIXA}{Consultar RECIBO}{Permite visualizar o detalhe de uma venda efetuada anteriormente.}{CAIXA autenticado no sistema.}{N/A (Consulta).}{
-1. O CAIXA seleciona uma venda do seu histórico recente. \newline
-2. O sistema pesquisa os dados da transação. \newline
-3. O sistema gera e apresenta o RECIBO detalhado no ecrã.
-}{N/A}{2.a. Venda não encontrada ou erro na recuperação de dados: o sistema apresenta mensagem de erro.}
+\ucspec{CAIXA}{Consultar RECIBO}{Permite visualizar uma venda já feita.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
+1. O CAIXA seleciona uma das vendas que efetuou. \newline
+2. O sistema pesquisa os dados da venda. \newline
+3. O sistema cria e mostra o RECIBO detalhado no ecrã.
+}{N/A}
 
 \subsubsection{UC14: Selecionar Perfil}
-\ucspec{ADMIN, CAIXA}{Selecionar Perfil}{Permite ao utilizador identificar-se e aceder ao menu correspondente.}{Sistema no menu de seleção inicial.}{Utilizador autenticado e menu de funções ativo.}{
+\ucspec{ADMIN, CAIXA}{Selecionar Perfil}{Permite ao utilizador do programa identificar-se (ADMIN ou CAIXA) e aceder ao menu de opções correspondente.}{Sistema no menu de seleção inicial.}{Utilizador selecionado e menu de funções ativo.}{
 1. O utilizador seleciona o seu perfil (ADMIN ou um CAIXA específico) de uma lista apresentada. \newline
 2. O sistema verifica as permissões do perfil. \newline
-3. O sistema apresenta o menu de operações adequado ao papel selecionado.
-}{N/A}{1.a. Lista de perfis vazia: o sistema permite apenas a criação do primeiro ADMIN.}
+3. O sistema apresenta o menu de operações ao papel selecionado.
+}{N/A}
 
 \subsubsection{UC15: Sair do Perfil}
-\ucspec{ADMIN, CAIXA}{Sair do Perfil}{Termina a sessão do utilizador atual.}{Utilizador com perfil ativo no sistema.}{Sessão terminada e sistema regressa ao menu de seleção inicial.}{
-1. O utilizador seleciona a opção "Sair" ou "Logout". \newline
+\ucspec{ADMIN, CAIXA}{Sair do Perfil}{Termina a sessão do utilizador atual.}{Utilizador com ADMIN selecionado OU CAIXA selecionado no sistema.}{Sessão terminada e sistema regressa ao menu de seleção inicial.}{
+1. O utilizador seleciona a opção de "Logout". \newline
 2. O sistema limpa os dados de sessão atuais. \newline
 3. O sistema regressa ao menu de seleção de perfil inicial.
-}{N/A}{N/A}
+}{N/A}
 
 \subsection{Diagramas de Sequência de Sistema (SSD)}
-Os SSDs detalham as trocas de mensagens entre o Ator e o Sistema (tratado como caixa preta) para o cenário principal de cada Caso de Uso.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc01.png}
-    \caption{SSD UC01: Gerir Catálogo (Cenário de Criação)}
+    \caption{UC01: Gerir Catálogo (Cenário de Criação)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc02.png}
-    \caption{SSD UC02: Consultar Estatísticas}
+    \caption{UC02: Consultar Estatísticas}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc03.png}
-    \caption{SSD UC03: Gerir Utilizadores (Cenário de Registo)}
+    \caption{UC03: Gerir Utilizadores (Cenário de Registo)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc04.png}
-    \caption{SSD UC04: Repor Stock}
+    \caption{UC04: Repor Stock}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc05.png}
-    \caption{SSD UC05: Gerir CLIENTES (Cenário de Registo)}
+    \caption{UC05: Gerir CLIENTES (Cenário de Registo)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc06.png}
-    \caption{SSD UC06: Gerir PROMOÇÕES (Cenário de Criação)}
+    \caption{UC06: Gerir PROMOÇÕES (Cenário de Criação)}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc07.png}
-    \caption{SSD UC07: Gerir CATEGORIAS}
+    \caption{UC07: Gerir CATEGORIAS}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc08.png}
-    \caption{SSD UC08: Realizar VENDA}
+    \caption{UC08: Realizar VENDA}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc09.png}
-    \caption{SSD UC09: Consultar Preço}
+    \caption{UC09: Consultar Preço}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc10.png}
-    \caption{SSD UC10: Ver Info Própria}
+    \caption{UC10: Ver Info Própria}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc11.png}
-    \caption{SSD UC11: Associar CLIENTE}
+    \caption{UC11: Associar CLIENTE}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc12.png}
-    \caption{SSD UC12: Consultar Pontos}
+    \caption{UC12: Consultar Pontos}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc13.png}
-    \caption{SSD UC13: Consultar RECIBO}
+    \caption{UC13: Consultar RECIBO}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc14.png}
-    \caption{SSD UC14: Selecionar Perfil}
+    \caption{UC14: Selecionar Perfil}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/uc15.png}
-    \caption{SSD UC15: Sair do Perfil}
+    \caption{UC15: Sair do Perfil}
 \end{figure}
 
 \section{Glossário}
-Conforme as normas da unidade curricular, os termos estão listados em ordem alfabética e no singular.
-
 \begin{description}
-    \item[ADMIN] Papel de gestão e controlo total das operações do sistema.
-    \item[CAIXA] Funcionário operador do sistema de vendas ou o terminal de ponto de venda (POS).
-    \item[CATEGORIA] Agrupamento de produtos com características semelhantes (ex: Bebidas, Talho).
+    \item[ADMIN] Ator com o papel de gestão e controlo total das operações do sistema.
+    \item[CAIXA] Ator que é funcionário operador do sistema de vendas.
+    \item[CATEGORIA] Agrupamento de produtos com características semelhantes (ex: Bebidas, Talho, Peixaria).
     \item[CLI (Command Line Interface)] Interface de utilizador baseada em texto.
-    \item[CLIENTE] Pessoa que adquire produtos no supermercado, podendo estar registada no sistema para fidelização.
+    \item[CLIENTE] Pessoa que compra PRODUTOS no supermercado, e que está registada no sistema para fidelização.
     \item[ESTATÍSTICA] Relatório de desempenho de faturação e volume de vendas por período ou operador.
-    \item[ITEM DE VENDA] Entrada numa transação que associa um produto específico a uma quantidade e subtotal.
-    \item[IVA (Imposto sobre o Valor Acrescentado)] Taxa aplicada sobre o preço dos produtos.
     \item[MÉTODO DE PAGAMENTO] Forma como o cliente liquida o valor de uma venda (ex: Numerário, Cartão).
-    \item[NIF (Número de Identificação Fiscal)] Identificador numérico único utilizado para registo de clientes e faturação.
-    \item[PONTOS] Unidade de medida de fidelização acumulada por compras e convertível em descontos.
-    \item[PRODUTO] Artigo unitário inventariável com ID único, descrição, preço e stock.
-    \item[PROMOÇÃO] Desconto percentual aplicado a produtos ou categorias num intervalo de tempo.
-    \item[RECIBO] Comprovativo textual de uma venda concluída entregue ao cliente.
-    \item[VENDA] Registo de uma transação comercial que associa produtos e um método de pagamento.
+    \item[NIF (Número de Identificação Fiscal)] Identificador numérico único utilizado para registar de clientes e faturação.
+    \item[PONTOS] Unidade de medida de fidelização que ao ser acumulada por compras é possível converter para ter descontos.
+    \item[PRODUTO] Artigo com ID único, descrição, preço e stock.
+    \item[PROMOÇÃO] Desconto percentual aplicado a produtos ou categorias num certo intervalo de tempo.
+    \item[RECIBO] Comprovativo de uma venda concluída entregue ao cliente, que inclui o valor total pago, o método de pagamento e a lista de produtos comprados.
+    \item[VENDA] Transação que associa produtos e um método de pagamento.
 \end{description}
 
 \section{Conclusão}
-Esta primeira iteração (Análise de Requisitos e Modelação) permitiu definir as fronteiras do sistema e compreender as necessidades dos utilizadores finais. A separação clara entre as vontades de negócio (User Stories) e a especificação técnica (Casos de Uso) fornece uma base sólida para a fase de Design e Implementação subsequente.
-
-O próximo passo envolverá o mapeamento destas entidades conceptuais para classes C++ concretas, respeitando o padrão MVC e os princípios de encapsulamento e coesão.
+Esta primeira iteração (Análise de Requisitos e Modelação) permitiu definir as fronteiras do nosso programa e compreender o que os utilizadores finais precisam. A separação entre as vontades do utilizador final (User Stories) e a especificação técnica (Casos de Uso) fornece uma base sólida para a Iteração seguinte. O próximo passo irá envolver o aprofundamento destas entidades conceptuais para classes em C++, respeitando o padrão MVC.
 
 \end{document}
