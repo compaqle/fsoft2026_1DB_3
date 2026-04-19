@@ -4,4 +4,4 @@ Este relatório documenta o processo de análise e especificação de um program
 
 Na gestão de inventário e vendas de um supermercado existem vários desafios como a manutenção dos dados de inventário, monitorização das vendas e a necessidade de  garantir que os dados são guardados corretamente em ficheiros externos. 
 
-Ao longo deste relatório, mostramos quais são os requisitos (funcionais e não funcionais), o modelo de domínio 
+Ao longo deste relatório, identificamos as histório do utilizador, os requisitos funcionais e não funcionais (usando o modelo FURPS+), o modelo de domínio e os casos de uso para os atores existentes. 
