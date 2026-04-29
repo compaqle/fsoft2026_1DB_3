@@ -1,14 +1,17 @@
+#pragma once
 #include <string>
 
+namespace model {
+
 class Produto {
-    private:
+private:
     int id;
     std::string nome;
     double preco_base;
     int stock;
     int id_categoria;
 
-    public:
+public:
     Produto(int id, std::string nome, double preco_base, int stock, int id_categoria);
 
     int getId();
@@ -22,5 +25,6 @@ class Produto {
     
     void addStock(int quantidade);
     void removerStock(int quantidade);
-
 };
+
+} // namespace model

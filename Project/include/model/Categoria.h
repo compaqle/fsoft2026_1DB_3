@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+namespace model {
+
 class Categoria {
 private:
     int id;
@@ -10,3 +12,5 @@ private:
 public:
     Categoria(int id, std::string nome, double taxa_iva);
 };
+
+} // namespace model
