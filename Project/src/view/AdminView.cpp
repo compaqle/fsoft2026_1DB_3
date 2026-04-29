@@ -1,8 +1,6 @@
 #include "../../include/view/AdminView.h"
 #include <iostream>
 
-namespace view {
-
 AdminView::AdminView() {}
 
 void AdminView::exibirMenuAdmin() {
@@ -12,5 +10,3 @@ void AdminView::exibirMenuAdmin() {
     std::cout << "3. Ver Estatisticas" << std::endl;
     std::cout << "0. Sair" << std::endl;
 }
-
-} // namespace view

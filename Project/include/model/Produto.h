@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-namespace model {
-
 class Produto {
 private:
     int id;
@@ -26,5 +24,3 @@ public:
     void addStock(int quantidade);
     void removerStock(int quantidade);
 };
-
-} // namespace model

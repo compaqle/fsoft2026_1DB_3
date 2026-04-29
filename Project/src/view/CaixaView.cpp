@@ -1,8 +1,6 @@
 #include "../../include/view/CaixaView.h"
 #include <iostream>
 
-namespace view {
-
 CaixaView::CaixaView() {}
 
 void CaixaView::exibirMenuCaixa() {
@@ -12,5 +10,3 @@ void CaixaView::exibirMenuCaixa() {
     std::cout << "3. Consultar Pontos Cliente" << std::endl;
     std::cout << "0. Sair" << std::endl;
 }
-
-} // namespace view

@@ -2,8 +2,6 @@
 #include <vector>
 #include "Produto.h"
 
-namespace model {
-
 class Venda {
 private:
     int id;
@@ -11,5 +9,3 @@ private:
 public:
     Venda(int id, int nif_cliente);
 };
-
-} // namespace model

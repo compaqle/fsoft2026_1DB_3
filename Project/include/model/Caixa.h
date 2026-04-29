@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-namespace model {
-
 class Caixa {
 private:
     int id;
@@ -12,5 +10,3 @@ private:
 public:
     Caixa(int id, std::string nome);
 };
-
-} // namespace model

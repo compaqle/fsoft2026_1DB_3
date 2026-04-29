@@ -1,12 +1,8 @@
 #pragma once
 #include "../../include/model/Produto.h"
 
-namespace view {
-
 class ProdutoView {
 public:
     ProdutoView();
-    void listarProduto(model::Produto& p);
+    void listarProduto(Produto& p);
 };
-
-} // namespace view
