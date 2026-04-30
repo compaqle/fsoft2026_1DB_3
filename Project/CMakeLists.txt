@@ -1,16 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
-project(HardwareInventory)
+project(SupermercadoProject)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Includes
 include_directories(include)
+include_directories(include/model)
+include_directories(include/view)
+include_directories(include/controller)
 
-# Source files
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES 
+    "src/model/*.cpp"
+    "src/view/*.cpp"
+    "src/controller/*.cpp"
+    "main.cpp"
+)
 
-# Executable
-add_executable(HardwareInventory main.cpp ${SOURCES})
-
-# Future: Link Google Test here for ProjectTester
+add_executable(supermercado_app ${SOURCES})
