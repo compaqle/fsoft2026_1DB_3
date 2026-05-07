@@ -1,12 +1,12 @@
 #pragma once
 #include <string>
-#include "Pontos.h"
+#include "Ponto.h"
 
 class Cliente {
 private:
     int nif;
     std::string nome;
-    Pontos pontos; // Agora PONTOS é uma entidade (objeto) dentro do Cliente
+    Ponto pontos;
 
 public:
     Cliente(int nif, std::string nome, int saldo_inicial = 0);

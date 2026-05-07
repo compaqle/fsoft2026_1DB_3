@@ -1,11 +1,11 @@
 #pragma once
 
-class Pontos {
+class Ponto {
 private:
-    int saldo;
+    int quantidade;
 public:
-    Pontos(int saldo_inicial = 0);
-    int getSaldo();
+    Ponto(int quantidade_inicial = 0);
+    int getQuantidade();
     void adicionarPontos(int quantidade);
     void gastarPontos(int quantidade);
 };

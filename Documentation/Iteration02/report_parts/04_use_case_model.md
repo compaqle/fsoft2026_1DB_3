@@ -21,7 +21,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | **UC09** | Consultar Preço | CAIXA | Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID. |
 | **UC10** | Ver Info Própria | CAIXA | Exibe dados do funcionário e total de vendas faturado. |
 | **UC11** | Associar CLIENTE | CAIXA | Durante a VENDA, permite ligar a transação a um CLIENTE. |
-| **UC12** | Consultar Pontos | CAIXA | Visualizar saldo de pontos do CLIENTE. |
+| **UC12** | Consultar Pontos | CAIXA | Visualizar quantidade de PONTOS do CLIENTE. |
 | **UC13** | Consultar RECIBO | CAIXA | Consultar e visualizar o RECIBO de uma VENDA terminada. |
 | **UC14** | Selecionar Perfil | ADMIN, CAIXA | Identifica o utilizador e o seu papel para aceder ao sistema. |
 | **UC15** | Sair do Perfil | ADMIN, CAIXA | Termina a sessão do utilizador atual. |
@@ -83,8 +83,8 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | **Description** | Permite registar, editar e remover perfis de CLIENTE. |
 | **Precondition** | ADMIN selecionado no sistema. |
 | **Postcondition** | Base de dados de CLIENTES atualizada. |
-| **Main flow** | 1. O ADMIN escolhe a opção "gestão de CLIENTES". <br> 2. O sistema mostra as opções (Registar, Editar, Listar, Remover). <br> 3. O ADMIN seleciona a opção "Registar". <br> 4. O ADMIN introduz o NIF e o nome do CLIENTE. <br> 5. O sistema valida o NIF, coloca o saldo de pontos a zero e guarda o perfil. <br> 6. O sistema confirma o sucesso da operação. |
-| **Alternative path** | **3.a. Listar:** <br> 1. O ADMIN seleciona a opção "Listar". <br> 2. O sistema apresenta a lista de todos os CLIENTES (NIF, Nome, Pontos). <br> 3. O UC termina. <br><br> **3.b. Editar:** <br> 1. O ADMIN seleciona a opção "Editar". <br> 2. O sistema solicita o NIF do CLIENTE. <br> 3. O ADMIN insere o NIF. <br> 4. O sistema mostra os dados atuais e solicita novo nome. <br> 5. O ADMIN insere o novo nome. <br> 6. O sistema atualiza o perfil. <br> 7. O UC termina. <br><br> **3.c. Remover:** <br> 1. O ADMIN seleciona a opção "Remover". <br> 2. O sistema solicita o NIF do CLIENTE. <br> 3. O ADMIN insere o NIF. <br> 4. O sistema pede confirmação. <br> 5. O ADMIN confirma. <br> 6. O sistema remove o perfil e informa o sucesso. <br> 7. O UC termina. |
+| **Main flow** | 1. O ADMIN escolhe a opção "gestão de CLIENTES". <br> 2. O sistema mostra as opções (Registar, Editar, Listar, Remover). <br> 3. O ADMIN seleciona a opção "Registar". <br> 4. O ADMIN introduz o NIF e o nome do CLIENTE. <br> 5. O sistema valida o NIF, coloca o quantidade de PONTOS a zero e guarda o perfil. <br> 6. O sistema confirma o sucesso da operação. |
+| **Alternative path** | **3.a. Listar:** <br> 1. O ADMIN seleciona a opção "Listar". <br> 2. O sistema apresenta a lista de todos os CLIENTES (NIF, Nome, quantidade de PONTOS). <br> 3. O UC termina. <br><br> **3.b. Editar:** <br> 1. O ADMIN seleciona a opção "Editar". <br> 2. O sistema solicita o NIF do CLIENTE. <br> 3. O ADMIN insere o NIF. <br> 4. O sistema mostra os dados atuais e solicita novo nome. <br> 5. O ADMIN insere o novo nome. <br> 6. O sistema atualiza o perfil. <br> 7. O UC termina. <br><br> **3.c. Remover:** <br> 1. O ADMIN seleciona a opção "Remover". <br> 2. O sistema solicita o NIF do CLIENTE. <br> 3. O ADMIN insere o NIF. <br> 4. O sistema pede confirmação. <br> 5. O ADMIN confirma. <br> 6. O sistema remove o perfil e informa o sucesso. <br> 7. O UC termina. |
 
 
 ### UC06: Gerir PROMOÇÕES
@@ -161,10 +161,10 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | :--- | :--- |
 | **Actor** | CAIXA |
 | **Use case name** | Consultar Pontos |
-| **Description** | Permite consultar o saldo de pontos atual de um CLIENTE. |
+| **Description** | Permite consultar o quantidade de PONTOS atual de um CLIENTE. |
 | **Precondition** | CAIXA selecionado no sistema. |
 | **Postcondition** | N/A (Consulta). |
-| **Main flow** | 1. O CAIXA introduz o NIF do CLIENTE. <br> 2. O sistema pesquisa o perfil correspondente. <br> 3. O sistema apresenta o saldo de pontos atual do CLIENTE. |
+| **Main flow** | 1. O CAIXA introduz o NIF do CLIENTE. <br> 2. O sistema pesquisa o perfil correspondente. <br> 3. O sistema apresenta o quantidade de PONTOS atual do CLIENTE. |
 | **Alternative path** | N/A |
 
 ### UC13: Consultar RECIBO

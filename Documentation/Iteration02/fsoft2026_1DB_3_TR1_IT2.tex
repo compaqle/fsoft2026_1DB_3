@@ -59,11 +59,15 @@ Este relatório detalha a fase de engenharia de requisitos e análise do sistema
 \end{abstract}
 
 \section{Introdução}
-Este relatório documenta o processo de análise e especificação de um programa de gestão de inventário e vendas para um supermercado. O nosso programa será programado na linguagem de programação C++, usando programação orientada a objeto (POO), respeitando o padrão Model-View-Controller (MVC). 
+O objetivo deste projeto é criar uma aplicação para gerir um supermercado, a aplicação vai ter um ADMIN, CAIXAs e CLIENTEs.
 
-Na gestão de inventário e vendas de um supermercado existem vários desafios como a manutenção dos dados de inventário, monitorização das vendas e a necessidade de garantir que os dados são guardados corretamente em ficheiros externos. 
+O ADMIN é responsável por gerir o catálogo da loja, incluindo criar, editar, listar e remover PRODUTOs. Tem também a habilidade de gerir CATEGORIAs de PRODUTOs, configurar PROMOÇÕEs temporárias com percentagens de desconto e intervalos de datas, e repor níveis de stock a PRODUTOs que já existem. Adicionalmente, o ADMIN irá gerir contas de CAIXA (criando-as e removendo-as), gerir a base de dados de CLIENTEs (registando, editando, listando e removendo CLIENTEs), e consultar estatísticas de desempenho globais e por CAIXA, como a faturação e o volume de VENDAs.
 
-Ao longo deste relatório, identificamos as histório do utilizador, os requisitos funcionais e não funcionais (usando o modelo FURPS+), o modelo de domínio e os casos de uso para os atores existentes. 
+O CAIXA pode iniciar e processar VENDAs, adicionando PRODUTOs e quantidades, aplicando descontos automáticos de PROMOÇÕEs ativas e concluindo transações com diferentes métodos de pagamento. Pode também associar um CLIENTE a uma VENDA em curso através do seu NIF, consultar o quantidade de PONTOS atual de um CLIENTE e visualizar o seu próprio histórico de desempenho e total faturado. Após concluir uma VENDA, o sistema irá gerar um RECIBO com os detalhes dos PRODUTOs, totais e método de pagamento utilizado.
+
+Os CLIENTEs registados no sistema acumularão PONTOS de fidelização com base nas suas compras (ex: 1 ponto por cada 10\texteuro{} gastos). Estes PONTOS poderão ser utilizados para descontos em compras futuras. O sistema armazenará os dados do CLIENTE, incluindo o seu NIF, nome e quantidade de PONTOS de fidelização associado.
+
+Este relatório inclui histórias de utilizador, requisitos funcionais e não funcionais (utilizando o modelo FURPS+), o modelo de domínio, especificações e diagramas de casos de uso, e o design de software baseado no padrão Model-View-Controller (MVC). A aplicação será desenvolvida em C++17 utilizando programação orientada a objetos, com persistência de dados através de ficheiros CSV externos.
 
 \section{Análise de Requisitos}
 
@@ -88,8 +92,8 @@ Ao longo deste relatório, identificamos as histório do utilizador, os requisit
     \item \textbf{US11:} Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
     \item \textbf{US12:} Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
     \item \textbf{US13:} Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-    \item \textbf{US14:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF) para que este possa acumular pontos.
-    \item \textbf{US15:} Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre os pontos que ele tem.
+    \item \textbf{US14:} Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF) para que este possa acumular PONTOS.
+    \item \textbf{US15:} Como CAIXA, eu quero consultar o quantidade de PONTOS de um CLIENTE para informar o CLIENTE sobre os PONTOS que ele tem.
     \item \textbf{US16:} Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
     \item \textbf{US17:} Como CAIXA, eu quero consultar o detalhe de RECIBOS de vendas passadas para esclarecer dúvidas dos clientes.
 \end{itemize}
@@ -106,10 +110,10 @@ Ao longo deste relatório, identificamos as histório do utilizador, os requisit
     \item \textbf{RF08:} O sistema deve registar o método de pagamento e mostrar um RECIBO após a conclusão da venda.
     \item \textbf{RF09:} O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas em ser um ADMIN ou um CAIXA.
     \item \textbf{RF10:} O sistema deve garantir a persistência de dados em ficheiros externos.
-    \item \textbf{RF11:} O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos) e garantir que o NIF é único.
+    \item \textbf{RF11:} O sistema deve permitir a gestão de CLIENTES (NIF, Nome) e garantir que o NIF é único.
     \item \textbf{RF12:} O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
-    \item \textbf{RF13:} O sistema deve calcular e atribuir pontos ao CLIENTE após uma venda concluída (ex: 1 ponto por cada 10€).
-    \item \textbf{RF14:} O sistema deve aplicar automaticamente o resgate de pontos para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
+    \item \textbf{RF13:} O sistema deve calcular e atribuir PONTOS ao CLIENTE após uma venda concluída (ex: 1 PONTO por cada 10€).
+    \item \textbf{RF14:} O sistema deve aplicar automaticamente o resgate de PONTOS para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
     \item \textbf{RF15:} O sistema deve permitir a criação de PROMOÇÕES com intervalo de datas (início e fim) e percentagem de desconto.
     \item \textbf{RF16:} O sistema deve validar se uma PROMOÇÃO está ativa (data atual dentro do intervalo) antes de aplicar o desconto.
     \item \textbf{RF17:} O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
@@ -187,7 +191,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
         UC09 & Consultar Preço & CAIXA & Pesquisa e exibe o preço unitário de um PRODUTO pelo seu ID. \\
         UC10 & Ver Info Própria & CAIXA & Exibe dados do funcionário e total de vendas faturado. \\
         UC11 & Associar CLIENTE & CAIXA & Durante a VENDA, permite ligar a transação a um CLIENTE. \\
-        UC12 & Consultar Pontos & CAIXA & Visualizar saldo de pontos do CLIENTE. \\
+        UC12 & Consultar Pontos & CAIXA & Visualizar quantidade de PONTOS do CLIENTE. \\
         UC13 & Consultar RECIBO & CAIXA & Consultar e visualizar o RECIBO de uma VENDA terminada. \\
         UC14 & Selecionar Perfil & ADMIN, CAIXA & Identifica o utilizador e o seu papel para aceder ao sistema. \\
         UC15 & Sair do Perfil & ADMIN, CAIXA & Termina a sessão do utilizador atual. \\ \bottomrule
@@ -268,12 +272,12 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 2. O sistema mostra as opções (Registar, Editar, Listar, Remover). \newline
 3. O ADMIN seleciona a opção "Registar". \newline
 4. O ADMIN introduz o NIF e o nome do CLIENTE. \newline
-5. O sistema valida o NIF, coloca o saldo de pontos a zero e guarda o perfil. \newline
+5. O sistema valida o NIF, coloca o quantidade de PONTOS a zero e guarda o perfil. \newline
 6. O sistema confirma o sucesso da operação.
 }{
 \textbf{3.a. Listar:} \newline
 1. O ADMIN seleciona a opção "Listar". \newline
-2. O sistema apresenta a lista de todos os CLIENTES (NIF, Nome, Pontos). \newline
+2. O sistema apresenta a lista de todos os CLIENTES (NIF, Nome, quantidade de PONTOS). \newline
 3. O UC termina. \newline
 \textbf{3.b. Editar:} \newline
 1. O ADMIN seleciona a opção "Editar". \newline
@@ -367,10 +371,10 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 }{N/A}
 
 \subsubsection{UC12: Consultar Pontos}
-\ucspec{CAIXA}{Consultar Pontos}{Permite consultar o saldo de pontos atual de um CLIENTE.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
+\ucspec{CAIXA}{Consultar Pontos}{Permite consultar o quantidade de PONTOS atual de um CLIENTE.}{CAIXA selecionado no sistema.}{N/A (Consulta).}{
 1. O CAIXA introduz o NIF do CLIENTE. \newline
 2. O sistema pesquisa o perfil correspondente. \newline
-3. O sistema apresenta o saldo de pontos atual do CLIENTE.
+3. O sistema apresenta o quantidade de PONTOS atual do CLIENTE.
 }{N/A}
 
 \subsubsection{UC13: Consultar RECIBO}
@@ -486,17 +490,33 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
     \caption{UC15: Sair do Perfil}
 \end{figure}
 
+\section{Design de Software}
+
+\subsection{Padrão Model-View-Controller (MVC)}
+Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
+
+\begin{enumerate}
+    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Cliente}, \texttt{Ponto}, \texttt{Venda}). Estas classes não conhecem a interface do utilizador.
+    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI (\texttt{std::cout} e \texttt{std::cin}).
+    \item \textbf{Controller:} Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
+\end{enumerate}
+
+\subsection{Arquitetura de Ficheiros}
+O projeto utiliza uma separação rigorosa entre declaração e implementação:
+\begin{itemize}
+    \item \textbf{\texttt{include/}}: Ficheiros de cabeçalho (\texttt{.h}) com as definições das classes.
+    \item \textbf{\texttt{src/}}: Ficheiros de implementação (\texttt{.cpp}) com a lógica dos métodos.
+\end{itemize}
+
 \section{Glossário}
 \begin{description}
     \item[ADMIN] Ator com o papel de gestão e controlo total das operações do sistema.
     \item[CAIXA] Ator que é funcionário operador do sistema de vendas.
     \item[CATEGORIA] Agrupamento de produtos com características semelhantes (ex: Bebidas, Talho, Peixaria).
-    \item[CLI (Command Line Interface)] Interface de utilizador baseada em texto.
     \item[CLIENTE] Pessoa que compra PRODUTOS no supermercado, e que está registada no sistema para fidelização.
     \item[ESTATÍSTICA] Relatório de desempenho de faturação e volume de vendas por período ou operador.
     \item[MÉTODO DE PAGAMENTO] Forma como o cliente liquida o valor de uma venda (ex: Numerário, Cartão).
-    \item[NIF (Número de Identificação Fiscal)] Identificador numérico único utilizado para registar de clientes e faturação.
-    \item[PONTOS] Unidade de medida de fidelização que ao ser acumulada por compras é possível converter para ter descontos.
+    \item[PONTO] Unidade de medida de fidelização que ao ser acumulada por compras é possível converter para ter descontos.
     \item[PRODUTO] Artigo com ID único, descrição, preço e stock.
     \item[PROMOÇÃO] Desconto percentual aplicado a produtos ou categorias num certo intervalo de tempo.
     \item[RECIBO] Comprovativo de uma venda concluída entregue ao cliente, que inclui o valor total pago, o método de pagamento e a lista de produtos comprados.

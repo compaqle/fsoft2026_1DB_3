@@ -18,8 +18,8 @@
 - **US11:** Como CAIXA, eu quero realizar VENDAS (registando PRODUTOS e quantidades) para processar as compras dos CLIENTES.
 - **US12:** Como CAIXA, eu quero concluir VENDAS com diferentes métodos de pagamento e emitir RECIBOS para documentar a transação.
 - **US13:** Como CAIXA, eu quero consultar o meu histórico e informação individual para saber o meu desempenho.
-- **US14:** Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF) para que este possa acumular pontos.
-- **US15:** Como CAIXA, eu quero consultar o saldo de pontos de um CLIENTE para informar o CLIENTE sobre os pontos que ele tem.
+- **US14:** Como CAIXA, eu quero associar uma VENDA a um CLIENTE (via NIF) para que este possa acumular PONTOS.
+- **US15:** Como CAIXA, eu quero consultar o quantidade de PONTOS de um CLIENTE para informar o CLIENTE sobre os PONTOS que ele tem.
 - **US16:** Como CAIXA, eu quero que o sistema aplique automaticamente os descontos ativos no momento da VENDA sem intervenção manual.
 - **US17:** Como CAIXA, eu quero consultar o detalhe de RECIBOS de vendas passadas para esclarecer dúvidas dos clientes.
 
@@ -34,10 +34,10 @@
 - **RF08:** O sistema deve registar o método de pagamento e mostrar um RECIBO após a conclusão da venda.
 - **RF09:** O sistema deve identificar o utilizador e restringir acesso a funcionalidades baseadas em ser um ADMIN ou um CAIXA.
 - **RF10:** O sistema deve garantir a persistência de dados em ficheiros externos.
-- **RF11:** O sistema deve permitir a gestão de CLIENTES (NIF, Nome, Pontos) e garantir que o NIF é único.
+- **RF11:** O sistema deve permitir a gestão de CLIENTES (NIF, Nome) e garantir que o NIF é único.
 - **RF12:** O sistema deve permitir associar um CLIENTE a uma VENDA em curso.
-- **RF13:** O sistema deve calcular e atribuir pontos ao CLIENTE após uma venda concluída (ex: 1 ponto por cada 10€).
-- **RF14:** O sistema deve aplicar automaticamente o resgate de pontos para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
+- **RF13:** O sistema deve calcular e atribuir PONTOS ao CLIENTE após uma venda concluída (ex: 1 PONTO por cada 10€).
+- **RF14:** O sistema deve aplicar automaticamente o resgate de PONTOS para descontos no valor total da VENDA, caso o CLIENTE possua saldo suficiente.
 - **RF15:** O sistema deve permitir a criação de PROMOÇÕES com intervalo de datas (início e fim) e percentagem de desconto.
 - **RF16:** O sistema deve validar se uma PROMOÇÃO está ativa (data atual dentro do intervalo) antes de aplicar o desconto.
 - **RF17:** O sistema deve permitir associar uma PROMOÇÃO a um PRODUTO ou a uma CATEGORIA de produtos.
