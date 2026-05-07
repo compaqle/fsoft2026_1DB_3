@@ -15,14 +15,14 @@ void MainMenuView::exibirMenuPrincipal() {
     };
 
     int opcao;
-    do {
+    while (true) {
         std::cout << "\n========================================" << std::endl;
-        std::cout << "  Supermercado " << std::endl;
+        std::cout << "       Supermercado " << std::endl;
         std::cout << "========================================" << std::endl;
         std::cout << "\nSelecione o perfil:" << std::endl;
         std::cout << "  0. ADMIN" << std::endl;
 
-        for (size_t i = 0; i < caixas.size(); i++) {
+        for (int i = 0; i < (int)caixas.size(); i++) {
             std::cout << "  " << (i + 1) << ". CAIXA: " << caixas[i].getNome() << std::endl;
         }
 
@@ -33,12 +33,12 @@ void MainMenuView::exibirMenuPrincipal() {
             SessaoController sessao("ADMIN");
             AdminView adminView;
             adminView.exibirMenuAdmin();
-        } else if (opcao >= 1 && opcao <= (int)caixas.size()) {
+        } else if (opcao >= 1 && opcao <= caixas.size()) {
             SessaoController sessao("CAIXA", caixas[opcao - 1].getId());
             CaixaView caixaView;
             caixaView.exibirMenuCaixa();
         } else {
             std::cout << "Opcao invalida. Tente novamente." << std::endl;
         }
-    } while (true);
+    }
 }
