@@ -1,4 +1,5 @@
 #include "../../include/view/AdminView.h"
+#include "../../include/view/ProdutoView.h"
 #include <iostream>
 
 AdminView::AdminView() {}
@@ -17,7 +18,8 @@ void AdminView::exibirMenuAdmin() {
         if (opcao == 0) {
             return;
         } else if (opcao == 1) {
-            std::cout << "Gerir Catalogo - em desenvolvimento" << std::endl;
+            ProdutoView produtoView;
+            produtoView.exibirMenuCatalogo();
         } else if (opcao == 2) {
             std::cout << "Gerir Clientes - em desenvolvimento" << std::endl;
         } else if (opcao == 3) {

@@ -4,5 +4,6 @@
 class ProdutoView {
 public:
     ProdutoView();
+    void exibirMenuCatalogo();
     void listarProduto(Produto& p);
 };
