@@ -31,13 +31,25 @@ void CatalogoView::exibirMenuCatalogo() {
             std::getline(std::cin, nome);
 
             std::cout << "Preco base: ";
-            std::cin >> preco_base;
+            while (!(std::cin >> preco_base)) {
+                std::cout << "Erro! Insira um numero para o preco: ";
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            }
 
             std::cout << "Stock: ";
-            std::cin >> stock;
+            while (!(std::cin >> stock)) {
+                std::cout << "Erro! Insira um numero inteiro para o stock: ";
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            }
 
             std::cout << "ID Categoria: ";
-            std::cin >> id_categoria;
+            while (!(std::cin >> id_categoria)) {
+                std::cout << "Erro! Insira um numero para a categoria: ";
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            }
 
             controller.criarProduto(nome, preco_base, stock, id_categoria);
             std::cout << "Produto criado com sucesso!" << std::endl;
