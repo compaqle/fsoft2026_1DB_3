@@ -1,9 +1,9 @@
 #pragma once
 #include "../../include/model/Produto.h"
 
-class ProdutoView {
+class CatalogoView {
 public:
-    ProdutoView();
+    CatalogoView();
     void exibirMenuCatalogo();
     void listarProduto(Produto& p);
 };

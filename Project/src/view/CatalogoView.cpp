@@ -1,11 +1,11 @@
-#include "../../include/view/ProdutoView.h"
+#include "../../include/view/CatalogoView.h"
 #include "../../include/controller/CatalogoController.h"
 #include <iostream>
 #include <string>
 
-ProdutoView::ProdutoView() {}
+CatalogoView::CatalogoView() {}
 
-void ProdutoView::exibirMenuCatalogo() {
+void CatalogoView::exibirMenuCatalogo() {
     CatalogoController controller;
 
     int opcao;
@@ -54,5 +54,5 @@ void ProdutoView::exibirMenuCatalogo() {
     }
 }
 
-void ProdutoView::listarProduto(Produto& p) {
+void CatalogoView::listarProduto(Produto& p) {
 }
