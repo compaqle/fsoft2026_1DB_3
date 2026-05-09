@@ -3,6 +3,6 @@
 
 VendaView::VendaView() {}
 
-void VendaView::exibirProcessoVenda() {
+void VendaView::mostrarProcessoVenda() {
     std::cout << "\n--- NOVA VENDA EM CURSO ---" << std::endl;
 }

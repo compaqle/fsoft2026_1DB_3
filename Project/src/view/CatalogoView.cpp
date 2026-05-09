@@ -5,7 +5,7 @@
 
 CatalogoView::CatalogoView() {}
 
-void CatalogoView::exibirMenuCatalogo() {
+void CatalogoView::mostrarMenuCatalogo() {
     CatalogoController controller;
 
     int opcao;

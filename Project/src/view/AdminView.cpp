@@ -4,7 +4,7 @@
 
 AdminView::AdminView() {}
 
-void AdminView::exibirMenuAdmin() {
+void AdminView::mostrarMenuAdmin() {
     int opcao;
     while (true) {
         std::cout << "\n--- MENU ADMIN ---" << std::endl;
@@ -23,7 +23,7 @@ void AdminView::exibirMenuAdmin() {
             return;
         } else if (opcao == 1) {
             CatalogoView catalogoView;
-            catalogoView.exibirMenuCatalogo();
+            catalogoView.mostrarMenuCatalogo();
         } else if (opcao == 2) {
             std::cout << "Gerir Clientes - em desenvolvimento" << std::endl;
         } else if (opcao == 3) {

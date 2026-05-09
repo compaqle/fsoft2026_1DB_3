@@ -3,5 +3,5 @@
 class CaixaView {
 public:
     CaixaView();
-    void exibirMenuCaixa();
+    void mostrarMenuCaixa();
 };

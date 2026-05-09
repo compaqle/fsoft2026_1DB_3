@@ -3,5 +3,5 @@
 class VendaView {
 public:
     VendaView();
-    void exibirProcessoVenda();
+    void mostrarProcessoVenda();
 };

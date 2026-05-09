@@ -2,6 +2,6 @@
 
 int main() {
     MainMenuView menu;
-    menu.exibirMenuPrincipal();
+    menu.mostrarMenuPrincipal();
     return 0;
 }

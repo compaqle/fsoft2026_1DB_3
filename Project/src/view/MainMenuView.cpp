@@ -8,7 +8,7 @@
 
 MainMenuView::MainMenuView() {}
 
-void MainMenuView::exibirMenuPrincipal() {
+void MainMenuView::mostrarMenuPrincipal() {
     std::vector<Caixa> caixas = {
         Caixa(1, "Caixa 1"),
         Caixa(2, "Caixa 2")
@@ -36,13 +36,14 @@ void MainMenuView::exibirMenuPrincipal() {
         if (opcao == 0) {
             SessaoController sessao("ADMIN");
             AdminView adminView;
-            adminView.exibirMenuAdmin();
+            adminView.mostrarMenuAdmin();
         } else if (opcao >= 1 && opcao <= caixas.size()) {
             SessaoController sessao("CAIXA", caixas[opcao - 1].getId());
             CaixaView caixaView;
-            caixaView.exibirMenuCaixa();
+            caixaView.mostrarMenuCaixa();
         } else {
             std::cout << "Opcao invalida. Tente novamente." << std::endl;
         }
     }
 }
+

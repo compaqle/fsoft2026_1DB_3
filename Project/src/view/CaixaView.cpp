@@ -3,7 +3,7 @@
 
 CaixaView::CaixaView() {}
 
-void CaixaView::exibirMenuCaixa() {
+void CaixaView::mostrarMenuCaixa() {
     int opcao;
     while (true) {
         std::cout << "\n--- MENU CAIXA ---" << std::endl;
