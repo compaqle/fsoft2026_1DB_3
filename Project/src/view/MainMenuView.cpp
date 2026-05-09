@@ -27,7 +27,11 @@ void MainMenuView::exibirMenuPrincipal() {
         }
 
         std::cout << "\nOpcao: ";
-        std::cin >> opcao;
+        while (!(std::cin >> opcao)) {
+            std::cout << "Erro! Insira um numero: ";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        }
 
         if (opcao == 0) {
             SessaoController sessao("ADMIN");

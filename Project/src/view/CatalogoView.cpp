@@ -17,7 +17,11 @@ void CatalogoView::exibirMenuCatalogo() {
         std::cout << "4. Remover Produto" << std::endl;
         std::cout << "0. Voltar" << std::endl;
         std::cout << "\nOpcao: ";
-        std::cin >> opcao;
+        while (!(std::cin >> opcao)) {
+            std::cout << "Erro! Insira um numero: ";
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+        }
         std::cin.ignore();
 
         if (opcao == 0) {
@@ -33,21 +37,21 @@ void CatalogoView::exibirMenuCatalogo() {
             std::cout << "Preco base: ";
             while (!(std::cin >> preco_base)) {
                 std::cout << "Erro! Insira um numero para o preco: ";
-                std::cin.clear();
+                std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
 
             std::cout << "Stock: ";
             while (!(std::cin >> stock)) {
                 std::cout << "Erro! Insira um numero inteiro para o stock: ";
-                std::cin.clear();
+                std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
 
             std::cout << "ID Categoria: ";
             while (!(std::cin >> id_categoria)) {
                 std::cout << "Erro! Insira um numero para a categoria: ";
-                std::cin.clear();
+                std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
 
