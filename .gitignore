@@ -1,3 +1,7 @@
 Project/build/
 *.o
 *.exe
+*.aux
+*.log
+*.out
+*.toc
