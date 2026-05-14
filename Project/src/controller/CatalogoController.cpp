@@ -12,10 +12,35 @@ void CatalogoController::criarProduto(std::string nome, double preco_base, int s
     Produto p(proximoId, nome, preco_base, stock, id_categoria);
     produtos.push_back(p);
     proximoId++;
+    guardarEmFicheiro();
+}
+
+void CatalogoController::removerProduto(int id) {
+    for (int i = 0; i < produtos.size(); i++) {
+        if (produtos[i].getId() == id) {
+            produtos.erase(produtos.begin() + i);
+            guardarEmFicheiro();
+            return;
+        }
+    }
 }
 
 std::vector<Produto>& CatalogoController::getProdutos() {
     return produtos;
+}
+
+void CatalogoController::guardarEmFicheiro() {
+    std::ofstream ficheiro(caminhoFicheiro);
+    if (!ficheiro.is_open()) return;
+
+    for (int i = 0; i < (int)produtos.size(); i++) {
+        ficheiro << produtos[i].getId() << ","
+                 << produtos[i].getNome() << ","
+                 << produtos[i].getPrecoBase() << ","
+                 << produtos[i].getStock() << ","
+                 << produtos[i].getIdCategoria() << "\n";
+    }
+    ficheiro.close();
 }
 
 void CatalogoController::carregarFicheiro() {

@@ -1,16 +1,13 @@
 #pragma once
-#include <string>
+#include "Utilizador.h"
 
-class Caixa {
+class Caixa : public Utilizador {
 private:
-    int id;
-    std::string nome;
     double total_faturado;
 
 public:
     Caixa(int id, std::string nome);
-    int getId();
-    std::string getNome();
-    double getTotalFaturado();
+    
+    double getTotalFaturado() const;
     void adicionarFaturacao(double valor);
 };

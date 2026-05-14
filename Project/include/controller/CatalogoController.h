@@ -15,5 +15,6 @@ private:
 public:
     CatalogoController();
     void criarProduto(std::string nome, double preco_base, int stock, int id_categoria);
+    void removerProduto(int id);
     std::vector<Produto>& getProdutos();
 };

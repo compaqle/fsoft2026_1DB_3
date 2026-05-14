@@ -36,21 +36,21 @@ void CatalogoView::mostrarMenuCatalogo() {
 
             std::cout << "Preco base: ";
             while (!(std::cin >> preco_base)) {
-                std::cout << "Erro! Insira um numero para o preco: ";
+                std::cout << "Erro! Escreva um numero para o preco: ";
                 std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
 
             std::cout << "Stock: ";
             while (!(std::cin >> stock)) {
-                std::cout << "Erro! Insira um numero inteiro para o stock: ";
+                std::cout << "Erro! Escreva um numero inteiro para o stock: ";
                 std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
 
             std::cout << "ID Categoria: ";
             while (!(std::cin >> id_categoria)) {
-                std::cout << "Erro! Insira um numero para a categoria: ";
+                std::cout << "Erro! Escreva um numero para a categoria: ";
                 std::cin.clear(); //failbit
                 std::cin.ignore(1000, '\n');
             }
@@ -59,11 +59,30 @@ void CatalogoView::mostrarMenuCatalogo() {
             std::cout << "Produto criado com sucesso!" << std::endl;
 
         } else if (opcao == 2) {
-            std::cout << "Listar Produtos - em desenvolvimento" << std::endl;
+            std::vector<Produto>& lista = controller.getProdutos();
+            if (lista.empty()) {
+                std::cout << "\nO catalogo esta vazio." << std::endl;
+            } else {
+                std::cout << "\n--- LISTA DE PRODUTOS ---" << std::endl;
+                for (int i = 0; i < (int)lista.size(); i++) {
+                    std::cout << "ID: " << lista[i].getId() 
+                              << " | Nome: " << lista[i].getNome() 
+                              << " | Preco: " << lista[i].getPrecoBase() 
+                              << " | Stock: " << lista[i].getStock() << std::endl;
+                }
+            }
         } else if (opcao == 3) {
             std::cout << "Editar Produto - em desenvolvimento" << std::endl;
         } else if (opcao == 4) {
-            std::cout << "Remover Produto - em desenvolvimento" << std::endl;
+            int id;
+            std::cout << "ID do produto a remover: ";
+            while (!(std::cin >> id)) {
+                std::cout << "Erro! Insira um ID numerico: ";
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            }
+            controller.removerProduto(id);
+            std::cout << "Operacao concluida (se o ID existia, o produto foi removido)." << std::endl;
         } else {
             std::cout << "Opcao invalida. Tente novamente." << std::endl;
         }

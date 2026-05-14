@@ -3,6 +3,7 @@
 #include "../../include/view/CaixaView.h"
 #include "../../include/controller/SessaoController.h"
 #include "../../include/model/Caixa.h"
+#include "../../include/model/Admin.h"
 #include <iostream>
 #include <vector>
 
@@ -20,7 +21,7 @@ void MainMenuView::mostrarMenuPrincipal() {
         std::cout << "       Supermercado " << std::endl;
         std::cout << "========================================" << std::endl;
         std::cout << "\nSelecione o perfil:" << std::endl;
-        std::cout << "  0. ADMIN" << std::endl;
+        std::cout << "  " << Admin::ADMIN_DEFAULT_ID << ". ADMIN" << std::endl;
 
         for (int i = 0; i < (int)caixas.size(); i++) {
             std::cout << "  " << (i + 1) << ". CAIXA: " << caixas[i].getNome() << std::endl;
@@ -33,7 +34,7 @@ void MainMenuView::mostrarMenuPrincipal() {
             std::cin.ignore(1000, '\n');
         }
 
-        if (opcao == 0) {
+        if (opcao == Admin::ADMIN_DEFAULT_ID) {
             SessaoController sessao("ADMIN");
             AdminView adminView;
             adminView.mostrarMenuAdmin();
