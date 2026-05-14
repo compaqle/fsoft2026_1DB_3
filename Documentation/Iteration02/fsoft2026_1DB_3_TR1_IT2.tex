@@ -324,12 +324,23 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 \subsubsection{UC07: Gerir CATEGORIAS}
 \ucspec{ADMIN}{Gerir CATEGORIAS}{Permite agrupar PRODUTOS em CATEGORIAS para find de impostos e descontos.}{ADMIN selecionado no sistema.}{Lista de CATEGORIAS atualizada.}{
 1. O ADMIN escolhe a opção "gestão de categorias". \newline
-2. O sistema apresenta as opções (Criar, Listar). \newline
+2. O sistema apresenta as opções (Criar, Listar, Remover). \newline
 3. O ADMIN seleciona "Criar". \newline
 4. O ADMIN introduz o nome da nova CATEGORIA e a taxa de IVA dessa CATEGORIA. \newline
 5. O sistema valida os dados e cria a CATEGORIA. \newline
 6. O sistema confirma a criação com sucesso.
-}{3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA que existem.}
+}{
+\textbf{3.a. Listar:} \newline
+1. O ADMIN seleciona "Listar". \newline
+2. O sistema apresenta a lista de todas as categorias. \newline
+3. O UC termina. \newline
+\textbf{3.b. Remover:} \newline
+1. O ADMIN seleciona a opção "Remover". \newline
+2. O sistema solicita o ID da categoria. \newline
+3. O ADMIN insere o ID. \newline
+4. O sistema remove a categoria e informa o sucesso. \newline
+5. O UC termina.
+}
 
 \subsubsection{UC08: Realizar VENDA}
 \ucspec{CAIXA}{Realizar VENDA}{Realiza uma VENDA de PRODUTOS a um CLIENTE ou a alguém que não é um CLIENTE.}{CAIXA selecionado no sistema.}{VENDA registada, o stock atualizado e RECIBO emitido.}{

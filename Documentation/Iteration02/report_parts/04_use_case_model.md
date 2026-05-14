@@ -107,8 +107,8 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | **Description** | Permite agrupar PRODUTOS em CATEGORIAS para find de impostos e descontos. |
 | **Precondition** | ADMIN selecionado no sistema. |
 | **Postcondition** | Lista de CATEGORIAS atualizada. |
-| **Main flow** | 1. O ADMIN escolhe a opção "gestão de categorias". <br> 2. O sistema apresenta as opções (Criar, Listar). <br> 3. O ADMIN seleciona "Criar". <br> 4. O ADMIN introduz o nome da nova CATEGORIA e a taxa de IVA dessa CATEGORIA. <br> 5. O sistema valida os dados e cria a CATEGORIA. <br> 6. O sistema confirma a criação com sucesso. |
-| **Alternative path** | 3.a. O ADMIN seleciona "Listar": O sistema apresenta todas as categorias e taxas de IVA que existem. |
+| **Main flow** | 1. O ADMIN escolhe a opção "gestão de categorias". <br> 2. O sistema apresenta as opções (Criar, Listar, Remover). <br> 3. O ADMIN seleciona "Criar". <br> 4. O ADMIN introduz o nome da nova CATEGORIA e a taxa de IVA dessa CATEGORIA. <br> 5. O sistema valida os dados e cria a CATEGORIA. <br> 6. O sistema confirma a criação com sucesso. |
+| **Alternative path** | **3.a. Listar:** <br> 1. O ADMIN seleciona "Listar". <br> 2. O sistema apresenta a lista de todas as categorias. <br> 3. O UC termina. <br><br> **3.b. Remover:** <br> 1. O ADMIN seleciona a opção "Remover". <br> 2. O sistema solicita o ID da categoria. <br> 3. O ADMIN insere o ID. <br> 4. O sistema remove a categoria e informa o sucesso. <br> 5. O UC termina. |
 
 
 ### UC08: Realizar VENDA
