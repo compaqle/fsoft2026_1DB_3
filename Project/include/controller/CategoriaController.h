@@ -5,12 +5,7 @@
 
 class CategoriaController {
 private:
-    std::vector<Categoria> categorias;
     int proximoId;
-    std::string caminhoFicheiro;
-
-    void carregarFicheiro();
-    void guardarEmFicheiro();
 
 public:
     CategoriaController();

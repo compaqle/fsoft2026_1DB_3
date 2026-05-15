@@ -3,5 +3,5 @@
 class MainMenuView {
 public:
     MainMenuView();
-    void mostrarMenuPrincipal();
+    int mostrarMenuPrincipal();
 };

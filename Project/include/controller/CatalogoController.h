@@ -5,12 +5,7 @@
 
 class CatalogoController {
 private:
-    std::vector<Produto> produtos;
     int proximoId;
-    std::string caminhoFicheiro;
-
-    void carregarFicheiro();
-    void guardarEmFicheiro();
 
 public:
     CatalogoController();

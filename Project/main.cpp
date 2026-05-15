@@ -1,7 +1,10 @@
-#include "include/view/MainMenuView.h"
+#include "include/controller/Controller.h"
 
 int main() {
-    MainMenuView menu;
-    menu.mostrarMenuPrincipal();
+    CatalogoController catalogoController;
+    CategoriaController categoriaController;
+
+    Controller controller(catalogoController, categoriaController);
+    controller.run();
     return 0;
 }

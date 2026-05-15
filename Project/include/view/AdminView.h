@@ -3,5 +3,5 @@
 class AdminView {
 public:
     AdminView();
-    void mostrarMenuAdmin();
+    int mostrarMenuAdmin();
 };

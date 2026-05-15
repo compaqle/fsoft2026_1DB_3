@@ -1,7 +1,8 @@
 #pragma once
+#include "../controller/CategoriaController.h"
 
 class CategoriaView {
 public:
     CategoriaView();
-    void mostrarMenuCategorias();
+    void mostrarMenuCategorias(CategoriaController& controller);
 };

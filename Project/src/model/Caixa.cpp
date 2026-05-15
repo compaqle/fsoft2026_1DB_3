@@ -4,6 +4,8 @@ Caixa::Caixa(int id, std::string nome) : Utilizador(id, nome) {
     this->total_faturado = 0.0;
 }
 
-double Caixa::getTotalFaturado() const { return total_faturado; }
+double Caixa::getTotalFaturado() const { 
+    return total_faturado; }
 
-void Caixa::adicionarFaturacao(double valor) { total_faturado += valor; }
+void Caixa::adicionarFaturacao(double valor) { 
+    total_faturado += valor; }
