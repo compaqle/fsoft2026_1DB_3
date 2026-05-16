@@ -38,7 +38,3 @@ void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
                   << " | Stock: " << lista[i].stock << std::endl;
     }
 }
-
-void CatalogoView::printMensagem(const std::string& msg) {
-    std::cout << msg << std::endl;
-}

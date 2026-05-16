@@ -29,7 +29,3 @@ void CategoriaView::printListaCategorias(const std::vector<CategoriaDTO>& lista)
                   << " | IVA: " << (lista[i].taxa_iva * 100) << "%" << std::endl;
     }
 }
-
-void CategoriaView::printMensagem(const std::string& msg) {
-    std::cout << msg << std::endl;
-}

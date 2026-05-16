@@ -1,13 +1,13 @@
-#include "../../include/view/MainMenuView.h"
+#include "../../include/view/View.h"
 #include "../../include/view/Utils.h"
 #include "../../include/model/Caixa.h"
 #include "../../include/model/Admin.h"
 #include <iostream>
 #include <vector>
 
-MainMenuView::MainMenuView() {}
+View::View() {}
 
-int MainMenuView::mostrarMenuPrincipal() {
+int View::menuPrincipal() {
     std::vector<Caixa> caixas = {
         Caixa(1, "Caixa 1"),
         Caixa(2, "Caixa 2")
@@ -19,7 +19,7 @@ int MainMenuView::mostrarMenuPrincipal() {
     std::cout << "\nSelecione o perfil:" << std::endl;
     std::cout << "  " << Admin::ADMIN_DEFAULT_ID << ". ADMIN" << std::endl;
 
-    for (int i = 0; i < (int)caixas.size(); i++) {
+    for (int i = 0; i < caixas.size(); i++) {
         std::cout << "  " << (i + 1) << ". CAIXA: " << caixas[i].getNome() << std::endl;
     }
 
@@ -33,6 +33,25 @@ int MainMenuView::mostrarMenuPrincipal() {
     return -1;
 }
 
-void MainMenuView::printMensagem(const std::string& msg) {
+int View::menuAdmin() {
+    std::cout << "\n--- MENU ADMIN ---" << std::endl;
+    std::cout << "1. Gerir Catalogo" << std::endl;
+    std::cout << "2. Gerir Categorias" << std::endl;
+    std::cout << "3. Gerir Clientes" << std::endl;
+    std::cout << "4. Ver Estatisticas" << std::endl;
+    std::cout << "0. Sair" << std::endl;
+    return Utils::lerInt("\nOpcao: ");
+}
+
+int View::menuCaixa() {
+    std::cout << "\n--- MENU CAIXA ---" << std::endl;
+    std::cout << "1. Realizar Venda" << std::endl;
+    std::cout << "2. Consultar Preco" << std::endl;
+    std::cout << "3. Consultar Pontos Cliente" << std::endl;
+    std::cout << "0. Sair" << std::endl;
+    return Utils::lerInt("\nOpcao: ");
+}
+
+void View::printMensagem(const std::string& msg) {
     std::cout << msg << std::endl;
 }
