@@ -1,7 +1,6 @@
-#include "../../include/controller/CatalogoController.h"
-#include "../../include/repo/SupermercadoRepository.h"
+#include "../../include/services/ProdutoService.h"
 
-CatalogoController::CatalogoController() {
+ProdutoService::ProdutoService() {
     proximoId = 1;
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Produto>& produtos = repo.getProdutos();
@@ -12,7 +11,7 @@ CatalogoController::CatalogoController() {
     }
 }
 
-void CatalogoController::criarProduto(std::string nome, double preco_base, int stock, int id_categoria) {
+void ProdutoService::criarProduto(std::string nome, double preco_base, int stock, int id_categoria) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Produto p(proximoId, nome, preco_base, stock, id_categoria);
     repo.getProdutos().push_back(p);
@@ -20,7 +19,7 @@ void CatalogoController::criarProduto(std::string nome, double preco_base, int s
     repo.guardarProdutos();
 }
 
-void CatalogoController::removerProduto(int id) {
+void ProdutoService::removerProduto(int id) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Produto>& produtos = repo.getProdutos();
     for (int i = 0; i < (int)produtos.size(); i++) {
@@ -32,6 +31,6 @@ void CatalogoController::removerProduto(int id) {
     }
 }
 
-std::vector<Produto>& CatalogoController::getProdutos() {
+std::vector<Produto>& ProdutoService::getProdutos() {
     return SupermercadoRepository::getInstance().getProdutos();
 }

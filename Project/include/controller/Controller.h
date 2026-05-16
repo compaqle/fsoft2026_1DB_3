@@ -4,13 +4,13 @@
 #include "../view/CatalogoView.h"
 #include "../view/CategoriaView.h"
 #include "../view/CaixaView.h"
-#include "../controller/CatalogoController.h"
-#include "../controller/CategoriaController.h"
+#include "../services/ProdutoService.h"
+#include "../services/CategoriaService.h"
 
 class Controller {
 private:
-    CatalogoController& catalogoController;
-    CategoriaController& categoriaController;
+    ProdutoService* produtoService;
+    CategoriaService* categoriaService;
 
     MainMenuView mainMenuView;
     AdminView adminView;
@@ -19,9 +19,11 @@ private:
     CaixaView caixaView;
 
     void runAdmin();
+    void runCatalogo();
+    void runCategorias();
     void runCaixa(int idCaixa);
 
 public:
-    Controller(CatalogoController& catalogoController, CategoriaController& categoriaController);
+    Controller(ProdutoService* produtoService, CategoriaService* categoriaService);
     void run();
 };

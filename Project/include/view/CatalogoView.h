@@ -1,10 +1,15 @@
 #pragma once
-#include "../controller/CatalogoController.h"
+#include <vector>
+#include <string>
 #include "../../include/model/Produto.h"
 
 class CatalogoView {
 public:
     CatalogoView();
-    void mostrarMenuCatalogo(CatalogoController& controller);
-    void listarProduto(Produto& p);
+
+    int mostrarMenuCatalogo();
+    void getDadosCriarProduto(std::string& nome, double& preco, int& stock, int& id_categoria);
+    int getIdProduto();
+    void printListaProdutos(std::vector<Produto>& lista);
+    void printMensagem(const std::string& msg);
 };

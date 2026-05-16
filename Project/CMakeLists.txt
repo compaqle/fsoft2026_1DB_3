@@ -9,12 +9,14 @@ include_directories(include/model)
 include_directories(include/view)
 include_directories(include/controller)
 include_directories(include/repo)
+include_directories(include/services)
 
 file(GLOB_RECURSE SOURCES 
     "src/model/*.cpp"
     "src/view/*.cpp"
     "src/controller/*.cpp"
     "src/repo/*.cpp"
+    "src/services/*.cpp"
     "main.cpp"
 )
 

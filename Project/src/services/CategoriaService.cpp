@@ -1,7 +1,6 @@
-#include "../../include/controller/CategoriaController.h"
-#include "../../include/repo/SupermercadoRepository.h"
+#include "../../include/services/CategoriaService.h"
 
-CategoriaController::CategoriaController() {
+CategoriaService::CategoriaService() {
     proximoId = 1;
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Categoria>& categorias = repo.getCategorias();
@@ -12,7 +11,7 @@ CategoriaController::CategoriaController() {
     }
 }
 
-void CategoriaController::criarCategoria(std::string nome, double taxa_iva) {
+void CategoriaService::criarCategoria(std::string nome, double taxa_iva) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Categoria c(proximoId, nome, taxa_iva);
     repo.getCategorias().push_back(c);
@@ -20,6 +19,6 @@ void CategoriaController::criarCategoria(std::string nome, double taxa_iva) {
     repo.guardarCategorias();
 }
 
-std::vector<Categoria>& CategoriaController::getCategorias() {
+std::vector<Categoria>& CategoriaService::getCategorias() {
     return SupermercadoRepository::getInstance().getCategorias();
 }

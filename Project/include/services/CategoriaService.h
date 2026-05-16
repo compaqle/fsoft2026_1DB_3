@@ -1,14 +1,15 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "../../include/model/Categoria.h"
+#include "../model/Categoria.h"
+#include "../repo/SupermercadoRepository.h"
 
-class CategoriaController {
+class CategoriaService {
 private:
     int proximoId;
 
 public:
-    CategoriaController();
+    CategoriaService();
     void criarCategoria(std::string nome, double taxa_iva);
     std::vector<Categoria>& getCategorias();
 };

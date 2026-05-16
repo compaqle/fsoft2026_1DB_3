@@ -1,10 +1,12 @@
 #include "include/controller/Controller.h"
+#include "include/services/ProdutoService.h"
+#include "include/services/CategoriaService.h"
 
 int main() {
-    CatalogoController catalogoController;
-    CategoriaController categoriaController;
+    ProdutoService produtoService;
+    CategoriaService categoriaService;
 
-    Controller controller(catalogoController, categoriaController);
+    Controller controller(&produtoService, &categoriaService);
     controller.run();
     return 0;
 }
