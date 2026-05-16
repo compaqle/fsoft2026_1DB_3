@@ -17,8 +17,8 @@ private:
 
 public:
     Venda(int id, int nif_cliente);
-    int getid() const;
-    int getidCaixa() const;
+    int getId() const;
+    int getIdCaixa() const;
     std::string getNifCliente() const;
     std::string getDataHora const();
     double getTotal() const;
