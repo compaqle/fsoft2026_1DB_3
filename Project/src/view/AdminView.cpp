@@ -14,3 +14,7 @@ int AdminView::mostrarMenuAdmin() {
 
     return Utils::lerInt("\nOpcao: ");
 }
+
+void AdminView::printMensagem(const std::string& msg) {
+    std::cout << msg << std::endl;
+}

@@ -32,3 +32,7 @@ int MainMenuView::mostrarMenuPrincipal() {
     }
     return -1;
 }
+
+void MainMenuView::printMensagem(const std::string& msg) {
+    std::cout << msg << std::endl;
+}

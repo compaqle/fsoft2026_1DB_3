@@ -1,4 +1,5 @@
 #include "../../include/services/CategoriaService.h"
+#include "../../include/exceptions/InvalidDataException.h"
 
 CategoriaService::CategoriaService() {
     proximoId = 1;
@@ -12,6 +13,9 @@ CategoriaService::CategoriaService() {
 }
 
 void CategoriaService::criarCategoria(std::string nome, double taxa_iva) {
+    if (nome.empty()) throw InvalidDataException("nome vazio");
+    if (taxa_iva < 0) throw InvalidDataException("taxa de IVA negativa");
+
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Categoria c(proximoId, nome, taxa_iva);
     repo.getCategorias().push_back(c);

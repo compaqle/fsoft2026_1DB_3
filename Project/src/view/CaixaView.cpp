@@ -13,3 +13,7 @@ int CaixaView::mostrarMenuCaixa() {
 
     return Utils::lerInt("\nOpcao: ");
 }
+
+void CaixaView::printMensagem(const std::string& msg) {
+    std::cout << msg << std::endl;
+}

@@ -1,5 +1,6 @@
 #include "../../include/controller/Controller.h"
-#include <iostream>
+#include "../../include/exceptions/InvalidDataException.h"
+#include "../../include/exceptions/NoDataException.h"
 
 Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService)
     : produtoService(produtoService), categoriaService(categoriaService) {
@@ -14,7 +15,7 @@ void Controller::run() {
         } else if (op >= 1) {
             runCaixa(op);
         } else {
-            std::cout << "Opcao invalida. Tente novamente." << std::endl;
+            mainMenuView.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
 }
@@ -30,11 +31,11 @@ void Controller::runAdmin() {
         } else if (op == 2) {
             runCategorias();
         } else if (op == 3) {
-            std::cout << "Gerir Clientes - em desenvolvimento" << std::endl;
+            adminView.printMensagem("Gerir Clientes - em desenvolvimento");
         } else if (op == 4) {
-            std::cout << "Ver Estatisticas - em desenvolvimento" << std::endl;
+            adminView.printMensagem("Ver Estatisticas - em desenvolvimento");
         } else {
-            std::cout << "Opcao invalida. Tente novamente." << std::endl;
+            adminView.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
 }
@@ -50,16 +51,24 @@ void Controller::runCatalogo() {
             double preco;
             int stock, id_categoria;
             catalogoView.getDadosCriarProduto(nome, preco, stock, id_categoria);
-            produtoService->criarProduto(nome, preco, stock, id_categoria);
-            catalogoView.printMensagem("Produto criado com sucesso!");
+            try {
+                produtoService->criarProduto(nome, preco, stock, id_categoria);
+                catalogoView.printMensagem("Produto criado com sucesso!");
+            } catch (InvalidDataException& e) {
+                catalogoView.printMensagem(e.what());
+            }
         } else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
         } else if (op == 3) {
             catalogoView.printMensagem("Editar Produto - em desenvolvimento");
         } else if (op == 4) {
             int id = catalogoView.getIdProduto();
-            produtoService->removerProduto(id);
-            catalogoView.printMensagem("Operacao concluida (se o ID existia, o produto foi removido).");
+            try {
+                produtoService->removerProduto(id);
+                catalogoView.printMensagem("Produto removido com sucesso!");
+            } catch (NoDataException& e) {
+                catalogoView.printMensagem(e.what());
+            }
         } else {
             catalogoView.printMensagem("Opcao invalida. Tente novamente.");
         }
@@ -76,8 +85,12 @@ void Controller::runCategorias() {
             std::string nome;
             double taxa_iva;
             categoriaView.getDadosCriarCategoria(nome, taxa_iva);
-            categoriaService->criarCategoria(nome, taxa_iva);
-            categoriaView.printMensagem("Categoria criada com sucesso!");
+            try {
+                categoriaService->criarCategoria(nome, taxa_iva);
+                categoriaView.printMensagem("Categoria criada com sucesso!");
+            } catch (InvalidDataException& e) {
+                categoriaView.printMensagem(e.what());
+            }
         } else if (op == 2) {
             categoriaView.printListaCategorias(categoriaService->getCategorias());
         } else {
@@ -93,13 +106,13 @@ void Controller::runCaixa(int idCaixa) {
         if (op == 0) {
             return;
         } else if (op == 1) {
-            std::cout << "Realizar Venda - em desenvolvimento" << std::endl;
+            caixaView.printMensagem("Realizar Venda - em desenvolvimento");
         } else if (op == 2) {
-            std::cout << "Consultar Preco - em desenvolvimento" << std::endl;
+            caixaView.printMensagem("Consultar Preco - em desenvolvimento");
         } else if (op == 3) {
-            std::cout << "Consultar Pontos Cliente - em desenvolvimento" << std::endl;
+            caixaView.printMensagem("Consultar Pontos Cliente - em desenvolvimento");
         } else {
-            std::cout << "Opcao invalida. Tente novamente." << std::endl;
+            caixaView.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
 }
