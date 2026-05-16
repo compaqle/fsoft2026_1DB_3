@@ -2,5 +2,5 @@
 
 Venda::Venda(int id, int nif_cliente) {
     this->id = id;
-    this->nif_cliente = nif_cliente;
+    this->nifCliente = std::to_string(nif_cliente);
 }

@@ -1,6 +1,5 @@
 #include "../../include/model/Produto.h"
 
-// CONSTRUTOR
 Produto::Produto(int id, std::string nome, double preco_base, int stock, int id_categoria) {
     this->id = id;
     this->nome = nome;
@@ -9,18 +8,15 @@ Produto::Produto(int id, std::string nome, double preco_base, int stock, int id_
     this->id_categoria = id_categoria;
 }
 
-// GETTERS
-int Produto::getId() { return id; }
-std::string Produto::getNome() { return nome; }
-double Produto::getPrecoBase() { return preco_base; }
-int Produto::getStock() { return stock; }
-int Produto::getIdCategoria() { return id_categoria; }
+int Produto::getId() const { return id; }
+std::string Produto::getNome() const { return nome; }
+double Produto::getPrecoBase() const { return preco_base; }
+int Produto::getStock() const { return stock; }
+int Produto::getIdCategoria() const { return id_categoria; }
 
-// SETTERS
 void Produto::setNome(std::string novoNome) { this->nome = novoNome; }
 void Produto::setPrecoBase(double novoPreco) { this->preco_base = novoPreco; }
 
-// GESTÃO DE STOCK
 void Produto::addStock(int quantidade) {
     this->stock += quantidade;
 }

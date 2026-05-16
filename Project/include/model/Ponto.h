@@ -5,7 +5,7 @@ private:
     int quantidade;
 public:
     Ponto(int quantidade_inicial = 0);
-    int getQuantidade();
+    int getQuantidade() const;
     void adicionarPontos(int quantidade);
     void gastarPontos(int quantidade);
 };

@@ -4,7 +4,7 @@ Ponto::Ponto(int quantidade_inicial) {
     this->quantidade = quantidade_inicial;
 }
 
-int Ponto::getQuantidade() {
+int Ponto::getQuantidade() const {
     return quantidade;
 }
 

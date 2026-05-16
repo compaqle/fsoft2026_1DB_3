@@ -5,3 +5,4 @@ Project/build/
 *.log
 *.out
 *.toc
+.idea/
