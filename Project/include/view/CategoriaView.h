@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "../../include/model/Categoria.h"
+#include "../dto/CategoriaDTO.h"
 
 class CategoriaView {
 public:
@@ -9,6 +9,6 @@ public:
 
     int mostrarMenuCategorias();
     void getDadosCriarCategoria(std::string& nome, double& taxa_iva);
-    void printListaCategorias(std::vector<Categoria>& lista);
+    void printListaCategorias(const std::vector<CategoriaDTO>& lista);
     void printMensagem(const std::string& msg);
 };

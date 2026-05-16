@@ -1,4 +1,5 @@
 #include "../../include/services/CategoriaService.h"
+#include "../../include/mappers/CategoriaMapper.h"
 #include "../../include/exceptions/InvalidDataException.h"
 
 CategoriaService::CategoriaService() {
@@ -23,6 +24,11 @@ void CategoriaService::criarCategoria(std::string nome, double taxa_iva) {
     repo.guardarCategorias();
 }
 
-std::vector<Categoria>& CategoriaService::getCategorias() {
-    return SupermercadoRepository::getInstance().getCategorias();
+std::vector<CategoriaDTO> CategoriaService::getCategorias() {
+    std::vector<Categoria>& categorias = SupermercadoRepository::getInstance().getCategorias();
+    std::vector<CategoriaDTO> dtos;
+    for (int i = 0; i < (int)categorias.size(); i++) {
+        dtos.push_back(CategoriaMapper::toDTO(categorias[i]));
+    }
+    return dtos;
 }

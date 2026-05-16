@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "../../include/model/Produto.h"
+#include "../dto/ProdutoDTO.h"
 
 class CatalogoView {
 public:
@@ -10,6 +10,6 @@ public:
     int mostrarMenuCatalogo();
     void getDadosCriarProduto(std::string& nome, double& preco, int& stock, int& id_categoria);
     int getIdProduto();
-    void printListaProdutos(std::vector<Produto>& lista);
+    void printListaProdutos(const std::vector<ProdutoDTO>& lista);
     void printMensagem(const std::string& msg);
 };

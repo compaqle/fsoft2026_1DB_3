@@ -25,17 +25,17 @@ int CatalogoView::getIdProduto() {
     return Utils::lerInt("ID do produto a remover: ");
 }
 
-void CatalogoView::printListaProdutos(std::vector<Produto>& lista) {
+void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
     if (lista.empty()) {
         std::cout << "\nO catalogo esta vazio." << std::endl;
         return;
     }
     std::cout << "\n--- LISTA DE PRODUTOS ---" << std::endl;
     for (int i = 0; i < (int)lista.size(); i++) {
-        std::cout << "ID: " << lista[i].getId()
-                  << " | Nome: " << lista[i].getNome()
-                  << " | Preco: " << lista[i].getPrecoBase()
-                  << " | Stock: " << lista[i].getStock() << std::endl;
+        std::cout << "ID: " << lista[i].id
+                  << " | Nome: " << lista[i].nome
+                  << " | Preco: " << lista[i].preco
+                  << " | Stock: " << lista[i].stock << std::endl;
     }
 }
 

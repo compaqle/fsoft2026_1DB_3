@@ -11,6 +11,8 @@ include_directories(include/controller)
 include_directories(include/repo)
 include_directories(include/services)
 include_directories(include/exceptions)
+include_directories(include/dto)
+include_directories(include/mappers)
 
 file(GLOB_RECURSE SOURCES 
     "src/model/*.cpp"
@@ -19,6 +21,7 @@ file(GLOB_RECURSE SOURCES
     "src/repo/*.cpp"
     "src/services/*.cpp"
     "src/exceptions/*.cpp"
+    "src/mappers/*.cpp"
     "main.cpp"
 )
 

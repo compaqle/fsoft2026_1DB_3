@@ -1,4 +1,5 @@
 #include "../../include/services/ProdutoService.h"
+#include "../../include/mappers/ProdutoMapper.h"
 #include "../../include/exceptions/InvalidDataException.h"
 #include "../../include/exceptions/NoDataException.h"
 
@@ -38,6 +39,11 @@ void ProdutoService::removerProduto(int id) {
     throw NoDataException("Produto: " + std::to_string(id));
 }
 
-std::vector<Produto>& ProdutoService::getProdutos() {
-    return SupermercadoRepository::getInstance().getProdutos();
+std::vector<ProdutoDTO> ProdutoService::getProdutos() {
+    std::vector<Produto>& produtos = SupermercadoRepository::getInstance().getProdutos();
+    std::vector<ProdutoDTO> dtos;
+    for (int i = 0; i < (int)produtos.size(); i++) {
+        dtos.push_back(ProdutoMapper::toDTO(produtos[i]));
+    }
+    return dtos;
 }

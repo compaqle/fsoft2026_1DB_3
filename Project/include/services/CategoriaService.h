@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "../model/Categoria.h"
+#include "../dto/CategoriaDTO.h"
 #include "../repo/SupermercadoRepository.h"
 
 class CategoriaService {
@@ -11,5 +12,5 @@ private:
 public:
     CategoriaService();
     void criarCategoria(std::string nome, double taxa_iva);
-    std::vector<Categoria>& getCategorias();
+    std::vector<CategoriaDTO> getCategorias();
 };
