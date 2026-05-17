@@ -1,0 +1,27 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="PhysicalArch" name="Arquitetura Fisica">
+    <mxGraphModel dx="975" dy="532" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node_pc" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;align=center;verticalAlign=top;spacingTop=10;" value="&lt;b&gt;&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;/b&gt;&lt;br&gt;Computador Local" vertex="1">
+          <mxGeometry height="410" width="370" x="160" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="node_os" parent="node_pc" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;align=center;verticalAlign=top;spacingTop=10;" value="&lt;b&gt;&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt;&lt;/b&gt;&lt;br&gt;Terminal / Consola (OS)" vertex="1">
+          <mxGeometry height="320" width="288.89" x="41.11" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="art_exe" parent="node_os" style="shape=module;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" value="&lt;b&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt;&lt;/b&gt;&lt;br&gt;supermercado_app" vertex="1">
+          <mxGeometry height="87.27272727272727" width="206.35" x="41.269999999999996" y="87.27272727272727" as="geometry" />
+        </mxCell>
+        <mxCell id="art_csv" parent="node_os" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=center;verticalAlign=middle;" value="&lt;b&gt;&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt;&lt;/b&gt;&lt;br&gt;Ficheiros de Dados (.csv)" vertex="1">
+          <mxGeometry height="87.27272727272727" width="165.07999999999998" x="61.904999999999994" y="215.7041241685144" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_rw" edge="1" parent="node_os" source="art_exe" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="art_csv" value="Lê / Escreve">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

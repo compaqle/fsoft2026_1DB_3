@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram id="ViewsDCD" name="Views Class Diagram">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="820" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="cls_view" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; View" vertex="1">
+          <mxGeometry height="178" width="260" x="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_sep" parent="cls_view" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="260" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_m_0" parent="cls_view" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ View()" vertex="1">
+          <mxGeometry height="24" width="260" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_m_1" parent="cls_view" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ menuPrincipal(): int" vertex="1">
+          <mxGeometry height="24" width="260" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_m_2" parent="cls_view" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ menuAdmin(): int" vertex="1">
+          <mxGeometry height="24" width="260" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_m_3" parent="cls_view" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ menuCaixa(): int" vertex="1">
+          <mxGeometry height="24" width="260" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_view_m_4" parent="cls_view" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ printMensagem(msg: string): void" vertex="1">
+          <mxGeometry height="24" width="260" y="130" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cls_catalogo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; CatalogoView" vertex="1">
+          <mxGeometry height="178" width="290" x="20" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_sep" parent="cls_catalogo" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_m_0" parent="cls_catalogo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ CatalogoView()" vertex="1">
+          <mxGeometry height="24" width="290" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_m_1" parent="cls_catalogo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ mostrarMenuCatalogo(): int" vertex="1">
+          <mxGeometry height="24" width="290" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_m_2" parent="cls_catalogo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getDadosCriarProduto(nome: string&amp;, preco: double&amp;, stock: int&amp;, id_cat: int&amp;): void" vertex="1">
+          <mxGeometry height="24" width="290" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_m_3" parent="cls_catalogo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getIdProduto(): int" vertex="1">
+          <mxGeometry height="24" width="290" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_catalogo_m_4" parent="cls_catalogo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ printListaProdutos(lista: vector&lt;ProdutoDTO&gt;): void" vertex="1">
+          <mxGeometry height="24" width="290" y="130" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cls_categoriaview" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; CategoriaView" vertex="1">
+          <mxGeometry height="154" width="290" x="530" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoriaview_sep" parent="cls_categoriaview" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoriaview_m_0" parent="cls_categoriaview" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ CategoriaView()" vertex="1">
+          <mxGeometry height="24" width="290" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoriaview_m_1" parent="cls_categoriaview" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ mostrarMenuCategorias(): int" vertex="1">
+          <mxGeometry height="24" width="290" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoriaview_m_2" parent="cls_categoriaview" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getDadosCriarCategoria(nome: string&amp;, taxa_iva: double&amp;): void" vertex="1">
+          <mxGeometry height="24" width="290" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoriaview_m_3" parent="cls_categoriaview" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ printListaCategorias(lista: vector&lt;CategoriaDTO&gt;): void" vertex="1">
+          <mxGeometry height="24" width="290" y="106" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cls_utils" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;utility&amp;gt;&amp;gt; Utils" vertex="1">
+          <mxGeometry height="130" width="270" x="285" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_utils_sep" parent="cls_utils" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="270" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_utils_m_0" parent="cls_utils" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ lerInt(mensagem: string): int {static}" vertex="1">
+          <mxGeometry height="24" width="270" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_utils_m_1" parent="cls_utils" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ lerDouble(mensagem: string): double {static}" vertex="1">
+          <mxGeometry height="24" width="270" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_utils_m_2" parent="cls_utils" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ lerString(mensagem: string): string {static}" vertex="1">
+          <mxGeometry height="24" width="270" y="82" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="rel_view_utils" edge="1" parent="1" source="cls_view" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="cls_utils" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="240" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_catalogo_utils" edge="1" parent="1" source="cls_catalogo" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.25;entryY=0;" target="cls_utils" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_categoriaview_utils" edge="1" parent="1" source="cls_categoriaview" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.75;entryY=0;" target="cls_utils" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,5 +1,33 @@
 # Design de Software
 
+## Arquitetura Física
+
+![Arquitetura Física](../diagramas/design/physical_architecture.drawio.png)
+
+## Arquitetura Lógica
+
+![Arquitetura Lógica](../diagramas/design/logical_architecture.drawio.png)
+
+## Organização do Código
+
+![Organização do Código](../diagramas/design/code_organization.drawio.png)
+
+## Diagrama de Classes do Modelo (Design Class Diagram)
+
+![Diagrama de Classes do Modelo](../diagramas/design/model_class_diagram.drawio.png)
+
+## Diagrama de Classes das Exceções
+
+![Diagrama de Classes das Exceções](../diagramas/design/exceptions_class_diagram.drawio.png)
+
+## Diagrama de Classes das Views
+
+![Diagrama de Classes das Views](../diagramas/design/views_class_diagram.drawio.png)
+
+## Diagrama de Classes do Controller, Services e Repository
+
+![Diagrama de Classes do Controller, Services e Repository](../diagramas/design/controllers_services_class_diagram.drawio.png)
+
 ## Padrão Model-View-Controller (MVC)
 Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
 

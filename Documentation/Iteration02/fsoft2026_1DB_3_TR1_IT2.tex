@@ -156,6 +156,80 @@ O sistema deve responder prontamente às interações do utilizador na CLI.
     \label{fig:domain_model}
 \end{figure}
 
+\section{Design de Software}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/physical_architecture.drawio.png}}
+    \caption{Diagrama de Arquitetura Física}
+    \label{fig:physical_architecture}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/logical_architecture.drawio.png}}
+    \caption{Diagrama de Arquitetura Lógica}
+    \label{fig:logical_architecture}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/code_organization.drawio.png}}
+    \caption{Organização do Código}
+    \label{fig:code_organization}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/model_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes do Modelo (Design Class Diagram)}
+    \label{fig:model_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagramas/design/exceptions_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes das Exceções}
+    \label{fig:exceptions_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/views_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes das Views}
+    \label{fig:views_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagramas/design/controllers_services_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes do Controller, Services e Repository}
+    \label{fig:controllers_services_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/dtos_mappers_class_diagram.drawio.png}}
+    \caption{Diagrama de DTOs e Mappers}
+    \label{fig:dtos_mappers_class_diagram}
+\end{figure}
+
+\subsection{Padrão Model-View-Controller (MVC)}
+Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
+
+\begin{enumerate}
+    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Cliente}, \texttt{Ponto}, \texttt{Venda}). Estas classes não conhecem a interface do utilizador.
+    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI (\texttt{std::cout} e \texttt{std::cin}).
+    \item \textbf{Controller:} Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
+\end{enumerate}
+
+\subsection{Arquitetura de Ficheiros}
+O projeto utiliza uma separação rigorosa entre declaração e implementação:
+\begin{itemize}
+    \item \textbf{\texttt{include/}}: Ficheiros de cabeçalho (\texttt{.h}) com as definições das classes.
+    \item \textbf{\texttt{src/}}: Ficheiros de implementação (\texttt{.cpp}) com a lógica dos métodos.
+\end{itemize}
+
 \section{Modelo de Casos de Uso}
 Nesta secção detalhamos as interações entre os atores e o sistema.
 
@@ -409,15 +483,37 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 3. O sistema regressa ao menu de seleção de perfil inicial.
 }{N/A}
 
-\subsection{Diagramas de Sequência de Sistema (SSD)}
+\subsection{Casos de Uso Implementados}
 
-Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas de Sequência de Sistema (SSD) mais representativos e complexos do sistema. Os diagramas referentes a consultas simples (ex: Consultar Preço, Consultar Pontos) foram omitidos deste documento, embora estejam mapeados no repositório de projeto.
+Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes serão implementados na próxima iteração.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc01.png}
     \caption{UC01: Gerir Catálogo (Cenário de Criação)}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc07.png}
+    \caption{UC07: Gerir CATEGORIAS}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc14.png}
+    \caption{UC14: Selecionar Perfil}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc15.png}
+    \caption{UC15: Sair do Perfil}
+\end{figure}
+
+\subsection{Restantes Casos de Uso}
+
+Os restantes casos de uso, já documentados com especificações e diagramas de sequência, ainda não têm implementação correspondente.
 
 \begin{figure}[H]
     \centering
@@ -445,12 +541,6 @@ Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc07.png}
-    \caption{UC07: Gerir CATEGORIAS}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc08.png}
     \caption{UC08: Realizar VENDA}
 \end{figure}
@@ -466,24 +556,6 @@ Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas 
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc13.png}
     \caption{UC13: Consultar RECIBO}
 \end{figure}
-
-\section{Design de Software}
-
-\subsection{Padrão Model-View-Controller (MVC)}
-Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
-
-\begin{enumerate}
-    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Cliente}, \texttt{Ponto}, \texttt{Venda}). Estas classes não conhecem a interface do utilizador.
-    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI (\texttt{std::cout} e \texttt{std::cin}).
-    \item \textbf{Controller:} Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
-\end{enumerate}
-
-\subsection{Arquitetura de Ficheiros}
-O projeto utiliza uma separação rigorosa entre declaração e implementação:
-\begin{itemize}
-    \item \textbf{\texttt{include/}}: Ficheiros de cabeçalho (\texttt{.h}) com as definições das classes.
-    \item \textbf{\texttt{src/}}: Ficheiros de implementação (\texttt{.cpp}) com a lógica dos métodos.
-\end{itemize}
 
 \section{Glossário}
 \begin{description}
