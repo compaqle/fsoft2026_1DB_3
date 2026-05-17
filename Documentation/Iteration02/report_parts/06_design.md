@@ -38,14 +38,14 @@ O sistema foi dividido em camadas seguindo o padrão Model-View-Controller que f
 
 1. **Model:** Contém as classes de dados (`Produto`, `Categoria`, `Cliente`, `Venda`, `ItemVenda`, `Promocao`, `Ponto`, `Caixa`, `Admin`, `Utilizador`). Estas classes `<<entity>>`, representam as entidades do domínio e não conhecem a parte do View.
 2. **View:** Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes `View` , `CatalogoView`, `CategoriaView` e `Utils` (validar o input do utilizador).
-3. **Controller:** A classe `Controller` (com o estereótipo `<<controller>>`) é a classes que orquestra úo funcionamento do sistema. Recebe os Services no construtor, gere o fluxo de navegação entre menus e delega todas as operações de negócio aos Services. Trata exceções com blocos `try/catch` e comunica resultados através da View genérica.
-4. **Service:** As classes `ProdutoService` e `CategoriaService` (estereótipo `<<service>>`) contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
-5. **Repository:** A classe `SupermercadoRepository` (estereótipo `<<singleton>>`) centraliza toda a persistência de dados em ficheiros CSV. É acedida via `getInstance()` e expõe referências para os vectores internos.
-6. **DTO:** Estruturas de transferência de dados (estereótipo `<<struct>>`) — `ProdutoDTO`, `CategoriaDTO`, `ClienteDTO`, `CaixaDTO`, `VendaDTO`, `ItemVendaDTO`, `PromocaoDTO` que transportam dados entre camadas sem expor os Models diretamente às Views.
-7. **Mappers:** Classes `ProdutoMapper` e `CategoriaMapper` (estereótipo `<<mapper>>`) com métodos estáticos `toDTO()` que convertem Modelos em DTOs.
-8. **Exceptions:** Quatro classes de exceção (estereótipo `<<exception>>`) — `NoDataException`, `DuplicatedDataException`, `InvalidDataException`, `DataConsistencyException` que herdam de `std::exception` e são usadas  pelos Services e capturadas pelo Controller.
+3. **Controller:** A classe `Controller` é a classe que orquestra o funcionamento do sistema. Recebe os Services no construtor, gere a navegação dos menus e deixa todas as operações de negócio aos Services. Trata exceções com blocos `try/catch` e comunica resultados através da View.
+4. **Service:** As classes `ProdutoService` e `CategoriaService`  contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+5. **Repository:** A classe `SupermercadoRepository`  centraliza toda a persistência de dados em ficheiros CSV. É acedida via `getInstance()` e expõe referências para os vectores internos.
+6. **DTO:** Estruturas de transferência de dados:  `ProdutoDTO`, `CategoriaDTO`, `ClienteDTO`, `CaixaDTO`, `VendaDTO`, `ItemVendaDTO`, `PromocaoDTO` que transportam dados entre camadas sem expor os Models diretamente às Views.
+7. **Mappers:** Classes `ProdutoMapper` e `CategoriaMapper` com métodos estáticos `toDTO()` que convertem Modelos em DTOs.
+8. **Exceptions:** Quatro classes de exceção `NoDataException`, `DuplicatedDataException`, `InvalidDataException`, `DataConsistencyException` que herdam de `std::exception` e são usadas  pelos Services e capturadas pelo Controller.
 
-O fluxo de uma operação típica é: **View** recolhe o input → **Controller** chama **Service** → **Service** valida e usa **Repository** → **Mapper** converte Model → DTO → **Controller** passa DTO à **View** para apresentar.
+O fluxo de uma operação típica é: **View** recolhe o input, **Controller** chama **Service**, **Service** valida e usa **Repository**, **Mapper** converte Model, DTO, **Controller** passa DTO à **View** para apresentar.
 
 ## Arquitetura de Ficheiros
 
@@ -65,11 +65,9 @@ A compilação é gerida pelo `CMakeLists.txt` (C++17, CMake 3.10+) e o ponto on
 Exemplos de classes onde usamos certos Padroes de desenho:
 
 - **Creator:** O padrão *Creator* é aplicado na classe `SupermercadoRepository`. No método `carregarProdutos()` ocorre a instanciação dos objetos `Produto` depois da a leitura do ficheiro CSV e extração da informaçao la dentro, sendo o repositório o agregador que contém e gere as instâncias de produtos.
-- **Controller:** O padrão *Controller* é implementado através da classe `Controller`, que atua como o orquestrador do sistema. Esta classe recebe os eventos da interface (View) e dá "ordens" de execução para as outras camadas.
-- **Service:** O padrão *Service* é utilizado na classe `ProdutoService`, onde está a lógica de negócio associada aos produtos (como a atribuição de um ID automático e as verificações que os dados são válidos).
+- **Controller:** O padrão *Controller* é implementado através da classe `Controller`, que atua como o orquestrador do sistema. Esta classe recebe os eventos da interface (View) e dá ordens de execução para as outras camadas.
+- **Service:** O padrão *Service* é utilizado na classe `ProdutoService`, onde está a lógica de negócio associada aos produtos (como a atribuição de um ID automático e as verificações de que os dados são válidos).
 
 ## Interface de Utilizador
-
-A aplicação utiliza uma interface de linha de comandos (CLI) baseada em menus numéricos. A navegação é feita através da classe `View`, que apresenta menus e recolhe opções do utilizador. As opções assinaladas com (*) encontram-se em desenvolvimento.
 
 ![Árvore de Navegação da Interface de Utilizador](../diagramas/design/ui_navigation.drawio.png)
