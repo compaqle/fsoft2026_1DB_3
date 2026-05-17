@@ -203,7 +203,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 ## Diagramas de Sequência de Sistema (SSD)
 
 ### Casos de Uso Implementados
-Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes serão implementados na próxima iteração.
+Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
 
 #### UC01: Gerir Catálogo (Cenário de Criação)
 ![SSD UC01](../diagramas/uc01.png)
@@ -218,7 +218,7 @@ Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementad
 ![SSD UC15](../diagramas/uc15.png)
 
 ### Restantes Casos de Uso
-Os restantes casos de uso, já documentados com especificações e diagramas de sequência, ainda não têm implementação correspondente.
+Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
 
 #### UC02: Consultar Estatísticas
 ![SSD UC02](../diagramas/uc02.png)

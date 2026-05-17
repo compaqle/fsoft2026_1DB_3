@@ -55,89 +55,126 @@
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="mostrarMenuCatalogo()" edge="1">
+        <!-- Controller -> View: mostrarMenu -->
+        <mxCell id="msg_cv1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="mostrarMenuCatalogo()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="58" y="140" as="sourcePoint" />
-            <mxPoint x="217" y="140" as="targetPoint" />
+            <mxPoint x="425" y="130" as="sourcePoint" />
+            <mxPoint x="220" y="130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg2" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="opcao = 1 (criar)" edge="1">
+        <!-- Admin -> View: insere opcao -->
+        <mxCell id="msg_cv2" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="insere op = 1 (criar)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="217" y="180" as="sourcePoint" />
-            <mxPoint x="422" y="180" as="targetPoint" />
+            <mxPoint x="55" y="170" as="sourcePoint" />
+            <mxPoint x="220" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg3" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getDadosCriarProduto()" edge="1">
+        <!-- View -> Controller: return opcao -->
+        <mxCell id="msg_cv3" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return op = 1" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="230" as="sourcePoint" />
-            <mxPoint x="222" y="230" as="targetPoint" />
+            <mxPoint x="220" y="210" as="sourcePoint" />
+            <mxPoint x="425" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg4" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="nome, preco, stock, id_categoria" edge="1">
+        <!-- Controller -> View: pede dados -->
+        <mxCell id="msg_cv4" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getDadosCriarProduto()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="55" y="280" as="sourcePoint" />
-            <mxPoint x="217" y="280" as="targetPoint" />
+            <mxPoint x="425" y="260" as="sourcePoint" />
+            <mxPoint x="220" y="260" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg5" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="criarProduto(nome, preco, stock, id_cat)" edge="1">
+        <!-- Admin -> View: insere dados -->
+        <mxCell id="msg_cv5" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="insere(nome, preco, stock, id_categoria)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="340" as="sourcePoint" />
-            <mxPoint x="642" y="340" as="targetPoint" />
+            <mxPoint x="55" y="300" as="sourcePoint" />
+            <mxPoint x="220" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg6" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getInstance()" edge="1">
+        <!-- View -> Controller: return dados -->
+        <mxCell id="msg_cv6" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return (nome, preco, stock, id_categoria)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="400" as="sourcePoint" />
-            <mxPoint x="852" y="400" as="targetPoint" />
+            <mxPoint x="220" y="340" as="sourcePoint" />
+            <mxPoint x="425" y="340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg6b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return ref" edge="1">
+        <!-- Controller -> Service: criar -->
+        <mxCell id="msg_cs1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="criarProduto(nome, preco, stock, id_categoria)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="852" y="430" as="sourcePoint" />
-            <mxPoint x="647" y="430" as="targetPoint" />
+            <mxPoint x="425" y="390" as="sourcePoint" />
+            <mxPoint x="645" y="390" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg7" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getProdutos()" edge="1">
+        <!-- Service -> Repo: getInstance -->
+        <mxCell id="msg_repo1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getInstance()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="480" as="sourcePoint" />
-            <mxPoint x="852" y="480" as="targetPoint" />
+            <mxPoint x="645" y="440" as="sourcePoint" />
+            <mxPoint x="855" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg_repo1b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return ref" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="855" y="470" as="sourcePoint" />
+            <mxPoint x="645" y="470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg7b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="vector&lt;Produto&gt;&amp;" edge="1">
+        <!-- Service -> Repo: getProdutos -->
+        <mxCell id="msg_repo2" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getProdutos()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="852" y="510" as="sourcePoint" />
-            <mxPoint x="647" y="510" as="targetPoint" />
+            <mxPoint x="645" y="520" as="sourcePoint" />
+            <mxPoint x="855" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg_repo2b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return vector&lt;Produto&gt;&amp;" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="855" y="550" as="sourcePoint" />
+            <mxPoint x="645" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg8" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="push_back(novoProduto)" edge="1">
+        <!-- Service self call: push_back -->
+        <mxCell id="msg_self1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;edgeStyle=orthogonalEdgeStyle;rounded=0;" value="push_back(novoProduto)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="560" as="sourcePoint" />
-            <mxPoint x="720" y="560" as="targetPoint" />
+            <mxPoint x="645" y="600" as="sourcePoint" />
+            <mxPoint x="645" y="630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="600" />
+              <mxPoint x="700" y="630" />
+            </Array>
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg9" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="guardarProdutos()" edge="1">
+        <!-- Service -> Repo: guardarProdutos -->
+        <mxCell id="msg_repo3" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="guardarProdutos()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="610" as="sourcePoint" />
-            <mxPoint x="852" y="610" as="targetPoint" />
+            <mxPoint x="645" y="680" as="sourcePoint" />
+            <mxPoint x="855" y="680" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg10" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="printMensagem(&quot;Produto criado!&quot;)" edge="1">
+        <!-- Service -> Controller: return ok -->
+        <mxCell id="msg_cs1b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="680" as="sourcePoint" />
-            <mxPoint x="222" y="680" as="targetPoint" />
+            <mxPoint x="645" y="730" as="sourcePoint" />
+            <mxPoint x="425" y="730" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+
+        <!-- Controller -> View: printMensagem -->
+        <mxCell id="msg_cv7" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="printMensagem(&quot;Produto criado...&quot;)" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="425" y="780" as="sourcePoint" />
+            <mxPoint x="220" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

@@ -216,24 +216,22 @@ O sistema deve responder prontamente às interações do utilizador na CLI.
 
 \subsection{Padrão Model-View-Controller (MVC)}
 
-Para garantir a organização e facilidade de manutenção, o sistema foi dividido em camadas segundo o padrão Model-View-Controller, estendido com Services, Repository, DTOs e Mappers:
+O sistema foi dividido em camadas seguindo o padrão Model-View-Controller que foi estendido com Services, Repository, DTOs e Mappers:
 
 \begin{enumerate}
-    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Categoria}, \texttt{Cliente}, \texttt{Venda}, \texttt{ItemVenda}, \texttt{Promocao}, \texttt{Ponto}, \texttt{Caixa}, \texttt{Admin}, \texttt{Utilizador}). Estas classes, estereotipadas como \texttt{<<entity>>}, representam as entidades do domínio e não conhecem a interface do utilizador.
-    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI. Inclui as classes \texttt{View} (menus e mensagens), \texttt{CatalogoView}, \texttt{CategoriaView} e \texttt{Utils} (validação de input). As Views apenas recolhem e mostram dados, sem lógica de negócio.
-    \item \textbf{Controller:} A classe \texttt{Controller} (estereótipo \texttt{<<controller>>}) é o orquestrador único do sistema. Recebe os Services no construtor, gere o fluxo de navegação entre menus e delega todas as operações de negócio aos Services. Trata exceções com blocos \texttt{try/catch} e comunica resultados através da View genérica.
+    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Categoria}, \texttt{Cliente}, \texttt{Venda}, \texttt{ItemVenda}, \texttt{Promocao}, \texttt{Ponto}, \texttt{Caixa}, \texttt{Admin}, \texttt{Utilizador}). Estas classes \texttt{<<entity>>}, representam as entidades do domínio e não conhecem a parte do View.
+    \item \textbf{View:} Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes \texttt{View}, \texttt{CatalogoView}, \texttt{CategoriaView} e \texttt{Utils} (validar o input do utilizador).
+    \item \textbf{Controller:} A classe \texttt{Controller} (com o estereótipo \texttt{<<controller>>}) é a classes que orquestra o funcionamento do sistema. Recebe os Services no construtor, gere o fluxo de navegação entre menus e delega todas as operações de negócio aos Services. Trata exceções com blocos \texttt{try/catch} e comunica resultados através da View genérica.
     \item \textbf{Service:} As classes \texttt{ProdutoService} e \texttt{CategoriaService} (estereótipo \texttt{<<service>>}) contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
     \item \textbf{Repository:} A classe \texttt{SupermercadoRepository} (estereótipo \texttt{<<singleton>>}) centraliza toda a persistência de dados em ficheiros CSV. É acedida via \texttt{getInstance()} e expõe referências para os vectores internos.
-    \item \textbf{DTO:} Estruturas de transferência de dados (estereótipo \texttt{<<struct>>}) — \texttt{ProdutoDTO}, \texttt{CategoriaDTO}, \texttt{ClienteDTO}, \texttt{CaixaDTO}, \texttt{VendaDTO}, \texttt{ItemVendaDTO}, \texttt{PromocaoDTO} — que transportam dados entre camadas sem expor os Models diretamente às Views.
+    \item \textbf{DTO:} Estruturas de transferência de dados (estereótipo \texttt{<<struct>>}) — \texttt{ProdutoDTO}, \texttt{CategoriaDTO}, \texttt{ClienteDTO}, \texttt{CaixaDTO}, \texttt{VendaDTO}, \texttt{ItemVendaDTO}, \texttt{PromocaoDTO} que transportam dados entre camadas sem expor os Models diretamente às Views.
     \item \textbf{Mappers:} Classes \texttt{ProdutoMapper} e \texttt{CategoriaMapper} (estereótipo \texttt{<<mapper>>}) com métodos estáticos \texttt{toDTO()} que convertem Modelos em DTOs.
-    \item \textbf{Exceptions:} Quatro classes de exceção (estereótipo \texttt{<<exception>>}) — \texttt{NoDataException}, \texttt{DuplicatedDataException}, \texttt{InvalidDataException}, \texttt{DataConsistencyException} — que herdam de \texttt{std::exception} e são lançadas pelos Services e capturadas pelo Controller.
+    \item \textbf{Exceptions:} Quatro classes de exceção (estereótipo \texttt{<<exception>>}) — \texttt{NoDataException}, \texttt{DuplicatedDataException}, \texttt{InvalidDataException}, \texttt{DataConsistencyException} que herdam de \texttt{std::exception} e são usadas pelos Services e capturadas pelo Controller.
 \end{enumerate}
 
-O fluxo de uma operação típica é: \textbf{View} recolhe input $\rightarrow$ \textbf{Controller} chama \textbf{Service} $\rightarrow$ \textbf{Service} valida e usa \textbf{Repository} $\rightarrow$ \textbf{Mapper} converte Model $\rightarrow$ DTO $\rightarrow$ \textbf{Controller} passa DTO à \textbf{View} para apresentar.
+O fluxo de uma operação típica é: \textbf{View} recolhe o input $\rightarrow$ \textbf{Controller} chama \textbf{Service} $\rightarrow$ \textbf{Service} valida e usa \textbf{Repository} $\rightarrow$ \textbf{Mapper} converte Model $\rightarrow$ DTO $\rightarrow$ \textbf{Controller} passa DTO à \textbf{View} para apresentar.
 
 \subsection{Arquitetura de Ficheiros}
-
-O projeto utiliza uma separação rigorosa entre declaração e implementação, organizada nas seguintes pastas:
 
 \begin{itemize}
     \item \textbf{\texttt{include/model/}} — Headers das entidades de domínio (\texttt{Produto.h}, \texttt{Categoria.h}, \texttt{Cliente.h}, \texttt{Venda.h}, etc.)
@@ -247,7 +245,16 @@ O projeto utiliza uma separação rigorosa entre declaração e implementação,
     \item \textbf{\texttt{src/}} — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
 \end{itemize}
 
-A compilação é gerida pelo \texttt{CMakeLists.txt} (C++17, CMake 3.10+) e o ponto de entrada é o \texttt{main.cpp}.
+A compilação é gerida pelo \texttt{CMakeLists.txt} (C++17, CMake 3.10+) e o ponto onde o programa começa é o \texttt{main.cpp}.
+
+\subsection{Padrões de Desenho Aplicados (GRASP)}
+Exemplos de classes onde usamos certos Padroes de desenho:
+
+\begin{itemize}
+    \item \textbf{Creator:} O padrão \textit{Creator} é aplicado na classe \texttt{SupermercadoRepository}. No método \texttt{carregarProdutos()} ocorre a instanciação dos objetos \texttt{Produto} depois da a leitura do ficheiro CSV e extração da informaçao la dentro, sendo o repositório o agregador que contém e gere as instâncias de produtos.
+    \item \textbf{Controller:} O padrão \textit{Controller} é implementado através da classe \texttt{Controller}, que atua como o orquestrador do sistema. Esta classe recebe os eventos da interface (View) e dá "ordens" de execução para as outras camadas.
+    \item \textbf{Service:} O padrão \textit{Service} é utilizado na classe \texttt{ProdutoService}, onde está a lógica de negócio associada aos produtos (como a atribuição de um ID automático e as verificações que os dados são válidos).
+\end{itemize}
 
 \section{Modelo de Casos de Uso}
 Nesta secção detalhamos as interações entre os atores e o sistema.
@@ -504,7 +511,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 
 \subsection{Casos de Uso Implementados}
 
-Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes serão implementados na próxima iteração.
+Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
 
 \begin{figure}[H]
     \centering
@@ -532,7 +539,7 @@ Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementad
 
 \subsection{Restantes Casos de Uso}
 
-Os restantes casos de uso, já documentados com especificações e diagramas de sequência, ainda não têm implementação correspondente.
+Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
 
 \begin{figure}[H]
     \centering

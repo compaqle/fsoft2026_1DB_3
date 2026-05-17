@@ -9,9 +9,9 @@
           <mxGeometry height="60" width="30" x="40" y="30" as="geometry" />
         </mxCell>
         <mxCell id="life_actor" parent="1" style="endArrow=none;html=1;dashed=1;strokeWidth=1;" edge="1">
-          <mxGeometry height="760" width="2" relative="1" as="geometry">
+          <mxGeometry height="820" width="2" relative="1" as="geometry">
             <mxPoint x="55" y="100" as="sourcePoint" />
-            <mxPoint x="55" y="860" as="targetPoint" />
+            <mxPoint x="55" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
@@ -19,9 +19,9 @@
           <mxGeometry height="26" width="110" x="165" y="70" as="geometry" />
         </mxCell>
         <mxCell id="life_cv" parent="1" style="endArrow=none;html=1;dashed=1;strokeWidth=1;" edge="1">
-          <mxGeometry height="760" width="2" relative="1" as="geometry">
+          <mxGeometry height="820" width="2" relative="1" as="geometry">
             <mxPoint x="220" y="100" as="sourcePoint" />
-            <mxPoint x="220" y="860" as="targetPoint" />
+            <mxPoint x="220" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
@@ -29,9 +29,9 @@
           <mxGeometry height="26" width="90" x="380" y="70" as="geometry" />
         </mxCell>
         <mxCell id="life_ctrl" parent="1" style="endArrow=none;html=1;dashed=1;strokeWidth=1;" edge="1">
-          <mxGeometry height="760" width="2" relative="1" as="geometry">
+          <mxGeometry height="820" width="2" relative="1" as="geometry">
             <mxPoint x="425" y="100" as="sourcePoint" />
-            <mxPoint x="425" y="860" as="targetPoint" />
+            <mxPoint x="425" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
@@ -39,9 +39,9 @@
           <mxGeometry height="26" width="120" x="585" y="70" as="geometry" />
         </mxCell>
         <mxCell id="life_cs" parent="1" style="endArrow=none;html=1;dashed=1;strokeWidth=1;" edge="1">
-          <mxGeometry height="760" width="2" relative="1" as="geometry">
+          <mxGeometry height="820" width="2" relative="1" as="geometry">
             <mxPoint x="645" y="100" as="sourcePoint" />
-            <mxPoint x="645" y="860" as="targetPoint" />
+            <mxPoint x="645" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
@@ -49,95 +49,132 @@
           <mxGeometry height="30" width="110" x="800" y="68" as="geometry" />
         </mxCell>
         <mxCell id="life_repo" parent="1" style="endArrow=none;html=1;dashed=1;strokeWidth=1;" edge="1">
-          <mxGeometry height="760" width="2" relative="1" as="geometry">
+          <mxGeometry height="820" width="2" relative="1" as="geometry">
             <mxPoint x="855" y="100" as="sourcePoint" />
-            <mxPoint x="855" y="860" as="targetPoint" />
+            <mxPoint x="855" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="mostrarMenuCategorias()" edge="1">
+        <!-- Controller -> View: mostrarMenu -->
+        <mxCell id="msg_cv1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="mostrarMenuCategorias()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="58" y="140" as="sourcePoint" />
-            <mxPoint x="217" y="140" as="targetPoint" />
+            <mxPoint x="425" y="130" as="sourcePoint" />
+            <mxPoint x="220" y="130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg2" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="opcao = 1 (criar)" edge="1">
+        <!-- Admin -> View: insere opcao -->
+        <mxCell id="msg_cv2" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="insere op = 1 (criar)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="217" y="180" as="sourcePoint" />
-            <mxPoint x="422" y="180" as="targetPoint" />
+            <mxPoint x="55" y="170" as="sourcePoint" />
+            <mxPoint x="220" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg3" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getDadosCriarCategoria()" edge="1">
+        <!-- View -> Controller: return opcao -->
+        <mxCell id="msg_cv3" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return op = 1" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="230" as="sourcePoint" />
-            <mxPoint x="222" y="230" as="targetPoint" />
+            <mxPoint x="220" y="210" as="sourcePoint" />
+            <mxPoint x="425" y="210" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg4" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="nome, taxa_iva" edge="1">
+        <!-- Controller -> View: pede dados -->
+        <mxCell id="msg_cv4" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getDadosCriarCategoria()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="55" y="280" as="sourcePoint" />
-            <mxPoint x="217" y="280" as="targetPoint" />
+            <mxPoint x="425" y="260" as="sourcePoint" />
+            <mxPoint x="220" y="260" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg5" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="criarCategoria(nome, taxa_iva)" edge="1">
+        <!-- Admin -> View: insere dados -->
+        <mxCell id="msg_cv5" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="insere(nome, taxa_iva)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="340" as="sourcePoint" />
-            <mxPoint x="642" y="340" as="targetPoint" />
+            <mxPoint x="55" y="300" as="sourcePoint" />
+            <mxPoint x="220" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg6" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getInstance()" edge="1">
+        <!-- View -> Controller: return dados -->
+        <mxCell id="msg_cv6" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return (nome, taxa_iva)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="400" as="sourcePoint" />
-            <mxPoint x="852" y="400" as="targetPoint" />
+            <mxPoint x="220" y="340" as="sourcePoint" />
+            <mxPoint x="425" y="340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg6b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return ref" edge="1">
+        <!-- Controller -> Service: criar -->
+        <mxCell id="msg_cs1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="criarCategoria(nome, taxa_iva)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="852" y="440" as="sourcePoint" />
-            <mxPoint x="647" y="440" as="targetPoint" />
+            <mxPoint x="425" y="390" as="sourcePoint" />
+            <mxPoint x="645" y="390" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg7" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getCategorias()" edge="1">
+        <!-- Service -> Repo: getInstance -->
+        <mxCell id="msg_repo1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getInstance()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="500" as="sourcePoint" />
-            <mxPoint x="852" y="500" as="targetPoint" />
+            <mxPoint x="645" y="440" as="sourcePoint" />
+            <mxPoint x="855" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg_repo1b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return ref" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="855" y="470" as="sourcePoint" />
+            <mxPoint x="645" y="470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg7b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="vector&lt;Categoria&gt;&amp;" edge="1">
+        <!-- Service -> Repo: getCategorias -->
+        <mxCell id="msg_repo2" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="getCategorias()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="852" y="530" as="sourcePoint" />
-            <mxPoint x="647" y="530" as="targetPoint" />
+            <mxPoint x="645" y="520" as="sourcePoint" />
+            <mxPoint x="855" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="msg_repo2b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="return vector&lt;Categoria&gt;&amp;" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="855" y="550" as="sourcePoint" />
+            <mxPoint x="645" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg8" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="push_back(novaCategoria)" edge="1">
+        <!-- Service self call: push_back -->
+        <mxCell id="msg_self1" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;edgeStyle=orthogonalEdgeStyle;rounded=0;" value="push_back(novaCategoria)" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="580" as="sourcePoint" />
-            <mxPoint x="720" y="580" as="targetPoint" />
+            <mxPoint x="645" y="600" as="sourcePoint" />
+            <mxPoint x="645" y="630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="700" y="600" />
+              <mxPoint x="700" y="630" />
+            </Array>
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg9" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="guardarCategorias()" edge="1">
+        <!-- Service -> Repo: guardarCategorias -->
+        <mxCell id="msg_repo3" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="guardarCategorias()" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="647" y="630" as="sourcePoint" />
-            <mxPoint x="852" y="630" as="targetPoint" />
+            <mxPoint x="645" y="680" as="sourcePoint" />
+            <mxPoint x="855" y="680" as="targetPoint" />
           </mxGeometry>
         </mxCell>
 
-        <mxCell id="msg10" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="printMensagem(&quot;Categoria criada!&quot;)" edge="1">
+        <!-- Service -> Controller: return ok -->
+        <mxCell id="msg_cs1b" parent="1" style="endArrow=open;html=1;fontSize=9;dashed=1;endSize=8;" value="" edge="1">
           <mxGeometry width="2" relative="1" as="geometry">
-            <mxPoint x="425" y="700" as="sourcePoint" />
-            <mxPoint x="222" y="700" as="targetPoint" />
+            <mxPoint x="645" y="730" as="sourcePoint" />
+            <mxPoint x="425" y="730" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+
+        <!-- Controller -> View: printMensagem -->
+        <mxCell id="msg_cv7" parent="1" style="endArrow=open;html=1;fontSize=9;endSize=8;" value="printMensagem(&quot;Categoria criada!&quot;)" edge="1">
+          <mxGeometry width="2" relative="1" as="geometry">
+            <mxPoint x="425" y="780" as="sourcePoint" />
+            <mxPoint x="220" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>
