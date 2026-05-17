@@ -578,69 +578,14 @@ Os restantes casos de uso, já documentados com especificações e diagramas de 
 
 \section{Interface de Utilizador}
 
-A aplicação utiliza uma interface de linha de comandos (CLI) baseada em menus numéricos. A navegação é feita através da classe \texttt{View}, que apresenta menus e recolhe opções do utilizador.
+A aplicação utiliza uma interface de linha de comandos (CLI) baseada em menus numéricos. A navegação é feita através da classe \texttt{View}, que apresenta menus e recolhe opções do utilizador. As opções assinaladas com (*) encontram-se em desenvolvimento.
 
-\subsection{Menu Principal}
-
-Ao iniciar a aplicação, o utilizador escolhe o perfil com que pretende operar:
-
-\begin{verbatim}
-========================================
-       Supermercado
-========================================
-
-Selecione o perfil:
-  0. ADMIN
-  1. CAIXA: Caixa 1
-  2. CAIXA: Caixa 2
-
-Opcao:
-\end{verbatim}
-
-\subsection{Menu ADMIN}
-
-Após selecionar o perfil ADMIN, são apresentadas as seguintes opções:
-
-\begin{verbatim}
---- MENU ADMIN ---
-1. Gerir Catalogo
-2. Gerir Categorias
-3. Gerir Clientes       (em desenvolvimento)
-4. Ver Estatisticas     (em desenvolvimento)
-0. Sair
-\end{verbatim}
-
-\subsubsection{Gerir Catálogo}
-
-\begin{verbatim}
---- GERIR CATALOGO ---
-1. Criar Produto
-2. Listar Produtos
-3. Editar Produto
-4. Remover Produto
-0. Voltar
-\end{verbatim}
-
-\subsubsection{Gerir Categorias}
-
-\begin{verbatim}
---- GERIR CATEGORIAS ---
-1. Criar Categoria
-2. Listar Categorias
-0. Voltar
-\end{verbatim}
-
-\subsection{Menu CAIXA}
-
-Após selecionar um perfil CAIXA, é apresentado o seguinte menu:
-
-\begin{verbatim}
---- MENU CAIXA ---
-1. Realizar Venda       (em desenvolvimento)
-2. Consultar Preco      (em desenvolvimento)
-3. Consultar Pontos     (em desenvolvimento)
-0. Sair
-\end{verbatim}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/ui_navigation.drawio.png}}
+    \caption{Árvore de Navegação da Interface de Utilizador}
+    \label{fig:ui_navigation}
+\end{figure}
 
 \section{Glossário}
 \begin{description}
