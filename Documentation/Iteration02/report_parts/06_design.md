@@ -67,3 +67,9 @@ Exemplos de classes onde usamos certos Padroes de desenho:
 - **Creator:** O padrão *Creator* é aplicado na classe `SupermercadoRepository`. No método `carregarProdutos()` ocorre a instanciação dos objetos `Produto` depois da a leitura do ficheiro CSV e extração da informaçao la dentro, sendo o repositório o agregador que contém e gere as instâncias de produtos.
 - **Controller:** O padrão *Controller* é implementado através da classe `Controller`, que atua como o orquestrador do sistema. Esta classe recebe os eventos da interface (View) e dá "ordens" de execução para as outras camadas.
 - **Service:** O padrão *Service* é utilizado na classe `ProdutoService`, onde está a lógica de negócio associada aos produtos (como a atribuição de um ID automático e as verificações que os dados são válidos).
+
+## Interface de Utilizador
+
+A aplicação utiliza uma interface de linha de comandos (CLI) baseada em menus numéricos. A navegação é feita através da classe `View`, que apresenta menus e recolhe opções do utilizador. As opções assinaladas com (*) encontram-se em desenvolvimento.
+
+![Árvore de Navegação da Interface de Utilizador](../diagramas/design/ui_navigation.drawio.png)
