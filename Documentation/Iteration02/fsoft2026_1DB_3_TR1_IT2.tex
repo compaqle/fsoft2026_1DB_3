@@ -215,20 +215,39 @@ O sistema deve responder prontamente às interações do utilizador na CLI.
 \end{figure}
 
 \subsection{Padrão Model-View-Controller (MVC)}
-Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
+
+Para garantir a organização e facilidade de manutenção, o sistema foi dividido em camadas segundo o padrão Model-View-Controller, estendido com Services, Repository, DTOs e Mappers:
 
 \begin{enumerate}
-    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Cliente}, \texttt{Ponto}, \texttt{Venda}). Estas classes não conhecem a interface do utilizador.
-    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI (\texttt{std::cout} e \texttt{std::cin}).
-    \item \textbf{Controller:} Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
+    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Categoria}, \texttt{Cliente}, \texttt{Venda}, \texttt{ItemVenda}, \texttt{Promocao}, \texttt{Ponto}, \texttt{Caixa}, \texttt{Admin}, \texttt{Utilizador}). Estas classes, estereotipadas como \texttt{<<entity>>}, representam as entidades do domínio e não conhecem a interface do utilizador.
+    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI. Inclui as classes \texttt{View} (menus e mensagens), \texttt{CatalogoView}, \texttt{CategoriaView} e \texttt{Utils} (validação de input). As Views apenas recolhem e mostram dados, sem lógica de negócio.
+    \item \textbf{Controller:} A classe \texttt{Controller} (estereótipo \texttt{<<controller>>}) é o orquestrador único do sistema. Recebe os Services no construtor, gere o fluxo de navegação entre menus e delega todas as operações de negócio aos Services. Trata exceções com blocos \texttt{try/catch} e comunica resultados através da View genérica.
+    \item \textbf{Service:} As classes \texttt{ProdutoService} e \texttt{CategoriaService} (estereótipo \texttt{<<service>>}) contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+    \item \textbf{Repository:} A classe \texttt{SupermercadoRepository} (estereótipo \texttt{<<singleton>>}) centraliza toda a persistência de dados em ficheiros CSV. É acedida via \texttt{getInstance()} e expõe referências para os vectores internos.
+    \item \textbf{DTO:} Estruturas de transferência de dados (estereótipo \texttt{<<struct>>}) — \texttt{ProdutoDTO}, \texttt{CategoriaDTO}, \texttt{ClienteDTO}, \texttt{CaixaDTO}, \texttt{VendaDTO}, \texttt{ItemVendaDTO}, \texttt{PromocaoDTO} — que transportam dados entre camadas sem expor os Models diretamente às Views.
+    \item \textbf{Mappers:} Classes \texttt{ProdutoMapper} e \texttt{CategoriaMapper} (estereótipo \texttt{<<mapper>>}) com métodos estáticos \texttt{toDTO()} que convertem Modelos em DTOs.
+    \item \textbf{Exceptions:} Quatro classes de exceção (estereótipo \texttt{<<exception>>}) — \texttt{NoDataException}, \texttt{DuplicatedDataException}, \texttt{InvalidDataException}, \texttt{DataConsistencyException} — que herdam de \texttt{std::exception} e são lançadas pelos Services e capturadas pelo Controller.
 \end{enumerate}
 
+O fluxo de uma operação típica é: \textbf{View} recolhe input $\rightarrow$ \textbf{Controller} chama \textbf{Service} $\rightarrow$ \textbf{Service} valida e usa \textbf{Repository} $\rightarrow$ \textbf{Mapper} converte Model $\rightarrow$ DTO $\rightarrow$ \textbf{Controller} passa DTO à \textbf{View} para apresentar.
+
 \subsection{Arquitetura de Ficheiros}
-O projeto utiliza uma separação rigorosa entre declaração e implementação:
+
+O projeto utiliza uma separação rigorosa entre declaração e implementação, organizada nas seguintes pastas:
+
 \begin{itemize}
-    \item \textbf{\texttt{include/}}: Ficheiros de cabeçalho (\texttt{.h}) com as definições das classes.
-    \item \textbf{\texttt{src/}}: Ficheiros de implementação (\texttt{.cpp}) com a lógica dos métodos.
+    \item \textbf{\texttt{include/model/}} — Headers das entidades de domínio (\texttt{Produto.h}, \texttt{Categoria.h}, \texttt{Cliente.h}, \texttt{Venda.h}, etc.)
+    \item \textbf{\texttt{include/view/}} — Headers das classes de interface (\texttt{View.h}, \texttt{CatalogoView.h}, \texttt{CategoriaView.h}, \texttt{Utils.h})
+    \item \textbf{\texttt{include/controller/}} — Header do orquestrador (\texttt{Controller.h})
+    \item \textbf{\texttt{include/services/}} — Headers da lógica de negócio (\texttt{ProdutoService.h}, \texttt{CategoriaService.h})
+    \item \textbf{\texttt{include/repo/}} — Header do repositório Singleton (\texttt{SupermercadoRepository.h})
+    \item \textbf{\texttt{include/dto/}} — Estruturas de transferência de dados (\texttt{ProdutoDTO.h}, \texttt{CategoriaDTO.h}, etc.)
+    \item \textbf{\texttt{include/mappers/}} — Conversores Model-DTO (\texttt{ProdutoMapper.h}, \texttt{CategoriaMapper.h})
+    \item \textbf{\texttt{include/exceptions/}} — Classes de exceção (\texttt{NoDataException.h}, etc.)
+    \item \textbf{\texttt{src/}} — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
 \end{itemize}
+
+A compilação é gerida pelo \texttt{CMakeLists.txt} (C++17, CMake 3.10+) e o ponto de entrada é o \texttt{main.cpp}.
 
 \section{Modelo de Casos de Uso}
 Nesta secção detalhamos as interações entre os atores e o sistema.

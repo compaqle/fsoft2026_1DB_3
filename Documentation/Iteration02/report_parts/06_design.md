@@ -28,14 +28,37 @@
 
 ![Diagrama de Classes do Controller, Services e Repository](../diagramas/design/controllers_services_class_diagram.drawio.png)
 
-## Padrão Model-View-Controller (MVC)
-Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
+## Diagrama de DTOs e Mappers
 
-1.  **Model:** Contém as classes de dados (`Produto`, `Cliente`, `Ponto`, `Venda`). Estas classes não conhecem a interface do utilizador.
-2.  **View:** Responsável por toda a interação com o utilizador via CLI (`std::cout` e `std::cin`).
-3.  **Controller:** Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
+![Diagrama de DTOs e Mappers](../diagramas/design/dtos_mappers_class_diagram.drawio.png)
+
+## Padrão Model-View-Controller (MVC)
+
+Para garantir a organização e facilidade de manutenção, o sistema foi dividido em camadas segundo o padrão Model-View-Controller, estendido com Services, Repository, DTOs e Mappers:
+
+1. **Model:** Contém as classes de dados (`Produto`, `Categoria`, `Cliente`, `Venda`, `ItemVenda`, `Promocao`, `Ponto`, `Caixa`, `Admin`, `Utilizador`). Estas classes, estereotipadas como `<<entity>>`, representam as entidades do domínio e não conhecem a interface do utilizador.
+2. **View:** Responsável por toda a interação com o utilizador via CLI. Inclui as classes `View` (menus e mensagens), `CatalogoView`, `CategoriaView` e `Utils` (validação de input). As Views apenas recolhem e mostram dados, sem lógica de negócio.
+3. **Controller:** A classe `Controller` (estereótipo `<<controller>>`) é o orquestrador único do sistema. Recebe os Services no construtor, gere o fluxo de navegação entre menus e delega todas as operações de negócio aos Services. Trata exceções com blocos `try/catch` e comunica resultados através da View genérica.
+4. **Service:** As classes `ProdutoService` e `CategoriaService` (estereótipo `<<service>>`) contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+5. **Repository:** A classe `SupermercadoRepository` (estereótipo `<<singleton>>`) centraliza toda a persistência de dados em ficheiros CSV. É acedida via `getInstance()` e expõe referências para os vectores internos.
+6. **DTO:** Estruturas de transferência de dados (estereótipo `<<struct>>`) — `ProdutoDTO`, `CategoriaDTO`, `ClienteDTO`, `CaixaDTO`, `VendaDTO`, `ItemVendaDTO`, `PromocaoDTO` — que transportam dados entre camadas sem expor os Models diretamente às Views.
+7. **Mappers:** Classes `ProdutoMapper` e `CategoriaMapper` (estereótipo `<<mapper>>`) com métodos estáticos `toDTO()` que convertem Modelos em DTOs.
+8. **Exceptions:** Quatro classes de exceção (estereótipo `<<exception>>`) — `NoDataException`, `DuplicatedDataException`, `InvalidDataException`, `DataConsistencyException` — que herdam de `std::exception` e são lançadas pelos Services e capturadas pelo Controller.
+
+O fluxo de uma operação típica é: **View** recolhe input → **Controller** chama **Service** → **Service** valida e usa **Repository** → **Mapper** converte Model → DTO → **Controller** passa DTO à **View** para apresentar.
 
 ## Arquitetura de Ficheiros
-O projeto utiliza uma separação rigorosa entre declaração e implementação:
-- **`include/`**: Ficheiros de cabeçalho (`.h`) com as definições das classes.
-- **`src/`**: Ficheiros de implementação (`.cpp`) com a lógica dos métodos.
+
+O projeto utiliza uma separação rigorosa entre declaração e implementação, organizada nas seguintes pastas:
+
+- **`include/model/`** — Headers das entidades de domínio (`Produto.h`, `Categoria.h`, `Cliente.h`, `Venda.h`, etc.)
+- **`include/view/`** — Headers das classes de interface (`View.h`, `CatalogoView.h`, `CategoriaView.h`, `Utils.h`)
+- **`include/controller/`** — Header do orquestrador (`Controller.h`)
+- **`include/services/`** — Headers da lógica de negócio (`ProdutoService.h`, `CategoriaService.h`)
+- **`include/repo/`** — Header do repositório Singleton (`SupermercadoRepository.h`)
+- **`include/dto/`** — Estruturas de transferência de dados (`ProdutoDTO.h`, `CategoriaDTO.h`, etc.)
+- **`include/mappers/`** — Conversores Model-DTO (`ProdutoMapper.h`, `CategoriaMapper.h`)
+- **`include/exceptions/`** — Classes de exceção (`NoDataException.h`, etc.)
+- **`src/`** — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
+
+A compilação é gerida pelo `CMakeLists.txt` (C++17, CMake 3.10+) e o ponto de entrada é o `main.cpp`.
