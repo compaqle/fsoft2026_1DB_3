@@ -6,7 +6,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         
-        <mxCell id="cls_view" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; View" vertex="1">
+        <mxCell id="cls_view" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;view&gt;&gt; View" vertex="1">
           <mxGeometry height="178" width="260" x="270" y="30" as="geometry" />
         </mxCell>
         <mxCell id="cls_view_sep" parent="cls_view" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
@@ -28,7 +28,7 @@
           <mxGeometry height="24" width="260" y="130" as="geometry" />
         </mxCell>
         
-        <mxCell id="cls_catalogo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; CatalogoView" vertex="1">
+        <mxCell id="cls_catalogo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;view&gt;&gt; CatalogoView" vertex="1">
           <mxGeometry height="178" width="290" x="20" y="290" as="geometry" />
         </mxCell>
         <mxCell id="cls_catalogo_sep" parent="cls_catalogo" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
@@ -50,7 +50,7 @@
           <mxGeometry height="24" width="290" y="130" as="geometry" />
         </mxCell>
         
-        <mxCell id="cls_categoriaview" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;view&amp;gt;&amp;gt; CategoriaView" vertex="1">
+        <mxCell id="cls_categoriaview" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;view&gt;&gt; CategoriaView" vertex="1">
           <mxGeometry height="154" width="290" x="530" y="290" as="geometry" />
         </mxCell>
         <mxCell id="cls_categoriaview_sep" parent="cls_categoriaview" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
@@ -69,7 +69,7 @@
           <mxGeometry height="24" width="290" y="106" as="geometry" />
         </mxCell>
         
-        <mxCell id="cls_utils" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;utility&amp;gt;&amp;gt; Utils" vertex="1">
+        <mxCell id="cls_utils" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;utility&gt;&gt; Utils" vertex="1">
           <mxGeometry height="130" width="270" x="285" y="290" as="geometry" />
         </mxCell>
         <mxCell id="cls_utils_sep" parent="cls_utils" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">

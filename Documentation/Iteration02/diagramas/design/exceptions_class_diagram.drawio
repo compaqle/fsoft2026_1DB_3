@@ -5,7 +5,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="cls_exception" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;standard&amp;gt;&amp;gt; std::exception" vertex="1">
+        <mxCell id="cls_exception" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;standard&gt;&gt; std::exception" vertex="1">
           <mxGeometry height="58" width="220" x="190" y="30" as="geometry" />
         </mxCell>
         <mxCell id="cls_exception_sep" parent="cls_exception" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
@@ -14,7 +14,7 @@
         <mxCell id="cls_exception_m_0" parent="cls_exception" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ what(): const char*" vertex="1">
           <mxGeometry height="24" width="220" y="34" as="geometry" />
         </mxCell>
-        <mxCell id="cls_nodata" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;exception&amp;gt;&amp;gt; NoDataException" vertex="1">
+        <mxCell id="cls_nodata" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;exception&gt;&gt; NoDataException" vertex="1">
           <mxGeometry height="106" width="220" x="20" y="170" as="geometry" />
         </mxCell>
         <mxCell id="cls_nodata_a_0" parent="cls_nodata" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- data: string" vertex="1">
@@ -29,7 +29,7 @@
         <mxCell id="cls_nodata_m_1" parent="cls_nodata" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ what(): const char*" vertex="1">
           <mxGeometry height="24" width="220" y="82" as="geometry" />
         </mxCell>
-        <mxCell id="cls_dup" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;exception&amp;gt;&amp;gt; DuplicatedDataException" vertex="1">
+        <mxCell id="cls_dup" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;exception&gt;&gt; DuplicatedDataException" vertex="1">
           <mxGeometry height="106" width="220" x="260" y="170" as="geometry" />
         </mxCell>
         <mxCell id="cls_dup_a_0" parent="cls_dup" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- data: string" vertex="1">
@@ -44,7 +44,7 @@
         <mxCell id="cls_dup_m_1" parent="cls_dup" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ what(): const char*" vertex="1">
           <mxGeometry height="24" width="220" y="82" as="geometry" />
         </mxCell>
-        <mxCell id="cls_inv" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;exception&amp;gt;&amp;gt; InvalidDataException" vertex="1">
+        <mxCell id="cls_inv" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;exception&gt;&gt; InvalidDataException" vertex="1">
           <mxGeometry height="106" width="220" x="20" y="350" as="geometry" />
         </mxCell>
         <mxCell id="cls_inv_a_0" parent="cls_inv" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- data: string" vertex="1">
@@ -59,7 +59,7 @@
         <mxCell id="cls_inv_m_1" parent="cls_inv" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ what(): const char*" vertex="1">
           <mxGeometry height="24" width="220" y="82" as="geometry" />
         </mxCell>
-        <mxCell id="cls_cons" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;exception&amp;gt;&amp;gt; DataConsistencyException" vertex="1">
+        <mxCell id="cls_cons" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;exception&gt;&gt; DataConsistencyException" vertex="1">
           <mxGeometry height="106" width="220" x="260" y="350" as="geometry" />
         </mxCell>
         <mxCell id="cls_cons_a_0" parent="cls_cons" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- data: string" vertex="1">

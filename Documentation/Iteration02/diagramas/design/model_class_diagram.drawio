@@ -5,7 +5,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="cls_util" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Utilizador" vertex="1">
+        <mxCell id="cls_util" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Utilizador" vertex="1">
           <mxGeometry height="130" width="200" x="80" y="40" as="geometry" />
         </mxCell>
         <mxCell id="cls_util_a_0" parent="cls_util" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- id: int" vertex="1">
@@ -23,7 +23,7 @@
         <mxCell id="cls_util_m_1" parent="cls_util" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getNome(): string" vertex="1">
           <mxGeometry height="24" width="200" y="106" as="geometry" />
         </mxCell>
-        <mxCell id="cls_admin" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Admin" vertex="1">
+        <mxCell id="cls_admin" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Admin" vertex="1">
           <mxGeometry height="58" width="200" x="40" y="340" as="geometry" />
         </mxCell>
         <mxCell id="cls_admin_sep" parent="cls_admin" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
@@ -32,7 +32,7 @@
         <mxCell id="cls_admin_m_0" parent="cls_admin" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ Admin()" vertex="1">
           <mxGeometry height="24" width="200" y="34" as="geometry" />
         </mxCell>
-        <mxCell id="cls_caixa" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Caixa" vertex="1">
+        <mxCell id="cls_caixa" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Caixa" vertex="1">
           <mxGeometry height="130" width="200" x="260" y="340" as="geometry" />
         </mxCell>
         <mxCell id="cls_caixa_a_0" parent="cls_caixa" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- total_faturado: float" vertex="1">
@@ -44,7 +44,7 @@
         <mxCell id="cls_caixa_m_0" parent="cls_caixa" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getTotalFaturado(): float" vertex="1">
           <mxGeometry height="24" width="200" y="58" as="geometry" />
         </mxCell>
-        <mxCell id="cls_cliente" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Cliente" vertex="1">
+        <mxCell id="cls_cliente" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Cliente" vertex="1">
           <mxGeometry height="250" width="200" x="550" y="40" as="geometry" />
         </mxCell>
         <mxCell id="cls_cliente_a_0" parent="cls_cliente" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- nif: int" vertex="1">
@@ -65,7 +65,7 @@
         <mxCell id="cls_cliente_m_2" parent="cls_cliente" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getSaldoPontos(): int" vertex="1">
           <mxGeometry height="24" width="200" y="154" as="geometry" />
         </mxCell>
-        <mxCell id="cls_ponto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Ponto" vertex="1">
+        <mxCell id="cls_ponto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Ponto" vertex="1">
           <mxGeometry height="154" width="220" x="850" y="40" as="geometry" />
         </mxCell>
         <mxCell id="cls_ponto_a_0" parent="cls_ponto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- quantidade: int" vertex="1">
@@ -80,7 +80,7 @@
         <mxCell id="cls_ponto_m_1" parent="cls_ponto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ adicionarPontos(quantidade: int): void" vertex="1">
           <mxGeometry height="24" width="220" y="106" as="geometry" />
         </mxCell>
-        <mxCell id="cls_venda" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Venda" vertex="1">
+        <mxCell id="cls_venda" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Venda" vertex="1">
           <mxGeometry height="338" width="240" x="550" y="340" as="geometry" />
         </mxCell>
         <mxCell id="cls_venda_a_0" parent="cls_venda" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- id: int" vertex="1">
@@ -107,7 +107,7 @@
         <mxCell id="cls_venda_m_1" parent="cls_venda" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getVendas(): vector&lt;ItemVenda&gt;" vertex="1">
           <mxGeometry height="24" width="240" y="274" as="geometry" />
         </mxCell>
-        <mxCell id="cls_itemvenda" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; ItemVenda" vertex="1">
+        <mxCell id="cls_itemvenda" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; ItemVenda" vertex="1">
           <mxGeometry height="274" width="220" x="850" y="340" as="geometry" />
         </mxCell>
         <mxCell id="cls_itemvenda_a_0" parent="cls_itemvenda" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- idProduto: int" vertex="1">
@@ -128,7 +128,7 @@
         <mxCell id="cls_itemvenda_m_0" parent="cls_itemvenda" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getSubtotal(): float" vertex="1">
           <mxGeometry height="24" width="220" y="226" as="geometry" />
         </mxCell>
-        <mxCell id="cls_produto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Produto" vertex="1">
+        <mxCell id="cls_produto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Produto" vertex="1">
           <mxGeometry height="370" width="220" x="550" y="724" as="geometry" />
         </mxCell>
         <mxCell id="cls_produto_a_0" parent="cls_produto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- id: int" vertex="1">
@@ -158,7 +158,7 @@
         <mxCell id="cls_produto_m_2" parent="cls_produto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getStock(): int" vertex="1">
           <mxGeometry height="24" width="220" y="202" as="geometry" />
         </mxCell>
-        <mxCell id="cls_categoria" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Categoria" vertex="1">
+        <mxCell id="cls_categoria" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Categoria" vertex="1">
           <mxGeometry height="202" width="200" x="260" y="724" as="geometry" />
         </mxCell>
         <mxCell id="cls_categoria_a_0" parent="cls_categoria" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- id: int" vertex="1">
@@ -176,7 +176,7 @@
         <mxCell id="cls_categoria_m_0" parent="cls_categoria" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getTaxaIva(): float" vertex="1">
           <mxGeometry height="24" width="200" y="178" as="geometry" />
         </mxCell>
-        <mxCell id="cls_promocao" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;entity&amp;gt;&amp;gt; Promocao" vertex="1">
+        <mxCell id="cls_promocao" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;entity&gt;&gt; Promocao" vertex="1">
           <mxGeometry height="442" width="250" x="850" y="724" as="geometry" />
         </mxCell>
         <mxCell id="cls_promocao_a_0" parent="cls_promocao" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- id: int" vertex="1">

@@ -5,7 +5,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="cls_controller" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;controller&amp;gt;&amp;gt; Controller" vertex="1">
+        <mxCell id="cls_controller" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;controller&gt;&gt; Controller" vertex="1">
           <mxGeometry height="250" width="495" x="220" y="20" as="geometry" />
         </mxCell>
         <mxCell id="cls_controller_a_0" parent="cls_controller" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- produtoService: ProdutoService*" vertex="1">
@@ -38,7 +38,7 @@
         <mxCell id="cls_controller_m_3" parent="cls_controller" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- runCaixa(idCaixa: int): void" vertex="1">
           <mxGeometry height="24" width="495" y="226" as="geometry" />
         </mxCell>
-        <mxCell id="cls_produtosvc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;service&amp;gt;&amp;gt; ProdutoService" vertex="1">
+        <mxCell id="cls_produtosvc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;service&gt;&gt; ProdutoService" vertex="1">
           <mxGeometry height="154" width="400" x="20" y="370" as="geometry" />
         </mxCell>
         <mxCell id="cls_produtosvc_a_0" parent="cls_produtosvc" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- proximoId: int" vertex="1">
@@ -59,7 +59,7 @@
         <mxCell id="cls_produtosvc_m_3" parent="cls_produtosvc" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getProdutos(): vector&lt;ProdutoDTO&gt;" vertex="1">
           <mxGeometry height="24" width="400" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="cls_categoriasvc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;service&amp;gt;&amp;gt; CategoriaService" vertex="1">
+        <mxCell id="cls_categoriasvc" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;service&gt;&gt; CategoriaService" vertex="1">
           <mxGeometry height="130" width="430" x="560" y="370" as="geometry" />
         </mxCell>
         <mxCell id="cls_categoriasvc_a_0" parent="cls_categoriasvc" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- proximoId: int" vertex="1">
@@ -77,7 +77,7 @@
         <mxCell id="cls_categoriasvc_m_2" parent="cls_categoriasvc" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ getCategorias(): vector&lt;CategoriaDTO&gt;" vertex="1">
           <mxGeometry height="24" width="430" y="106" as="geometry" />
         </mxCell>
-        <mxCell id="cls_repo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&amp;lt;&amp;lt;singleton&amp;gt;&amp;gt; SupermercadoRepository" vertex="1">
+        <mxCell id="cls_repo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;singleton&gt;&gt; SupermercadoRepository" vertex="1">
           <mxGeometry height="274" width="320" x="290" y="590" as="geometry" />
         </mxCell>
         <mxCell id="cls_repo_a_0" parent="cls_repo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- instance: SupermercadoRepository* {static}" vertex="1">
