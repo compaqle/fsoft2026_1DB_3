@@ -42,8 +42,8 @@
 
 \mainmatter
 
-\title{Relatório Técnico - Iteração 01\\Sistema de Gestão de Supermercado}
-\titlerunning{Relatório Técnico - Iteração 01}
+\title{Relatório Técnico - Iteração 02\\Sistema de Gestão de Supermercado}
+\titlerunning{Relatório Técnico - Iteração 02}
 
 \author{Grupo: 1DB\_3 \\
 Tomás Bastos (1251506) \and Igor Almeida (1251054) \and \\
@@ -53,9 +53,9 @@ Guilherme Asevedo (1251002) \and Rui Silva (1251443)}
 \maketitle
 
 \begin{abstract}
-Este relatório detalha a fase de engenharia de requisitos e análise do sistema de gestão de inventário e vendas para um supermercado, que será desenvolvido em C++ utilizando programação orientada a objetos. O documento mostra os objetivos do programa através de user stories, a especificação de requisitos funcionais e não funcionais utilizando o modelo FURPS+, e a representação do domínio do problema. Esta etapa é fundamental para establecer uma ligação entre as expectativas do cliente fictício e a solução que irá ser proposta pela nossa equipa.
+Este relatório documenta a fase de design e implementação do sistema de gestão de inventário e vendas para um supermercado, desenvolvido em C++17 com programação orientada a objetos. O documento apresenta a arquitetura em camadas (Model-View-Controller estendido com Services, Repository, DTOs e Mappers), diagramas de design das classes implementadas, e os casos de uso concretizados nesta iteração. A aplicação utiliza persistência em ficheiros CSV e interface de linha de comandos.
 \\
-\textbf{Palavras-chave:} C++, Engenharia de Requisitos, FURPS+, Modelação de Domínio, Gestão de Supermercado, Programação Orientada a objetos.
+\textbf{Palavras-chave:} C++, MVC, Design de Software, UML, Gestão de Supermercado, Arquitetura em Camadas, DTO, Singleton.
 \end{abstract}
 
 \section{Introdução}
@@ -576,6 +576,72 @@ Os restantes casos de uso, já documentados com especificações e diagramas de 
     \caption{UC13: Consultar RECIBO}
 \end{figure}
 
+\section{Interface de Utilizador}
+
+A aplicação utiliza uma interface de linha de comandos (CLI) baseada em menus numéricos. A navegação é feita através da classe \texttt{View}, que apresenta menus e recolhe opções do utilizador.
+
+\subsection{Menu Principal}
+
+Ao iniciar a aplicação, o utilizador escolhe o perfil com que pretende operar:
+
+\begin{verbatim}
+========================================
+       Supermercado
+========================================
+
+Selecione o perfil:
+  0. ADMIN
+  1. CAIXA: Caixa 1
+  2. CAIXA: Caixa 2
+
+Opcao:
+\end{verbatim}
+
+\subsection{Menu ADMIN}
+
+Após selecionar o perfil ADMIN, são apresentadas as seguintes opções:
+
+\begin{verbatim}
+--- MENU ADMIN ---
+1. Gerir Catalogo
+2. Gerir Categorias
+3. Gerir Clientes       (em desenvolvimento)
+4. Ver Estatisticas     (em desenvolvimento)
+0. Sair
+\end{verbatim}
+
+\subsubsection{Gerir Catálogo}
+
+\begin{verbatim}
+--- GERIR CATALOGO ---
+1. Criar Produto
+2. Listar Produtos
+3. Editar Produto
+4. Remover Produto
+0. Voltar
+\end{verbatim}
+
+\subsubsection{Gerir Categorias}
+
+\begin{verbatim}
+--- GERIR CATEGORIAS ---
+1. Criar Categoria
+2. Listar Categorias
+0. Voltar
+\end{verbatim}
+
+\subsection{Menu CAIXA}
+
+Após selecionar um perfil CAIXA, é apresentado o seguinte menu:
+
+\begin{verbatim}
+--- MENU CAIXA ---
+1. Realizar Venda       (em desenvolvimento)
+2. Consultar Preco      (em desenvolvimento)
+3. Consultar Pontos     (em desenvolvimento)
+0. Sair
+\end{verbatim}
+
 \section{Glossário}
 \begin{description}
     \item[ADMIN] Tipo de UTILIZADOR com o papel de gestão e controlo total das operações do sistema.
@@ -593,7 +659,11 @@ Os restantes casos de uso, já documentados com especificações e diagramas de 
 \end{description}
 
 \section{Conclusão}
-Esta primeira iteração (Análise de Requisitos e Modelação) permitiu definir as fronteiras do nosso programa e compreender o que os utilizadores finais precisam. A separação entre as vontades do utilizador final (User Stories) e a especificação técnica (Casos de Uso) fornece uma base sólida para a Iteração seguinte. O próximo passo irá envolver o aprofundamento destas entidades conceptuais para classes em C++, respeitando o padrão MVC.
+Esta segunda iteração focou-se no design e implementação do sistema. Foram aplicados os princípios de arquitetura em camadas (MVC estendido), resultando em 10 classes de domínio (Model), 4 classes de interface (View), 2 Services, 1 Repository Singleton, 7 DTOs, 2 Mappers e 4 classes de exceção. O design foi documentado com 8 diagramas UML detalhando cada camada.
+
+Dos 15 casos de uso identificados na análise de requisitos, 4 foram implementados: Gerir Catálogo (UC01), Gerir Categorias (UC07), Selecionar Perfil (UC14) e Sair do Perfil (UC15). Os diagramas de sequência foram refinados para mostrar o fluxo interno entre as camadas (View $\rightarrow$ Controller $\rightarrow$ Service $\rightarrow$ Repository).
+
+Na próxima iteração, serão implementados os restantes casos de uso — nomeadamente a gestão de VENDAs, CLIENTEs e PROMOÇÕEs — e serão adicionados testes unitários com Google Test.
 
 \begin{thebibliography}{2}
 
