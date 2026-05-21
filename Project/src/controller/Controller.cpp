@@ -9,7 +9,9 @@ Controller::Controller(ProdutoService* produtoService, CategoriaService* categor
 void Controller::run() {
     while (true) {
         int op = view.menuPrincipal();
-
+        if (op == -1) {
+            return;
+        }
         if (op == 0) {
             runAdmin();
         } else if (op >= 1) {
