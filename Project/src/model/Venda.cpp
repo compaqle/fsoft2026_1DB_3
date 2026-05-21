@@ -1,6 +1,7 @@
 #include "../../include/model/Venda.h"
+#include "../../include/model/Cliente.h"
 
-Venda::Venda(int id, int nif_cliente) {
+Venda::Venda(int id, Cliente* cliente) {
     this->id = id;
-    this->nifCliente = std::to_string(nif_cliente);
+    this->cliente = cliente;
 }

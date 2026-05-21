@@ -31,7 +31,7 @@ void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
         return;
     }
     std::cout << "\n--- LISTA DE PRODUTOS ---" << std::endl;
-    for (int i = 0; i < (int)lista.size(); i++) {
+    for (size_t i = 0; i < lista.size(); i++) {
         std::cout << "ID: " << lista[i].id
                   << " | Nome: " << lista[i].nome
                   << " | Preco: " << lista[i].preco

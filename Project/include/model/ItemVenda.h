@@ -1,15 +1,17 @@
 #pragma once
 
+class Produto;
+
 class ItemVenda {
 private:
-    int idProduto;
+    Produto* produto;
     int quantidade;
     double preco_unitario;
     double subtotal;
 
 public:
-    ItemVenda(int idProduto, int quantidade, double preco_unitario, double subtotal);
-    int getIdProduto() const;
+    ItemVenda(Produto* produto, int quantidade, double preco_unitario, double subtotal);
+    Produto* getProduto() const;
     int getQuantidade() const;
     double getPrecoUnitario() const;
     double getSubtotal() const;

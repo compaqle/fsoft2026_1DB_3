@@ -5,8 +5,17 @@
 SupermercadoRepository* SupermercadoRepository::instance = NULL;
 
 SupermercadoRepository::SupermercadoRepository() {
-    carregarProdutos();
     carregarCategorias();
+    carregarProdutos();
+}
+
+SupermercadoRepository::~SupermercadoRepository() {
+    for (size_t i = 0; i < produtos.size(); i++) {
+        delete produtos[i];
+    }
+    for (size_t i = 0; i < categorias.size(); i++) {
+        delete categorias[i];
+    }
 }
 
 SupermercadoRepository& SupermercadoRepository::getInstance() {
@@ -18,7 +27,7 @@ SupermercadoRepository& SupermercadoRepository::getInstance() {
 
 // ==================== PRODUTOS ====================
 
-std::vector<Produto>& SupermercadoRepository::getProdutos() {
+std::vector<Produto*>& SupermercadoRepository::getProdutos() {
     return produtos;
 }
 
@@ -26,12 +35,12 @@ void SupermercadoRepository::guardarProdutos() {
     std::ofstream ficheiro("../produtos.csv");
     if (!ficheiro.is_open()) return;
 
-    for (int i = 0; i < (int)produtos.size(); i++) {
-        ficheiro << produtos[i].getId() << ","
-                 << produtos[i].getNome() << ","
-                 << produtos[i].getPrecoBase() << ","
-                 << produtos[i].getStock() << ","
-                 << produtos[i].getIdCategoria() << "\n";
+    for (size_t i = 0; i < produtos.size(); i++) {
+        ficheiro << produtos[i]->getId() << ","
+                 << produtos[i]->getNome() << ","
+                 << produtos[i]->getPrecoBase() << ","
+                 << produtos[i]->getStock() << ","
+                 << (produtos[i]->getCategoria() ? produtos[i]->getCategoria()->getId() : 0) << "\n";
     }
     ficheiro.close();
 }
@@ -62,7 +71,15 @@ void SupermercadoRepository::carregarProdutos() {
         std::getline(ss, campo, ',');
         id_categoria = std::stoi(campo);
 
-        Produto p(id, nome, preco_base, stock, id_categoria);
+        Categoria* categoriaPointer = NULL;
+        for (size_t i = 0; i < categorias.size(); i++) {
+            if (categorias[i]->getId() == id_categoria) {
+                categoriaPointer = categorias[i];
+                break;
+            }
+        }
+
+        Produto* p = new Produto(id, nome, preco_base, stock, categoriaPointer);
         produtos.push_back(p);
     }
     ficheiro.close();
@@ -70,7 +87,7 @@ void SupermercadoRepository::carregarProdutos() {
 
 // ==================== CATEGORIAS ====================
 
-std::vector<Categoria>& SupermercadoRepository::getCategorias() {
+std::vector<Categoria*>& SupermercadoRepository::getCategorias() {
     return categorias;
 }
 
@@ -78,8 +95,8 @@ void SupermercadoRepository::guardarCategorias() {
     std::ofstream ficheiro("../categorias.csv");
     if (!ficheiro.is_open()) return;
 
-    for (int i = 0; i < (int)categorias.size(); i++) {
-        ficheiro << categorias[i].getId() << "," << categorias[i].getNome() << "," << categorias[i].getTaxaIva() << "\n";
+    for (size_t i = 0; i < categorias.size(); i++) {
+        ficheiro << categorias[i]->getId() << "," << categorias[i]->getNome() << "," << categorias[i]->getTaxaIva() << "\n";
     }
     ficheiro.close();
 }
@@ -104,7 +121,7 @@ void SupermercadoRepository::carregarCategorias() {
         std::getline(ss, campo, ',');
         taxa_iva = std::stod(campo);
 
-        Categoria c(id, nome, taxa_iva);
+        Categoria* c = new Categoria(id, nome, taxa_iva);
         categorias.push_back(c);
     }
     ficheiro.close();

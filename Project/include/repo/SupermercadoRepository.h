@@ -8,10 +8,11 @@ class SupermercadoRepository {
 private:
     static SupermercadoRepository* instance;
 
-    std::vector<Produto> produtos;
-    std::vector<Categoria> categorias;
+    std::vector<Produto*> produtos;
+    std::vector<Categoria*> categorias;
 
     SupermercadoRepository();
+    ~SupermercadoRepository();
 
     void carregarProdutos();
     void carregarCategorias();
@@ -19,9 +20,9 @@ private:
 public:
     static SupermercadoRepository& getInstance();
 
-    std::vector<Produto>& getProdutos();
+    std::vector<Produto*>& getProdutos();
     void guardarProdutos();
 
-    std::vector<Categoria>& getCategorias();
+    std::vector<Categoria*>& getCategorias();
     void guardarCategorias();
 };

@@ -3,19 +3,21 @@
 #include <vector>
 #include "ItemVenda.h"
 
+class Cliente;
+
 class Venda {
 private:
     int id;
-    std::string nifCliente;
+    Cliente* cliente;
     std::string data_hora;
     double total;
     std::string metodo_pagamento;
     std::vector<ItemVenda> vendas;
 
 public:
-    Venda(int id, int nif_cliente);
+    Venda(int id, Cliente* cliente);
     int getId() const;
-    std::string getNifCliente() const;
+    Cliente* getCliente() const;
     std::string getDataHora() const;
     double getTotal() const;
     std::string getMetodoPagamento() const;
