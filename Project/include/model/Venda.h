@@ -22,4 +22,9 @@ public:
     double getTotal() const;
     std::string getMetodoPagamento() const;
     std::vector<ItemVenda> getVendas() const;
+
+    void setDataHora(const std::string& data_hora);
+    void setTotal(double total);
+    void setMetodoPagamento(const std::string& metodo);
+    void adicionarItem(const ItemVenda& item);
 };
