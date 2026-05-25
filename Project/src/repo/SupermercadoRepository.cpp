@@ -1,4 +1,5 @@
 #include "../../include/repo/SupermercadoRepository.h"
+#include "../../include/model/Cliente.h"
 #include <fstream>
 #include <sstream>
 
@@ -7,6 +8,9 @@ SupermercadoRepository* SupermercadoRepository::instance = NULL;
 SupermercadoRepository::SupermercadoRepository() {
     carregarProdutos();
     carregarCategorias();
+    carregarClientes();
+    carregarVendas();
+    carregarPromocoes();
 }
 
 SupermercadoRepository& SupermercadoRepository::getInstance() {
@@ -106,6 +110,24 @@ void SupermercadoRepository::carregarCategorias() {
 
         Categoria c(id, nome, taxa_iva);
         categorias.push_back(c);
+    }
+    ficheiro.close();
+}
+
+// ==================== CLIENTES ====================
+
+std::vector<Cliente>& SupermercadoRepository:: getClientes(){
+    return clientes; 
+}
+
+void SupermercadoRepository:: guardarClientes(){
+    std::ofstream ficheiro("../clientes.csv");
+    if(!ficheiro.is_open()) return;
+
+    for(size_t i = 0; i < clientes.size();i++) {
+        ficheiro << clientes[i].getNome() << ","
+                 << clientes[i].getNif() << ","
+                 << clientes[i].getSaldoPontos() << "\n";
     }
     ficheiro.close();
 }

@@ -2,7 +2,7 @@
 #include "../../include/exceptions/InvalidDataException.h"
 #include "../../include/exceptions/NoDataException.h"
 
-Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService)
+Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService,)
     : produtoService(produtoService), categoriaService(categoriaService) {
 }
 
