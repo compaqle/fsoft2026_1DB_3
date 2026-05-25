@@ -5,7 +5,7 @@
 #include "../model/Categoria.h"
 #include "../model/Cliente.h"
 #include "../model/Venda.h"
-#include "../model/promoçao.h"
+#include "../model/Promocao.h"
 #include "../model/Caixa.h"
 #include "../model/Venda.h"
 #include "../model/Promocao.h"
@@ -21,12 +21,12 @@ private:
     std::vector<Venda> vendas;
     std::vector<Promocao> promocoes;
 
-    std::vector<Produto*> produtos;
-    std::vector<Categoria*> categorias;
+    std::vector<Produto*> produtos_ptr;
+    std::vector<Categoria*> categorias_ptr;
     std::vector<Cliente*> clientes;
     std::vector<Caixa*> caixas;
-    std::vector<Venda*> vendas;
-    std::vector<Promocao*> promocoes;
+    std::vector<Venda*> vendas_ptr;
+    std::vector<Promocao*> promocoes_ptr;
 
     SupermercadoRepository();
     ~SupermercadoRepository();
@@ -57,15 +57,15 @@ public:
     std::vector<Promocao>& getPromocoes();
     void guardarPromocoes();
 
-    std::vector<Cliente*>& getClientes();
-    void guardarClientes();
+    std::vector<Cliente*>& getClientes_ptr();
+    void guardarClientes_ptr();
 
     std::vector<Caixa*>& getCaixas();
     void guardarCaixas();
 
-    std::vector<Venda*>& getVendas();
-    void guardarVendas();
+    std::vector<Venda*>& getVendas_ptr();
+    void guardarVendas_ptr();
 
-    std::vector<Promocao*>& getPromocoes();
-    void guardarPromocoes();
+    std::vector<Promocao*>& getPromocoes_ptr();
+    void guardarPromocoes_ptr();
 };
