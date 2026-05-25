@@ -1,26 +1,23 @@
 #include "../../include/model/Produto.h"
+#include "../../include/model/Categoria.h"
 
-// CONSTRUTOR
-Produto::Produto(int id, std::string nome, double preco_base, int stock, int id_categoria) {
+Produto::Produto(int id, std::string nome, double preco_base, int stock, Categoria* categoria) {
     this->id = id;
     this->nome = nome;
     this->preco_base = preco_base;
     this->stock = stock;
-    this->id_categoria = id_categoria;
+    this->categoria = categoria;
 }
 
-// GETTERS
-int Produto::getId() { return id; }
-std::string Produto::getNome() { return nome; }
-double Produto::getPrecoBase() { return preco_base; }
-int Produto::getStock() { return stock; }
-int Produto::getIdCategoria() { return id_categoria; }
+int Produto::getId() const { return id; }
+std::string Produto::getNome() const { return nome; }
+double Produto::getPrecoBase() const { return preco_base; }
+int Produto::getStock() const { return stock; }
+Categoria* Produto::getCategoria() const { return categoria; }
 
-// SETTERS
 void Produto::setNome(std::string novoNome) { this->nome = novoNome; }
 void Produto::setPrecoBase(double novoPreco) { this->preco_base = novoPreco; }
 
-// GESTÃO DE STOCK
 void Produto::addStock(int quantidade) {
     this->stock += quantidade;
 }

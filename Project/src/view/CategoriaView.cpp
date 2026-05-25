@@ -23,7 +23,7 @@ void CategoriaView::printListaCategorias(const std::vector<CategoriaDTO>& lista)
         return;
     }
     std::cout << "\n--- LISTA DE CATEGORIAS ---" << std::endl;
-    for (int i = 0; i < (int)lista.size(); i++) {
+    for (size_t i = 0; i < lista.size(); i++) {
         std::cout << "ID: " << lista[i].id
                   << " | Nome: " << lista[i].nome
                   << " | IVA: " << (lista[i].taxa_iva * 100) << "%" << std::endl;

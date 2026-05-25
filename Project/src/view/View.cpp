@@ -18,8 +18,9 @@ int View::menuPrincipal() {
     std::cout << "========================================" << std::endl;
     std::cout << "\nSelecione o perfil:" << std::endl;
     std::cout << "  " << Admin::ADMIN_DEFAULT_ID << ". ADMIN" << std::endl;
-
-    for (int i = 0; i < caixas.size(); i++) {
+    std::cout << "-1. Sair" << std::endl;
+    
+    for (size_t i = 0; i < caixas.size(); i++) {
         std::cout << "  " << (i + 1) << ". CAIXA: " << caixas[i].getNome() << std::endl;
     }
 
@@ -27,7 +28,7 @@ int View::menuPrincipal() {
 
     if (opcao == Admin::ADMIN_DEFAULT_ID) {
         return 0;
-    } else if (opcao >= 1 && opcao <= (int)caixas.size()) {
+    } else if (opcao >= 1 && (size_t)opcao <= caixas.size()) {
         return opcao;
     }
     return -1;

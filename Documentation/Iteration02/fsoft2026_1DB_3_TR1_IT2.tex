@@ -42,8 +42,8 @@
 
 \mainmatter
 
-\title{Relatório Técnico - Iteração 01\\Sistema de Gestão de Supermercado}
-\titlerunning{Relatório Técnico - Iteração 01}
+\title{Relatório Técnico - Iteração 02\\Sistema de Gestão de Supermercado}
+\titlerunning{Relatório Técnico - Iteração 02}
 
 \author{Grupo: 1DB\_3 \\
 Tomás Bastos (1251506) \and Igor Almeida (1251054) \and \\
@@ -53,9 +53,9 @@ Guilherme Asevedo (1251002) \and Rui Silva (1251443)}
 \maketitle
 
 \begin{abstract}
-Este relatório detalha a fase de engenharia de requisitos e análise do sistema de gestão de inventário e vendas para um supermercado, que será desenvolvido em C++ utilizando programação orientada a objetos. O documento mostra os objetivos do programa através de user stories, a especificação de requisitos funcionais e não funcionais utilizando o modelo FURPS+, e a representação do domínio do problema. Esta etapa é fundamental para establecer uma ligação entre as expectativas do cliente fictício e a solução que irá ser proposta pela nossa equipa.
+Este relatório documenta a fase de design e implementação do sistema de gestão de inventário e vendas para um supermercado, desenvolvido em C++17 com programação orientada a objetos. O documento apresenta a arquitetura em camadas (Model-View-Controller estendido com Services, Repository, DTOs e Mappers), diagramas de design das classes implementadas, e os casos de uso concretizados nesta iteração. A aplicação utiliza persistência em ficheiros CSV e interface de linha de comandos.
 \\
-\textbf{Palavras-chave:} C++, Engenharia de Requisitos, FURPS+, Modelação de Domínio, Gestão de Supermercado, Programação Orientada a objetos.
+\textbf{Palavras-chave:} C++, MVC, Design de Software, UML, Gestão de Supermercado, Arquitetura em Camadas, DTO, Singleton.
 \end{abstract}
 
 \section{Introdução}
@@ -151,9 +151,118 @@ O sistema deve responder prontamente às interações do utilizador na CLI.
 
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{diagramas/DomainModel/domain_model.png}}
+    \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{diagramas/DomainModel/domain_model(2).drawio.png}}
     \caption{Diagrama UML de Domínio}
     \label{fig:domain_model}
+\end{figure}
+
+\section{Design de Software}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/physical_architecture.drawio.png}}
+    \caption{Diagrama de Arquitetura Física}
+    \label{fig:physical_architecture}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/logical_architecture.drawio.png}}
+    \caption{Diagrama de Arquitetura Lógica}
+    \label{fig:logical_architecture}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/code_organization.drawio.png}}
+    \caption{Organização do Código}
+    \label{fig:code_organization}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagramas/design/model_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes do Modelo (Design Class Diagram)}
+    \label{fig:model_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagramas/design/exceptions_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes das Exceções}
+    \label{fig:exceptions_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/views_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes das Views}
+    \label{fig:views_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagramas/design/controllers_services_class_diagram.drawio.png}}
+    \caption{Diagrama de Classes do Controller, Services e Repository}
+    \label{fig:controllers_services_class_diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/dtos_mappers_class_diagram.drawio.png}}
+    \caption{Diagrama de DTOs e Mappers}
+    \label{fig:dtos_mappers_class_diagram}
+\end{figure}
+
+\subsection{Padrão Model-View-Controller (MVC)}
+
+O sistema foi dividido em camadas seguindo o padrão Model-View-Controller que foi estendido com Services, Repository, DTOs e Mappers:
+
+\begin{enumerate}
+    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Categoria}, \texttt{Cliente}, \texttt{Venda}, \texttt{ItemVenda}, \texttt{Promocao}, \texttt{Ponto}, \texttt{Caixa}, \texttt{Admin}, \texttt{Utilizador}). Estas classes \texttt{<<entity>>}, representam as entidades do domínio e não conhecem a parte do View.
+    \item \textbf{View:} Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes \texttt{View}, \texttt{CatalogoView}, \texttt{CategoriaView} e \texttt{Utils} (validar o input do utilizador).
+    \item \textbf{Controller:} A classe \texttt{Controller} é a classe que orquestra o funcionamento do sistema. Recebe os Services no construtor, gere a navegação dos menus e deixa todas as operações de negócio aos Services. Trata exceções com blocos \texttt{try/catch} e comunica resultados através da View.
+    \item \textbf{Service:} As classes \texttt{ProdutoService} e \texttt{CategoriaService}  contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+    \item \textbf{Repository:} A classe \texttt{SupermercadoRepository}  centraliza toda a persistência de dados em ficheiros CSV. É acedida via \texttt{getInstance()} e expõe referências para os vectores internos.
+    \item \textbf{DTO:} Estruturas de transferência de dados: \texttt{ProdutoDTO}, \texttt{CategoriaDTO}, \texttt{ClienteDTO}, \texttt{CaixaDTO}, \texttt{VendaDTO}, \texttt{ItemVendaDTO}, \texttt{PromocaoDTO} que transportam dados entre camadas sem expor os Models diretamente às Views.
+    \item \textbf{Mappers:} Classes \texttt{ProdutoMapper} e \texttt{CategoriaMapper} com métodos estáticos \texttt{toDTO()} que convertem Modelos em DTOs.
+    \item \textbf{Exceptions:} Quatro classes de exceção \texttt{NoDataException}, \texttt{DuplicatedDataException}, \texttt{InvalidDataException}, \texttt{DataConsistencyException} que herdam de \texttt{std::exception} e são usadas pelos Services e capturadas pelo Controller.
+\end{enumerate}
+
+O fluxo de uma operação típica é: \textbf{View} recolhe o input, \textbf{Controller} chama \textbf{Service}, \textbf{Service} valida e usa \textbf{Repository}, \textbf{Mapper} converte Model, DTO, \textbf{Controller} passa DTO à \textbf{View} para apresentar.
+
+\subsection{Arquitetura de Ficheiros}
+
+\begin{itemize}
+    \item \textbf{\texttt{include/model/}} — Headers das entidades de domínio (\texttt{Produto.h}, \texttt{Categoria.h}, \texttt{Cliente.h}, \texttt{Venda.h}, etc.)
+    \item \textbf{\texttt{include/view/}} — Headers das classes de interface (\texttt{View.h}, \texttt{CatalogoView.h}, \texttt{CategoriaView.h}, \texttt{Utils.h})
+    \item \textbf{\texttt{include/controller/}} — Header do orquestrador (\texttt{Controller.h})
+    \item \textbf{\texttt{include/services/}} — Headers da lógica de negócio (\texttt{ProdutoService.h}, \texttt{CategoriaService.h})
+    \item \textbf{\texttt{include/repo/}} — Header do repositório Singleton (\texttt{SupermercadoRepository.h})
+    \item \textbf{\texttt{include/dto/}} — Estruturas de transferência de dados (\texttt{ProdutoDTO.h}, \texttt{CategoriaDTO.h}, etc.)
+    \item \textbf{\texttt{include/mappers/}} — Conversores Model-DTO (\texttt{ProdutoMapper.h}, \texttt{CategoriaMapper.h})
+    \item \textbf{\texttt{include/exceptions/}} — Classes de exceção (\texttt{NoDataException.h}, etc.)
+    \item \textbf{\texttt{src/}} — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
+\end{itemize}
+
+A compilação é gerida pelo \texttt{CMakeLists.txt} (C++17, CMake 3.10+) e o ponto onde o programa começa é o \texttt{main.cpp}.
+
+\subsection{Padrões de Desenho Aplicados (GRASP)}
+Exemplos de classes onde usamos certos Padroes de desenho:
+
+\begin{itemize}
+    \item \textbf{Creator:} O padrão \textit{Creator} é aplicado na classe \texttt{SupermercadoRepository}. No método \texttt{carregarProdutos()} ocorre a instanciação dos objetos \texttt{Produto} depois da a leitura do ficheiro CSV e extração da informaçao la dentro, sendo o repositório o agregador que contém e gere as instâncias de produtos.
+    \item \textbf{Controller:} O padrão \textit{Controller} é implementado através da classe \texttt{Controller}, que atua como o orquestrador do sistema. Esta classe recebe os eventos da interface (View) e dá ordens de execução para as outras camadas.
+    \item \textbf{Service:} O padrão \textit{Service} é utilizado na classe \texttt{ProdutoService}, onde está a lógica de negócio associada aos produtos (como a atribuição de um ID automático e as verificações de que os dados são válidos).
+\end{itemize}
+
+\subsection{Interface de Utilizador}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{diagramas/design/ui_navigation.drawio.png}}
+    \caption{Árvore de Navegação da Interface de Utilizador}
+    \label{fig:ui_navigation}
 \end{figure}
 
 \section{Modelo de Casos de Uso}
@@ -409,15 +518,37 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 3. O sistema regressa ao menu de seleção de perfil inicial.
 }{N/A}
 
-\subsection{Diagramas de Sequência de Sistema (SSD)}
+\subsection{Casos de Uso Implementados}
 
-Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas de Sequência de Sistema (SSD) mais representativos e complexos do sistema. Os diagramas referentes a consultas simples (ex: Consultar Preço, Consultar Pontos) foram omitidos deste documento, embora estejam mapeados no repositório de projeto.
+Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc01.png}
     \caption{UC01: Gerir Catálogo (Cenário de Criação)}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc07.png}
+    \caption{UC07: Gerir CATEGORIAS}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc14.png}
+    \caption{UC14: Selecionar Perfil}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc15.png}
+    \caption{UC15: Sair do Perfil}
+\end{figure}
+
+\subsection{Restantes Casos de Uso}
+
+Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
 
 \begin{figure}[H]
     \centering
@@ -445,12 +576,6 @@ Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc07.png}
-    \caption{UC07: Gerir CATEGORIAS}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc08.png}
     \caption{UC08: Realizar VENDA}
 \end{figure}
@@ -466,24 +591,6 @@ Nesta secção, por motivos de concisão, são apresentados apenas os Diagramas 
     \includegraphics[width=0.7\textwidth]{diagramas/SSDs/uc13.png}
     \caption{UC13: Consultar RECIBO}
 \end{figure}
-
-\section{Design de Software}
-
-\subsection{Padrão Model-View-Controller (MVC)}
-Para garantir a organização e facilidade de manutenção, o sistema foi dividido em três camadas:
-
-\begin{enumerate}
-    \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Cliente}, \texttt{Ponto}, \texttt{Venda}). Estas classes não conhecem a interface do utilizador.
-    \item \textbf{View:} Responsável por toda a interação com o utilizador via CLI (\texttt{std::cout} e \texttt{std::cin}).
-    \item \textbf{Controller:} Faz a ponte entre as vistas e os dados, aplicando as regras de negócio.
-\end{enumerate}
-
-\subsection{Arquitetura de Ficheiros}
-O projeto utiliza uma separação rigorosa entre declaração e implementação:
-\begin{itemize}
-    \item \textbf{\texttt{include/}}: Ficheiros de cabeçalho (\texttt{.h}) com as definições das classes.
-    \item \textbf{\texttt{src/}}: Ficheiros de implementação (\texttt{.cpp}) com a lógica dos métodos.
-\end{itemize}
 
 \section{Glossário}
 \begin{description}
@@ -502,7 +609,7 @@ O projeto utiliza uma separação rigorosa entre declaração e implementação:
 \end{description}
 
 \section{Conclusão}
-Esta primeira iteração (Análise de Requisitos e Modelação) permitiu definir as fronteiras do nosso programa e compreender o que os utilizadores finais precisam. A separação entre as vontades do utilizador final (User Stories) e a especificação técnica (Casos de Uso) fornece uma base sólida para a Iteração seguinte. O próximo passo irá envolver o aprofundamento destas entidades conceptuais para classes em C++, respeitando o padrão MVC.
+A segunda iteração foi dedicada ao design e à implementação do sistema. Usamos o padrão MVC estendido em mais camadas (Services, Exceptions, repo etc), o que nos permitiu organizar o código de forma clara e com responsabilidades bem definidas. No total, resultaram desta fase 10 classes de domínio (Model), 4 classes de interface (View), 2 Services, 1 Repository com padrão Singleton, 7 DTOs, 2 Mappers e 4 classes de exceção. Todo este design foi documentado através de 8 diagramas UML, um por cada aspeto relevante da arquitetura. Do ponto de vista da implementação, conseguimos concluir 4 dos 15 casos de uso identificados na iteração anterior: Gerir Catálogo (UC01), Gerir Categorias (UC07), Selecionar Perfil (UC14) e Sair do Perfil (UC15). Aproveitámos também para rever os diagramas de sequência, tornando-os mais detalhados e de acordo com o fluxo real do sistema, mostrando a informação que percorre as camadas, da View até ao Repository, passando pelo Controller e pelo Service. Para a próxima iteração, o objetivo é implementar os casos de uso que ainda faltam, com especial foco na gestão de Vendas, Clientes e Promoções. E realizar os testes unitários, utilizando o framework Google Test.
 
 \begin{thebibliography}{2}
 
@@ -515,4 +622,3 @@ ISO/IEC: ISO/IEC 14882:2017 - Programming languages -- C++. \url{https://www.iso
 \end{thebibliography}
 
 \end{document}
-{document}

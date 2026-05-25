@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram id="DTOsMappersDCD" name="DTOs and Mappers Class Diagram">
+    <mxGraphModel dx="2364" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="950" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cls_produto_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; ProdutoDTO" vertex="1">
+          <mxGeometry height="154" width="210" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_dto_a_0" parent="cls_produto_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ id: int" vertex="1">
+          <mxGeometry height="24" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_dto_a_1" parent="cls_produto_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nome: string" vertex="1">
+          <mxGeometry height="24" width="210" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_dto_a_2" parent="cls_produto_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ preco: double" vertex="1">
+          <mxGeometry height="24" width="210" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_dto_a_3" parent="cls_produto_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ stock: int" vertex="1">
+          <mxGeometry height="24" width="210" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; CategoriaDTO" vertex="1">
+          <mxGeometry height="130" width="210" x="250" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_dto_a_0" parent="cls_categoria_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ id: int" vertex="1">
+          <mxGeometry height="24" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_dto_a_1" parent="cls_categoria_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nome: string" vertex="1">
+          <mxGeometry height="24" width="210" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_dto_a_2" parent="cls_categoria_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ taxa_iva: double" vertex="1">
+          <mxGeometry height="24" width="210" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_cliente_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; ClienteDTO" vertex="1">
+          <mxGeometry height="130" width="210" x="480" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_cliente_dto_a_0" parent="cls_cliente_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nome: string" vertex="1">
+          <mxGeometry height="24" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_cliente_dto_a_1" parent="cls_cliente_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nif: string" vertex="1">
+          <mxGeometry height="24" width="210" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_cliente_dto_a_2" parent="cls_cliente_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ pontos: int" vertex="1">
+          <mxGeometry height="24" width="210" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_caixa_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; CaixaDTO" vertex="1">
+          <mxGeometry height="130" width="210" x="710" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_caixa_dto_a_0" parent="cls_caixa_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ id: int" vertex="1">
+          <mxGeometry height="24" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_caixa_dto_a_1" parent="cls_caixa_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nome: string" vertex="1">
+          <mxGeometry height="24" width="210" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_caixa_dto_a_2" parent="cls_caixa_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ totalFaturado: double" vertex="1">
+          <mxGeometry height="24" width="210" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; VendaDTO" vertex="1">
+          <mxGeometry height="226" width="250" x="-80" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_0" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ id: int" vertex="1">
+          <mxGeometry height="24" width="250" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_1" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ dataHora: string" vertex="1">
+          <mxGeometry height="24" width="250" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_2" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ total: double" vertex="1">
+          <mxGeometry height="24" width="250" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_3" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ metodoPagamento: string" vertex="1">
+          <mxGeometry height="24" width="250" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_4" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nifCliente: string" vertex="1">
+          <mxGeometry height="24" width="250" y="122" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_5" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nomeCliente: string" vertex="1">
+          <mxGeometry height="24" width="250" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_venda_dto_a_6" parent="cls_venda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ itens: vector&lt;ItemVendaDTO&gt;" vertex="1">
+          <mxGeometry height="24" width="250" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_itemvenda_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; ItemVendaDTO" vertex="1">
+          <mxGeometry height="154" width="230" x="230" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_itemvenda_dto_a_0" parent="cls_itemvenda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nomeProduto: string" vertex="1">
+          <mxGeometry height="24" width="230" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_itemvenda_dto_a_1" parent="cls_itemvenda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ quantidade: int" vertex="1">
+          <mxGeometry height="24" width="230" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_itemvenda_dto_a_2" parent="cls_itemvenda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ precoUnitario: double" vertex="1">
+          <mxGeometry height="24" width="230" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_itemvenda_dto_a_3" parent="cls_itemvenda_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ subTotal: double" vertex="1">
+          <mxGeometry height="24" width="230" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;struct&gt;&gt; PromocaoDTO" vertex="1">
+          <mxGeometry height="202" width="240" x="540" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_0" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ id: int" vertex="1">
+          <mxGeometry height="24" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_1" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ percentagem: double" vertex="1">
+          <mxGeometry height="24" width="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_2" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ dataInicio: string" vertex="1">
+          <mxGeometry height="24" width="240" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_3" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ dataFim: string" vertex="1">
+          <mxGeometry height="24" width="240" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_4" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nomeCategoria: string" vertex="1">
+          <mxGeometry height="24" width="240" y="122" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_promocao_dto_a_5" parent="cls_promocao_dto" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ nomeProduto: string" vertex="1">
+          <mxGeometry height="24" width="240" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_mapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;mapper&gt;&gt; ProdutoMapper" vertex="1">
+          <mxGeometry height="58" width="220" x="200" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_mapper_sep" parent="cls_produto_mapper" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_produto_mapper_m_0" parent="cls_produto_mapper" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ toDTO(p: Produto&amp;): ProdutoDTO {static}" vertex="1">
+          <mxGeometry height="24" width="220" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_mapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="&lt;&lt;mapper&gt;&gt; CategoriaMapper" vertex="1">
+          <mxGeometry height="58" width="220" x="500" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_mapper_sep" parent="cls_categoria_mapper" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cls_categoria_mapper_m_0" parent="cls_categoria_mapper" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="+ toDTO(c: Categoria&amp;): CategoriaDTO {static}" vertex="1">
+          <mxGeometry height="24" width="220" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pmapper_pdto" edge="1" parent="1" source="cls_produto_mapper_m_0" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0.5;entryY=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="566" />
+              <mxPoint x="150" y="520" />
+              <mxPoint x="-130" y="520" />
+              <mxPoint x="-130" y="190" />
+              <mxPoint x="105" y="190" />
+            </Array>
+            <mxPoint x="150" y="560" as="sourcePoint" />
+            <mxPoint x="105" y="174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_cmapper_cdto" edge="1" parent="1" source="cls_categoria_mapper_m_0" style="endArrow=open;html=1;dashed=1;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0.5;entryY=1;exitX=1.014;exitY=0.19;exitDx=0;exitDy=0;exitPerimeter=0;" target="cls_categoria_dto" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="559" />
+              <mxPoint x="790" y="520" />
+              <mxPoint x="890" y="520" />
+              <mxPoint x="890" y="190" />
+              <mxPoint x="355" y="190" />
+            </Array>
+            <mxPoint x="790" y="560" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_venda_item" edge="1" parent="1" source="cls_venda_dto" style="endArrow=none;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;rounded=0;shadow=0;html=1;endFill=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="cls_itemvenda_dto" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

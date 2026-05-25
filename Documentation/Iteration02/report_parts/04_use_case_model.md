@@ -104,7 +104,7 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 | :--- | :--- |
 | **Actor** | ADMIN |
 | **Use case name** | Gerir CATEGORIAS |
-| **Description** | Permite agrupar PRODUTOS em CATEGORIAS para find de impostos e descontos. |
+| **Description** | Permite agrupar PRODUTOS em CATEGORIAS para fins de impostos e descontos. |
 | **Precondition** | ADMIN selecionado no sistema. |
 | **Postcondition** | Lista de CATEGORIAS atualizada. |
 | **Main flow** | 1. O ADMIN escolhe a opção "gestão de categorias". <br> 2. O sistema apresenta as opções (Criar, Listar, Remover). <br> 3. O ADMIN seleciona "Criar". <br> 4. O ADMIN introduz o nome da nova CATEGORIA e a taxa de IVA dessa CATEGORIA. <br> 5. O sistema valida os dados e cria a CATEGORIA. <br> 6. O sistema confirma a criação com sucesso. |
@@ -202,28 +202,40 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 
 ## Diagramas de Sequência de Sistema (SSD)
 
-### UC01: Gerir Catálogo (Cenário de Criação)
+### Casos de Uso Implementados
+Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
+
+#### UC01: Gerir Catálogo (Cenário de Criação)
 ![SSD UC01](../diagramas/uc01.png)
 
-### UC02: Consultar Estatísticas
-![SSD UC02](../diagramas/uc02.png)
-
-### UC03: Gerir Utilizadores (Cenário de Registo)
-![SSD UC03](../diagramas/uc03.png)
-
-### UC04: Repor Stock
-![SSD UC04](../diagramas/uc04.png)
-
-### UC05: Gerir CLIENTES (Cenário de Registo)
-![SSD UC05](../diagramas/uc05.png)
-
-### UC06: Gerir PROMOÇÕES (Cenário de Criação)
-![SSD UC06](../diagramas/uc06.png)
-
-### UC07: Gerir CATEGORIAS
+#### UC07: Gerir CATEGORIAS
 ![SSD UC07](../diagramas/uc07.png)
 
-### UC08: Realizar VENDA
+#### UC14: Selecionar Perfil
+![SSD UC14](../diagramas/uc14.png)
+
+#### UC15: Sair do Perfil
+![SSD UC15](../diagramas/uc15.png)
+
+### Restantes Casos de Uso
+Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
+
+#### UC02: Consultar Estatísticas
+![SSD UC02](../diagramas/uc02.png)
+
+#### UC03: Gerir Utilizadores (Cenário de Registo)
+![SSD UC03](../diagramas/uc03.png)
+
+#### UC04: Repor Stock
+![SSD UC04](../diagramas/uc04.png)
+
+#### UC05: Gerir CLIENTES (Cenário de Registo)
+![SSD UC05](../diagramas/uc05.png)
+
+#### UC06: Gerir PROMOÇÕES (Cenário de Criação)
+![SSD UC06](../diagramas/uc06.png)
+
+#### UC08: Realizar VENDA
 ![SSD UC08](../diagramas/uc08.png)
 
 ### UC09: Consultar Preço

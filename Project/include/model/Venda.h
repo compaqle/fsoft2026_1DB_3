@@ -1,28 +1,30 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Itemvenda.h"
+#include "ItemVenda.h"
+
+class Cliente;
 
 class Venda {
 private:
     int id;
-    int idCaixa;
-    std::string nifCliente;
-    std::string data_hora
+    Cliente* cliente;
+    std::string data_hora;
     double total;
     std::string metodo_pagamento;
-    std::vector<Itemvenda> vendas;
-
-
+    std::vector<ItemVenda> vendas;
 
 public:
-    Venda(int id, int nif_cliente);
+    Venda(int id, Cliente* cliente);
     int getId() const;
-    int getIdCaixa() const;
-    std::string getNifCliente() const;
-    std::string getDataHora const();
+    Cliente* getCliente() const;
+    std::string getDataHora() const;
     double getTotal() const;
     std::string getMetodoPagamento() const;
-    std::vector<Itemvenda> getVendas() const;
+    std::vector<ItemVenda> getVendas() const;
 
+    void setDataHora(const std::string& data_hora);
+    void setTotal(double total);
+    void setMetodoPagamento(const std::string& metodo);
+    void adicionarItem(const ItemVenda& item);
 };
