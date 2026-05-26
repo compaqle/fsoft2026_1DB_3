@@ -1,9 +1,5 @@
 #include "../../include/repo/SupermercadoRepository.h"
-<<<<<<< HEAD
-#include "../../include/model/Cliente.h"
-=======
 #include "../../include/model/ItemVenda.h"
->>>>>>> 7a41d0025d9ca25b02538721fbd68c9dd00a9a5b
 #include <fstream>
 #include <sstream>
 
@@ -11,11 +7,6 @@ SupermercadoRepository* SupermercadoRepository::instance = NULL;
 
 SupermercadoRepository::SupermercadoRepository() {
     carregarCategorias();
-<<<<<<< HEAD
-    carregarClientes();
-    carregarVendas();
-    carregarPromocoes();
-=======
     carregarProdutos();
     carregarClientes();
     carregarCaixas();
@@ -42,7 +33,6 @@ SupermercadoRepository::~SupermercadoRepository() {
     for (size_t i = 0; i < promocoes.size(); i++) {
         delete promocoes[i];
     }
->>>>>>> 7a41d0025d9ca25b02538721fbd68c9dd00a9a5b
 }
 
 SupermercadoRepository& SupermercadoRepository::getInstance() {
@@ -157,20 +147,6 @@ void SupermercadoRepository::carregarCategorias() {
 
 // ==================== CLIENTES ====================
 
-<<<<<<< HEAD
-std::vector<Cliente>& SupermercadoRepository:: getClientes(){
-    return clientes; 
-}
-
-void SupermercadoRepository:: guardarClientes(){
-    std::ofstream ficheiro("../clientes.csv");
-    if(!ficheiro.is_open()) return;
-
-    for(size_t i = 0; i < clientes.size();i++) {
-        ficheiro << clientes[i].getNome() << ","
-                 << clientes[i].getNif() << ","
-                 << clientes[i].getSaldoPontos() << "\n";
-=======
 std::vector<Cliente*>& SupermercadoRepository::getClientes() {
     return clientes;
 }
@@ -425,7 +401,6 @@ void SupermercadoRepository::carregarVendas() {
             vendaAtual->setMetodoPagamento(metodo);
             vendas.push_back(vendaAtual);
         }
->>>>>>> 7a41d0025d9ca25b02538721fbd68c9dd00a9a5b
     }
     ficheiro.close();
 }

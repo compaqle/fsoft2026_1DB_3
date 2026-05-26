@@ -1,4 +1,6 @@
 #include "../../include/mappers/PromocaoMapper.h"
+#include "../../include/model/Produto.h"
+#include "../../include/model/Categoria.h"
 
 PromocaoDTO PromocaoMapper::toDTO(Promocao& p) {
     PromocaoDTO dto;

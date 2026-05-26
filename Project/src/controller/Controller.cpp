@@ -2,7 +2,7 @@
 #include "../../include/exceptions/InvalidDataException.h"
 #include "../../include/exceptions/NoDataException.h"
 
-Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService,)
+Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService)
     : produtoService(produtoService), categoriaService(categoriaService) {
 }
 
@@ -52,6 +52,11 @@ void Controller::runCatalogo() {
             std::string nome;
             double preco;
             int stock, id_categoria;
+
+            view.printMensagem("\n--- Categorias Disponiveis ---");
+            categoriaView.printListaCategorias(categoriaService->getCategorias());
+            view.printMensagem("------------------------------");
+            
             catalogoView.getDadosCriarProduto(nome, preco, stock, id_categoria);
             try {
                 produtoService->criarProduto(nome, preco, stock, id_categoria);
