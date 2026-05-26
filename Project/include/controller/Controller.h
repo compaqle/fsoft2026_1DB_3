@@ -22,4 +22,5 @@ private:
 public:
     Controller(ProdutoService* produtoService, CategoriaService* categoriaService);
     void run();
+    void adicionarProduto();
 };
