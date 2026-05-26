@@ -25,7 +25,4 @@ file(GLOB_RECURSE SOURCES
     "main.cpp"
 )
 
-add_executable(supermercado_app ${SOURCES}
-        src/model/Promocao.cpp
-        src/model/ItemVenda.cpp
-        src/mappers/ClienteMapper.cpp)
+add_executable(supermercado_app ${SOURCES})
