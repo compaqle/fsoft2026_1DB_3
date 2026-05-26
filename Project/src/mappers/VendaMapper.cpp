@@ -1,6 +1,7 @@
 #include "../../include/mappers/VendaMapper.h"
 #include "../../include/model/Cliente.h"
 #include "../../include/model/ItemVenda.h"
+#include "../../include/model/Produto.h"
 
 VendaDTO VendaMapper::toDTO(Venda& v) {
     VendaDTO dto;
