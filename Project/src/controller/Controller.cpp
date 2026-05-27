@@ -67,7 +67,27 @@ void Controller::runCatalogo() {
         } else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
         } else if (op == 3) {
-            view.printMensagem("Editar Produto - em desenvolvimento");
+            int id = catalogoView.getIdProdutoEditar();
+            
+            std::string nome;
+            double preco;
+            int stock, id_categoria;
+
+            view.printMensagem("\n--- Categorias Disponiveis ---");
+            categoriaView.printListaCategorias(categoriaService->getCategorias());
+            view.printMensagem("------------------------------");
+            
+            view.printMensagem("Insira os novos dados do produto:");
+            catalogoView.getDadosCriarProduto(nome, preco, stock, id_categoria);
+            
+            try {
+                produtoService->editarProduto(id, nome, preco, stock, id_categoria);
+                view.printMensagem("Produto editado com sucesso!");
+            } catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            } catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
         } else if (op == 4) {
             int id = catalogoView.getIdProduto();
             try {

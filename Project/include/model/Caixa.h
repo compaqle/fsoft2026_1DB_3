@@ -1,6 +1,7 @@
 #pragma once
 #include "Utilizador.h"
-#include "Venda.h"
+
+class Venda;
 
 class Caixa : public Utilizador {
 private:

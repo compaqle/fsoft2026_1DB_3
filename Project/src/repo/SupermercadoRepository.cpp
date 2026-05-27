@@ -50,7 +50,9 @@ std::vector<Produto*>& SupermercadoRepository::getProdutos() {
 
 void SupermercadoRepository::guardarProdutos() {
     std::ofstream ficheiro("../produtos.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < produtos.size(); i++) {
         ficheiro << produtos[i]->getId() << ","
@@ -64,7 +66,9 @@ void SupermercadoRepository::guardarProdutos() {
 
 void SupermercadoRepository::carregarProdutos() {
     std::ifstream ficheiro("../produtos.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     while (std::getline(ficheiro, linha)) {
@@ -110,7 +114,9 @@ std::vector<Categoria*>& SupermercadoRepository::getCategorias() {
 
 void SupermercadoRepository::guardarCategorias() {
     std::ofstream ficheiro("../categorias.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < categorias.size(); i++) {
         ficheiro << categorias[i]->getId() << "," << categorias[i]->getNome() << "," << categorias[i]->getTaxaIva() << "\n";
@@ -120,11 +126,15 @@ void SupermercadoRepository::guardarCategorias() {
 
 void SupermercadoRepository::carregarCategorias() {
     std::ifstream ficheiro("../categorias.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     while (std::getline(ficheiro, linha)) {
-        if (linha.empty()) continue;
+        if (linha.empty()) {
+            continue;
+        }
         std::stringstream ss(linha);
         std::string campo;
         int id;
@@ -153,7 +163,9 @@ std::vector<Cliente*>& SupermercadoRepository::getClientes() {
 
 void SupermercadoRepository::guardarClientes() {
     std::ofstream ficheiro("../clientes.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < clientes.size(); i++) {
         ficheiro << clientes[i]->getNif() << ","
@@ -165,11 +177,15 @@ void SupermercadoRepository::guardarClientes() {
 
 void SupermercadoRepository::carregarClientes() {
     std::ifstream ficheiro("../clientes.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     while (std::getline(ficheiro, linha)) {
-        if (linha.empty()) continue;
+        if (linha.empty()) {
+            continue;
+        }
         std::stringstream ss(linha);
         std::string campo;
         int nif, pontos;
@@ -193,7 +209,9 @@ std::vector<Caixa*>& SupermercadoRepository::getCaixas() {
 
 void SupermercadoRepository::guardarCaixas() {
     std::ofstream ficheiro("../caixas.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < caixas.size(); i++) {
         ficheiro << caixas[i]->getId() << ","
@@ -205,11 +223,15 @@ void SupermercadoRepository::guardarCaixas() {
 
 void SupermercadoRepository::carregarCaixas() {
     std::ifstream ficheiro("../caixas.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     while (std::getline(ficheiro, linha)) {
-        if (linha.empty()) continue;
+        if (linha.empty()) {
+            continue;
+        }
         std::stringstream ss(linha);
         std::string campo;
         int id;
@@ -235,7 +257,9 @@ std::vector<Promocao*>& SupermercadoRepository::getPromocoes() {
 
 void SupermercadoRepository::guardarPromocoes() {
     std::ofstream ficheiro("../promocoes.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < promocoes.size(); i++) {
         // guarda id_produto (0 se NULL) e id_categoria (0 se NULL)
@@ -254,11 +278,15 @@ void SupermercadoRepository::guardarPromocoes() {
 
 void SupermercadoRepository::carregarPromocoes() {
     std::ifstream ficheiro("../promocoes.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     while (std::getline(ficheiro, linha)) {
-        if (linha.empty()) continue;
+        if (linha.empty()) {
+            continue;
+        }
         std::stringstream ss(linha);
         std::string campo;
         int id, id_produto, id_categoria;
@@ -303,7 +331,9 @@ std::vector<Venda*>& SupermercadoRepository::getVendas() {
 
 void SupermercadoRepository::guardarVendas() {
     std::ofstream ficheiro("../vendas.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     for (size_t i = 0; i < vendas.size(); i++) {
         // linha da venda: id, nif_cliente (0 se sem cliente), data_hora, total, metodo_pagamento
@@ -331,13 +361,17 @@ void SupermercadoRepository::guardarVendas() {
 
 void SupermercadoRepository::carregarVendas() {
     std::ifstream ficheiro("../vendas.csv");
-    if (!ficheiro.is_open()) return;
+    if (!ficheiro.is_open()) {
+        return;
+    }
 
     std::string linha;
     Venda* vendaAtual = NULL;
 
     while (std::getline(ficheiro, linha)) {
-        if (linha.empty()) continue;
+        if (linha.empty()) {
+            continue;
+        }
         std::stringstream ss(linha);
         std::string campo;
 
@@ -345,7 +379,9 @@ void SupermercadoRepository::carregarVendas() {
 
         if (campo == "ITEM") {
             // linha de item — adiciona à venda atual
-            if (vendaAtual == NULL) continue;
+            if (vendaAtual == NULL) {
+                continue;
+            }
 
             std::string id_venda_str, id_produto_str, quantidade_str, preco_str, subtotal_str;
             std::getline(ss, id_venda_str, ',');

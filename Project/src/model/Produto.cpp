@@ -17,6 +17,8 @@ Categoria* Produto::getCategoria() const { return categoria; }
 
 void Produto::setNome(std::string novoNome) { this->nome = novoNome; }
 void Produto::setPrecoBase(double novoPreco) { this->preco_base = novoPreco; }
+void Produto::setStock(int novoStock) { this->stock = novoStock; }
+void Produto::setCategoria(Categoria* novaCategoria) { this->categoria = novaCategoria; }
 
 void Produto::addStock(int quantidade) {
     this->stock += quantidade;

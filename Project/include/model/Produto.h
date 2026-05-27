@@ -22,6 +22,8 @@ public:
     
     void setNome(std::string novoNome);
     void setPrecoBase(double novoPreco);
+    void setStock(int novoStock);
+    void setCategoria(Categoria* novaCategoria);
     void addStock(int quantidade);
     void removerStock(int quantidade);
 };
