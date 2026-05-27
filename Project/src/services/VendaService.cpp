@@ -106,10 +106,6 @@ Venda* VendaService::getUltimaVenda() const {
 }
 
 const std::vector<Venda*>& VendaService::getVendas() const {
-    return repo.getVendas();
-}
-
-
 double VendaService::calcularPrecoComIva(Produto* produto) const {
     if (produto == nullptr) return 0.0;
 

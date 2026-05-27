@@ -29,13 +29,17 @@ public:
 
     double consultarPreco(int idProduto) const;
 
-
     Venda* getUltimaVenda() const;
 
-    const std::vector<Venda>& getVendas() const;
-
+    const std::vector<Venda*>& getVendas() const;
 private:
 
     double calcularPrecoComIva(Produto* produto) const;
     void verificarStock(Produto* produto, int quantidade) const;
 };
+
+
+
+
+
+
