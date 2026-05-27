@@ -76,11 +76,9 @@ void VendaService::fecharVenda(Venda* venda, Caixa* caixa, const std::string& me
         caixa->fecharVendaAtual(venda);
     }
 
-    repo.getVendas().push_back(*venda);
+    repo.getVendas().push_back(venda);
     repo.guardarVendas();
     repo.guardarProdutos();
-
-    delete venda;
 }
 
 
@@ -106,6 +104,9 @@ Venda* VendaService::getUltimaVenda() const {
 }
 
 const std::vector<Venda*>& VendaService::getVendas() const {
+    return repo.getVendas();
+}
+
 double VendaService::calcularPrecoComIva(Produto* produto) const {
     if (produto == nullptr) return 0.0;
 
