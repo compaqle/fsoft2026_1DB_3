@@ -44,6 +44,53 @@ void ProdutoService::criarProduto(std::string nome, double preco_base, int stock
     repo.guardarProdutos();
 }
 
+void ProdutoService::editarProduto(int id, std::string novo_nome, double novo_preco, int novo_stock, int id_nova_categoria) {
+    if (novo_nome.empty()) {
+        throw InvalidDataException("nome vazio");
+    }
+    if (novo_preco < 0) {
+        throw InvalidDataException("preco negativo");
+    }
+    if (novo_stock < 0) {
+        throw InvalidDataException("stock negativo");
+    }
+
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Produto*>& produtos = repo.getProdutos();
+    
+    Produto* produtoParaEditar = NULL;
+    for (size_t i = 0; i < produtos.size(); i++) {
+        if (produtos[i]->getId() == id) {
+            produtoParaEditar = produtos[i];
+            break;
+        }
+    }
+    
+    if (produtoParaEditar == NULL) {
+        throw NoDataException("Produto: " + std::to_string(id));
+    }
+
+    Categoria* categoriaPointer = NULL;
+    std::vector<Categoria*>& categorias = repo.getCategorias();
+    for (size_t i = 0; i < categorias.size(); i++) {
+        if (categorias[i]->getId() == id_nova_categoria) {
+            categoriaPointer = categorias[i];
+            break;
+        }
+    }
+    
+    if (categoriaPointer == NULL) {
+        throw InvalidDataException("categoria nao encontrada");
+    }
+
+    produtoParaEditar->setNome(novo_nome);
+    produtoParaEditar->setPrecoBase(novo_preco);
+    produtoParaEditar->setStock(novo_stock);
+    produtoParaEditar->setCategoria(categoriaPointer);
+    
+    repo.guardarProdutos();
+}
+
 void ProdutoService::removerProduto(int id) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Produto*>& produtos = repo.getProdutos();
