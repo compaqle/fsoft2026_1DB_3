@@ -15,9 +15,15 @@ ProdutoService::ProdutoService() {
 }
 
 void ProdutoService::criarProduto(std::string nome, double preco_base, int stock, int id_categoria) {
-    if (nome.empty()) throw InvalidDataException("nome vazio");
-    if (preco_base < 0) throw InvalidDataException("preco negativo");
-    if (stock < 0) throw InvalidDataException("stock negativo");
+    if (nome.empty()) {
+        throw InvalidDataException("nome vazio");
+    }
+    if (preco_base < 0) {
+        throw InvalidDataException("preco negativo");
+    }
+    if (stock < 0) {
+        throw InvalidDataException("stock negativo");
+    }
 
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Categoria* categoriaPointer = NULL;
@@ -28,7 +34,9 @@ void ProdutoService::criarProduto(std::string nome, double preco_base, int stock
             break;
         }
     }
-    if (categoriaPointer == NULL) throw InvalidDataException("categoria nao encontrada");
+    if (categoriaPointer == NULL) {
+        throw InvalidDataException("categoria nao encontrada");
+    }
 
     Produto* p = new Produto(proximoId, nome, preco_base, stock, categoriaPointer);
     repo.getProdutos().push_back(p);
