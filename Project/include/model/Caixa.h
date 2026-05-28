@@ -6,7 +6,7 @@ private:
     double total_faturado;
 
 public:
-    Caixa(int id, std::string nome);
+    Caixa(int id, const std::string& nome);
     
     double getTotalFaturado() const;
     void adicionarFaturacao(double valor);

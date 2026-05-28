@@ -16,6 +16,7 @@ private:
 
 public:
     Venda(int id, Cliente* cliente);
+
     int getId() const;
     Cliente* getCliente() const;
     std::string getDataHora() const;

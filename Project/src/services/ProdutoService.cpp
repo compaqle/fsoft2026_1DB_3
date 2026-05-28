@@ -15,10 +15,6 @@ ProdutoService::ProdutoService() {
 }
 
 void ProdutoService::criarProduto(std::string nome, double preco_base, int stock, int id_categoria) {
-    if (nome.empty()) throw InvalidDataException("nome vazio");
-    if (preco_base < 0) throw InvalidDataException("preco negativo");
-    if (stock < 0) throw InvalidDataException("stock negativo");
-
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Categoria* categoriaPointer = NULL;
     std::vector<Categoria*>& categorias = repo.getCategorias();
@@ -28,11 +24,56 @@ void ProdutoService::criarProduto(std::string nome, double preco_base, int stock
             break;
         }
     }
-    if (categoriaPointer == NULL) throw InvalidDataException("categoria nao encontrada");
 
+    // O construtor de Produto trata as validacoes de nome, preco, stock e categoria != NULL
     Produto* p = new Produto(proximoId, nome, preco_base, stock, categoriaPointer);
     repo.getProdutos().push_back(p);
     proximoId++;
+    repo.guardarProdutos();
+}
+
+void ProdutoService::editarProduto(int id, std::string novo_nome, double novo_preco, int novo_stock, int id_nova_categoria) {
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Produto*>& produtos = repo.getProdutos();
+    
+    Produto* produtoParaEditar = NULL;
+    for (size_t i = 0; i < produtos.size(); i++) {
+        if (produtos[i]->getId() == id) {
+            produtoParaEditar = produtos[i];
+            break;
+        }
+    }
+    
+    if (produtoParaEditar == NULL) {
+        throw NoDataException("Produto: id = " + std::to_string(id) + " (nao encontrado)");
+    }
+
+    if (novo_nome != "-1") {
+        produtoParaEditar->setNome(novo_nome);
+    }
+    
+    if (novo_preco != -1.0) {
+        produtoParaEditar->setPrecoBase(novo_preco);
+    }
+    
+    if (novo_stock != -1) {
+        produtoParaEditar->setStock(novo_stock);
+    }
+    
+    if (id_nova_categoria != -1) {
+        Categoria* categoriaPointer = NULL;
+        std::vector<Categoria*>& categorias = repo.getCategorias();
+        for (size_t i = 0; i < categorias.size(); i++) {
+            if (categorias[i]->getId() == id_nova_categoria) {
+                categoriaPointer = categorias[i];
+                break;
+            }
+        }
+        
+        // O setCategoria trata a validacao de ponteiro nulo
+        produtoParaEditar->setCategoria(categoriaPointer);
+    }
+    
     repo.guardarProdutos();
 }
 
@@ -48,7 +89,7 @@ void ProdutoService::removerProduto(int id) {
             return;
         }
     }
-    throw NoDataException("Produto: " + std::to_string(id));
+    throw NoDataException("Produto: id = " + std::to_string(id) + " (nao encontrado)");
 }
 
 std::vector<ProdutoDTO> ProdutoService::getProdutos() {

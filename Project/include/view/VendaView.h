@@ -6,5 +6,5 @@
 class VendaView {
     public:
     VendaView();
-    int mostrarMenuVenda()
+    int mostrarMenuVenda();
 };

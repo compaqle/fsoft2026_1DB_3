@@ -9,5 +9,6 @@ public:
 
     int mostrarMenuCategorias();
     void getDadosCriarCategoria(std::string& nome, double& taxa_iva);
+    int getIdCategoriaEditar();
     void printListaCategorias(const std::vector<CategoriaDTO>& lista);
 };

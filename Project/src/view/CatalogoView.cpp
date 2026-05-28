@@ -25,6 +25,10 @@ int CatalogoView::getIdProduto() {
     return Utils::lerInt("ID do produto a remover: ");
 }
 
+int CatalogoView::getIdProdutoEditar() {
+    return Utils::lerInt("ID do produto a editar: ");
+}
+
 void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
     if (lista.empty()) {
         std::cout << "\nO catalogo esta vazio." << std::endl;
