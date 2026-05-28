@@ -15,14 +15,8 @@ CategoriaService::CategoriaService() {
 }
 
 void CategoriaService::criarCategoria(std::string nome, double taxa_iva) {
-    if (nome.empty()) {
-        throw InvalidDataException("nome vazio");
-    }
-    if (taxa_iva < 0) {
-        throw InvalidDataException("taxa de IVA negativa");
-    }
-
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    // Validacoes tratadas pelo construtor de Categoria
     Categoria* c = new Categoria(proximoId, nome, taxa_iva);
     repo.getCategorias().push_back(c);
     proximoId++;
@@ -42,20 +36,14 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
     }
     
     if (catParaEditar == NULL) {
-        throw NoDataException("Categoria: " + std::to_string(id));
+        throw NoDataException("Categoria: id = " + std::to_string(id) + " (nao encontrada)");
     }
 
     if (novo_nome != "-1") {
-        if (novo_nome.empty()) {
-            throw InvalidDataException("nome vazio");
-        }
         catParaEditar->setNome(novo_nome);
     }
     
     if (nova_taxa != -1.0) {
-        if (nova_taxa < 0) {
-            throw InvalidDataException("taxa de IVA negativa");
-        }
         catParaEditar->setTaxaIva(nova_taxa);
     }
     

@@ -7,22 +7,16 @@
 ClienteService::ClienteService() {}
 
 void ClienteService::criarCliente(int nif, std::string nome) {
-    if (nome.empty()) {
-        throw InvalidDataException("Nome do cliente nao pode estar vazio.");
-    }
-    if (nif <= 0) {
-        throw InvalidDataException("NIF invalido.");
-    }
-
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Cliente*>& clientes = repo.getClientes();
     
     for (size_t i = 0; i < clientes.size(); i++) {
         if (clientes[i]->getNif() == nif) {
-            throw DuplicatedDataException("Ja existe um cliente com o NIF: " + std::to_string(nif));
+            throw DuplicatedDataException("Cliente: nif = " + std::to_string(nif) + " (ja existe)");
         }
     }
 
+    // O construtor de Cliente agora trata as validacoes de nif > 0 e nome nao vazio
     Cliente* novo = new Cliente(nif, nome);
     clientes.push_back(novo);
     repo.guardarClientes();
@@ -30,10 +24,7 @@ void ClienteService::criarCliente(int nif, std::string nome) {
 
 void ClienteService::editarCliente(int nif, std::string novo_nome) {
     if (novo_nome == "-1") {
-        return; // Nada a fazer
-    }
-    if (novo_nome.empty()) {
-        throw InvalidDataException("Nome do cliente nao pode estar vazio.");
+        return;
     }
 
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
@@ -48,9 +39,10 @@ void ClienteService::editarCliente(int nif, std::string novo_nome) {
     }
 
     if (clienteParaEditar == NULL) {
-        throw NoDataException("Cliente nao encontrado com NIF: " + std::to_string(nif));
+        throw NoDataException("Cliente: nif = " + std::to_string(nif) + " (nao encontrado)");
     }
 
+    // O setNome trata a validacao
     clienteParaEditar->setNome(novo_nome);
     repo.guardarClientes();
 }
@@ -68,7 +60,7 @@ void ClienteService::removerCliente(int nif) {
             return;
         }
     }
-    throw NoDataException("Cliente nao encontrado com NIF: " + std::to_string(nif));
+    throw NoDataException("Cliente: nif = " + std::to_string(nif) + " (nao encontrado)");
 }
 
 std::vector<ClienteDTO> ClienteService::getClientes() {

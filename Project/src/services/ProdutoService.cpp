@@ -15,16 +15,6 @@ ProdutoService::ProdutoService() {
 }
 
 void ProdutoService::criarProduto(std::string nome, double preco_base, int stock, int id_categoria) {
-    if (nome.empty()) {
-        throw InvalidDataException("nome vazio");
-    }
-    if (preco_base < 0) {
-        throw InvalidDataException("preco negativo");
-    }
-    if (stock < 0) {
-        throw InvalidDataException("stock negativo");
-    }
-
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     Categoria* categoriaPointer = NULL;
     std::vector<Categoria*>& categorias = repo.getCategorias();
@@ -34,10 +24,8 @@ void ProdutoService::criarProduto(std::string nome, double preco_base, int stock
             break;
         }
     }
-    if (categoriaPointer == NULL) {
-        throw InvalidDataException("categoria nao encontrada");
-    }
 
+    // O construtor de Produto trata as validacoes de nome, preco, stock e categoria != NULL
     Produto* p = new Produto(proximoId, nome, preco_base, stock, categoriaPointer);
     repo.getProdutos().push_back(p);
     proximoId++;
@@ -57,27 +45,18 @@ void ProdutoService::editarProduto(int id, std::string novo_nome, double novo_pr
     }
     
     if (produtoParaEditar == NULL) {
-        throw NoDataException("Produto: " + std::to_string(id));
+        throw NoDataException("Produto: id = " + std::to_string(id) + " (nao encontrado)");
     }
 
     if (novo_nome != "-1") {
-        if (novo_nome.empty()) {
-            throw InvalidDataException("nome vazio");
-        }
         produtoParaEditar->setNome(novo_nome);
     }
     
     if (novo_preco != -1.0) {
-        if (novo_preco < 0) {
-            throw InvalidDataException("preco negativo");
-        }
         produtoParaEditar->setPrecoBase(novo_preco);
     }
     
     if (novo_stock != -1) {
-        if (novo_stock < 0) {
-            throw InvalidDataException("stock negativo");
-        }
         produtoParaEditar->setStock(novo_stock);
     }
     
@@ -91,9 +70,7 @@ void ProdutoService::editarProduto(int id, std::string novo_nome, double novo_pr
             }
         }
         
-        if (categoriaPointer == NULL) {
-            throw InvalidDataException("categoria nao encontrada");
-        }
+        // O setCategoria trata a validacao de ponteiro nulo
         produtoParaEditar->setCategoria(categoriaPointer);
     }
     
@@ -112,7 +89,7 @@ void ProdutoService::removerProduto(int id) {
             return;
         }
     }
-    throw NoDataException("Produto: " + std::to_string(id));
+    throw NoDataException("Produto: id = " + std::to_string(id) + " (nao encontrado)");
 }
 
 std::vector<ProdutoDTO> ProdutoService::getProdutos() {
