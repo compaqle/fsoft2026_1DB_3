@@ -12,4 +12,7 @@ public:
     int getId() const;
     std::string getNome() const;
     double getTaxaIva() const;
+
+    void setNome(std::string novoNome);
+    void setTaxaIva(double novaTaxa);
 };

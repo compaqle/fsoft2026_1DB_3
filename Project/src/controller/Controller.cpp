@@ -122,6 +122,22 @@ void Controller::runCategorias() {
             }
         } else if (op == 2) {
             categoriaView.printListaCategorias(categoriaService->getCategorias());
+        } else if (op == 3) {
+            categoriaView.printListaCategorias(categoriaService->getCategorias());
+            int id = categoriaView.getIdCategoriaEditar();
+            
+            view.printMensagem("Insira os novos dados (ou -1 para manter o atual):");
+            std::string nome = Utils::lerString("Nome (-1 para manter): ");
+            double taxa_iva = Utils::lerDouble("Taxa de IVA (-1 para manter): ");
+            
+            try {
+                categoriaService->editarCategoria(id, nome, taxa_iva);
+                view.printMensagem("Categoria editada com sucesso!");
+            } catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            } catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
         } else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
