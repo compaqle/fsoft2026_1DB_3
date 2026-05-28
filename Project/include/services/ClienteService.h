@@ -1,19 +1,15 @@
 #pragma once
 #include <vector>
 #include <string>
-#include"../repo/SupermercadoRepository.h"
-#include"../model/Cliente.h"
+#include "../model/Cliente.h"
+#include "../dto/ClienteDTO.h"
+#include "../repo/SupermercadoRepository.h"
 
-class ClienteService{
-private:
-SupermercadoRepository& repo;
+class ClienteService {
 public:
-    ClienteService(SupermercadoRepository& repo);
-
-    Cliente* getClientePorNif(int nif)const;
-    int consultarPontos(int nif)const;
-    void acumularPontos(Cliente* cliente,double TotalVenda);
-    void gastarPontos(Cliente* cliente,int quantidade);
-    void criarCliente(int nif,const std::string& nome);
-    const std::vector<Cliente*>& getClientes()const;
+    ClienteService();
+    void criarCliente(int nif, std::string nome);
+    void editarCliente(int nif, std::string novo_nome);
+    void removerCliente(int nif);
+    std::vector<ClienteDTO> getClientes();
 };

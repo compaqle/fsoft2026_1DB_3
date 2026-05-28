@@ -9,6 +9,10 @@ Cliente::Cliente(int nif, std::string nome, int saldo_inicial)
 int Cliente::getNif() const { return nif; }
 std::string Cliente::getNome() const { return nome; }
 
+void Cliente::setNome(std::string novoNome) {
+    this->nome = novoNome;
+}
+
 int Cliente::getSaldoPontos() const {
     return pontos.getQuantidade();
 }
