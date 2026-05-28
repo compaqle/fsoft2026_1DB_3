@@ -6,3 +6,4 @@ Project/build/
 *.out
 *.toc
 .idea/
+.vscode/
