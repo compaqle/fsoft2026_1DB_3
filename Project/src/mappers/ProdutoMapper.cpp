@@ -1,4 +1,5 @@
 #include "../../include/mappers/ProdutoMapper.h"
+#include "../../include/model/Categoria.h"
 
 ProdutoDTO ProdutoMapper::toDTO(Produto& p) {
     ProdutoDTO dto;
@@ -6,5 +7,6 @@ ProdutoDTO ProdutoMapper::toDTO(Produto& p) {
     dto.nome = p.getNome();
     dto.preco = p.getPrecoBase();
     dto.stock = p.getStock();
+    dto.categoria = p.getCategoria() ? p.getCategoria()->getNome() : "Sem categoria";
     return dto;
 }

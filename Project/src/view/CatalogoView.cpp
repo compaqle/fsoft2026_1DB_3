@@ -35,6 +35,8 @@ void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
         std::cout << "ID: " << lista[i].id
                   << " | Nome: " << lista[i].nome
                   << " | Preco: " << lista[i].preco
-                  << " | Stock: " << lista[i].stock << std::endl;
+                  << " | Stock: " << lista[i].stock 
+                  << " | Categoria: " << lista[i].categoria
+                  << std::endl;
     }
 }
