@@ -67,6 +67,7 @@ void Controller::runCatalogo() {
         } else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
         } else if (op == 3) {
+            catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProdutoEditar();
             
             std::string nome;
@@ -89,6 +90,7 @@ void Controller::runCatalogo() {
                 view.printMensagem(e.what());
             }
         } else if (op == 4) {
+            catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProduto();
             try {
                 produtoService->removerProduto(id);
