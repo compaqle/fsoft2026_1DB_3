@@ -30,15 +30,12 @@ int CatalogoView::getIdProdutoEditar() {
 }
 
 void CatalogoView::printListaProdutos(const std::vector<ProdutoDTO>& lista) {
-    if (lista.empty()) {
-        std::cout << "\nO catalogo esta vazio." << std::endl;
-        return;
-    }
     std::cout << "\n--- LISTA DE PRODUTOS ---" << std::endl;
     for (size_t i = 0; i < lista.size(); i++) {
         std::cout << "ID: " << lista[i].id
                   << " | Nome: " << lista[i].nome
                   << " | Preco: " << lista[i].preco
-                  << " | Stock: " << lista[i].stock << std::endl;
+                  << " | Stock: " << lista[i].stock
+                  << std::endl;
     }
 }

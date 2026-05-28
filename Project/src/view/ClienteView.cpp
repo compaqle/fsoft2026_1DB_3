@@ -25,10 +25,6 @@ int ClienteView::getNifCliente(const std::string& acao) {
 }
 
 void ClienteView::printListaClientes(const std::vector<ClienteDTO>& lista) {
-    if (lista.empty()) {
-        std::cout << "\nNao existem clientes registados." << std::endl;
-        return;
-    }
     std::cout << "\n--- LISTA DE CLIENTES ---" << std::endl;
     for (size_t i = 0; i < lista.size(); i++) {
         std::cout << "NIF: " << lista[i].nif

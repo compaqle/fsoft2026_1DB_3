@@ -23,10 +23,6 @@ int CategoriaView::getIdCategoriaEditar() {
 }
 
 void CategoriaView::printListaCategorias(const std::vector<CategoriaDTO>& lista) {
-    if (lista.empty()) {
-        std::cout << "\nNao existem categorias registadas." << std::endl;
-        return;
-    }
     std::cout << "\n--- LISTA DE CATEGORIAS ---" << std::endl;
     for (size_t i = 0; i < lista.size(); i++) {
         std::cout << "ID: " << lista[i].id

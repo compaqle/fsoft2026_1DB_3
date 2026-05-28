@@ -15,8 +15,14 @@ CategoriaService::CategoriaService() {
 }
 
 void CategoriaService::criarCategoria(std::string nome, double taxa_iva) {
+    if (nome.empty()) {
+        throw InvalidDataException("Categoria: nome = (vazio)");
+    }
+    if (taxa_iva < 0) {
+        throw InvalidDataException("Categoria: taxa_iva = " + std::to_string(taxa_iva));
+    }
+
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
-    // Validacoes tratadas pelo construtor de Categoria
     Categoria* c = new Categoria(proximoId, nome, taxa_iva);
     repo.getCategorias().push_back(c);
     proximoId++;
@@ -40,10 +46,16 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
     }
 
     if (novo_nome != "-1") {
+        if (novo_nome.empty()) {
+            throw InvalidDataException("Categoria: nome = (vazio)");
+        }
         catParaEditar->setNome(novo_nome);
     }
     
     if (nova_taxa != -1.0) {
+        if (nova_taxa < 0) {
+            throw InvalidDataException("Categoria: taxa_iva = " + std::to_string(nova_taxa));
+        }
         catParaEditar->setTaxaIva(nova_taxa);
     }
     
@@ -52,6 +64,9 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
 
 std::vector<CategoriaDTO> CategoriaService::getCategorias() {
     std::vector<Categoria*>& categorias = SupermercadoRepository::getInstance().getCategorias();
+    if (categorias.empty()) {
+        throw NoDataException("Categorias: (vazio)");
+    }
     std::vector<CategoriaDTO> dtos;
     for (size_t i = 0; i < categorias.size(); i++) {
         dtos.push_back(CategoriaMapper::toDTO(*categorias[i]));

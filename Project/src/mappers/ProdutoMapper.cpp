@@ -1,4 +1,5 @@
 #include "../../include/mappers/ProdutoMapper.h"
+#include "../../include/model/Categoria.h"
 
 ProdutoDTO ProdutoMapper::toDTO(Produto& p) {
     ProdutoDTO dto;

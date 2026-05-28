@@ -8,9 +8,6 @@ private:
     int nif;
     std::string nome;
     Ponto pontos;
-    bool isNomeValid(const std::string& nome);
-    bool isNifValid(int nif);
-    void setNif(int nif);
 
 public:
     Cliente(int nif, std::string nome, int saldo_inicial = 0);

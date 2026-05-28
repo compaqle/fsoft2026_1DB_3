@@ -11,12 +11,6 @@ private:
     int stock;
     Categoria* categoria;
 
-    bool isNomeValid(const std::string& nome);
-    bool isPrecoValid(double preco);
-    bool isStockValid(int stock);
-    bool isCategoriaValid(Categoria* cat);
-    void setId(int id);
-
 public:
     Produto(int id, std::string nome, double preco_base, int stock, Categoria* categoria);
 
