@@ -1,6 +1,7 @@
 #include "../../include/controller/Controller.h"
 #include "../../include/exceptions/InvalidDataException.h"
 #include "../../include/exceptions/NoDataException.h"
+#include "../../include/view/Utils.h"
 
 Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService)
     : produtoService(produtoService), categoriaService(categoriaService) {
@@ -70,16 +71,15 @@ void Controller::runCatalogo() {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProdutoEditar();
             
-            std::string nome;
-            double preco;
-            int stock, id_categoria;
-
             view.printMensagem("\n--- Categorias Disponiveis ---");
             categoriaView.printListaCategorias(categoriaService->getCategorias());
             view.printMensagem("------------------------------");
             
-            view.printMensagem("Insira os novos dados do produto:");
-            catalogoView.getDadosCriarProduto(nome, preco, stock, id_categoria);
+            view.printMensagem("Insira os novos dados (ou -1 para manter o atual):");
+            std::string nome = Utils::lerString("Nome (-1 para manter): ");
+            double preco = Utils::lerDouble("Preco base (-1 para manter): ");
+            int stock = Utils::lerInt("Stock (-1 para manter): ");
+            int id_categoria = Utils::lerInt("ID Categoria (-1 para manter): ");
             
             try {
                 produtoService->editarProduto(id, nome, preco, stock, id_categoria);
