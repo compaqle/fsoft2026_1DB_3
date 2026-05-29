@@ -4,22 +4,25 @@
 #include "../../include/exceptions/DuplicatedDataException.h"
 #include "../../include/view/Utils.h"
 
-Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService)
-    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService) {
+Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService)
+    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService) {
 }
 
 void Controller::run() {
     while (true) {
-        int op = view.menuPrincipal();
+        int op = view.menuPrincipal(caixaService->getCaixas());
+        
         if (op == -1) {
             return;
+        } else if (op == -2) {
+            view.printMensagem("Opcao invalida. Tente novamente.");
+            continue;
         }
+
         if (op == 0) {
             runAdmin();
-        } else if (op >= 1) {
-            runCaixa(op);
         } else {
-            view.printMensagem("Opcao invalida. Tente novamente.");
+            runCaixa(op);
         }
     }
 }
@@ -37,6 +40,8 @@ void Controller::runAdmin() {
         } else if (op == 3) {
             runClientes();
         } else if (op == 4) {
+            runCaixas();
+        } else if (op == 5) {
             view.printMensagem("Ver Estatisticas - em desenvolvimento");
         } else {
             view.printMensagem("Opcao invalida. Tente novamente.");
@@ -188,6 +193,31 @@ void Controller::runClientes() {
             } catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
+        } else {
+            view.printMensagem("Opcao invalida. Tente novamente.");
+        }
+    }
+}
+
+void Controller::runCaixas() {
+    while (true) {
+        int op = caixaView.mostrarMenuCaixas();
+
+        if (op == 0) {
+            return;
+        } else if (op == 1) {
+            std::string nome;
+            caixaView.getDadosCriarCaixa(nome);
+            try {
+                caixaService->criarCaixa(nome);
+                view.printMensagem("Caixa registado com sucesso!");
+            } catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        } else if (op == 2) {
+            caixaView.printListaCaixas(caixaService->getCaixas());
+        } else if (op == 3) {
+            view.printMensagem("Remover Caixa - a implementar");
         } else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }

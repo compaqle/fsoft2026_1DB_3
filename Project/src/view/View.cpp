@@ -1,18 +1,12 @@
 #include "../../include/view/View.h"
 #include "../../include/view/Utils.h"
-#include "../../include/model/Caixa.h"
 #include "../../include/model/Admin.h"
 #include <iostream>
 #include <vector>
 
 View::View() {}
 
-int View::menuPrincipal() {
-    std::vector<Caixa> caixas = {
-        Caixa(1, "Caixa 1"),
-        Caixa(2, "Caixa 2")
-    };
-
+int View::menuPrincipal(const std::vector<CaixaDTO>& caixas) {
     std::cout << "\n========================================" << std::endl;
     std::cout << "       Supermercado " << std::endl;
     std::cout << "========================================" << std::endl;
@@ -21,17 +15,25 @@ int View::menuPrincipal() {
     std::cout << " -1. Sair" << std::endl;
     
     for (size_t i = 0; i < caixas.size(); i++) {
-        std::cout << "  " << (i + 1) << ". CAIXA: " << caixas[i].getNome() << std::endl;
+        std::cout << "  " << caixas[i].id << ". CAIXA: " << caixas[i].nome << std::endl;
     }
 
     int opcao = Utils::lerInt("\nOpcao: ");
 
     if (opcao == Admin::ADMIN_DEFAULT_ID) {
         return 0;
-    } else if (opcao >= 1 && (size_t)opcao <= caixas.size()) {
-        return opcao;
     }
-    return -1;
+    if (opcao == -1) {
+        return -1;
+    }
+    
+    for (size_t i = 0; i < caixas.size(); i++) {
+        if (opcao == caixas[i].id) {
+            return opcao;
+        }
+    }
+    
+    return -2; // Opcao invalida
 }
 
 int View::menuAdmin() {
@@ -39,7 +41,8 @@ int View::menuAdmin() {
     std::cout << "1. Gerir Catalogo" << std::endl;
     std::cout << "2. Gerir Categorias" << std::endl;
     std::cout << "3. Gerir Clientes" << std::endl;
-    std::cout << "4. Ver Estatisticas" << std::endl;
+    std::cout << "4. Gerir Caixas" << std::endl;
+    std::cout << "5. Ver Estatisticas" << std::endl;
     std::cout << "0. Sair" << std::endl;
     return Utils::lerInt("\nOpcao: ");
 }
