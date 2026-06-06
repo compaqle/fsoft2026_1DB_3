@@ -32,5 +32,4 @@ private:
 public:
     Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService);
     void run();
-    void adicionarProduto();
 };

@@ -28,5 +28,6 @@ void CaixaView::printListaCaixas(const std::vector<CaixaDTO>& caixas) {
 }
 
 int CaixaView::getIdCaixa() {
-    return 0; // Esqueleto a implementar
+    std::cout << "Insira o ID do Caixa a remover: ";
+    return Utils::lerInt("");
 }

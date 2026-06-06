@@ -255,7 +255,15 @@ void Controller::runCaixas() {
             caixaView.printListaCaixas(caixaService->getCaixas());
         }
         else if (op == 3) {
-            view.printMensagem("Remover Caixa - a implementar");
+            caixaView.printListaCaixas(caixaService->getCaixas());
+            int id = caixaView.getIdCaixa();
+            try {
+                caixaService->removerCaixa(id);
+                view.printMensagem("Caixa removido com sucesso!");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
         }
         else {
             view.printMensagem("Opcao invalida. Tente novamente.");

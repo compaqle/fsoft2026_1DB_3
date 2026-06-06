@@ -1,6 +1,7 @@
 #include "../../include/services/CaixaService.h"
 #include "../../include/mappers/CaixaMapper.h"
 #include "../../include/exceptions/InvalidDataException.h"
+#include "../../include/exceptions/NoDataException.h"
 
 std::vector<CaixaDTO> CaixaService::getCaixas() {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
@@ -33,5 +34,16 @@ void CaixaService::criarCaixa(std::string nome) {
 }
 
 void CaixaService::removerCaixa(int id) {
-    // Esqueleto a implementar
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Caixa*>& caixas = repo.getCaixas();
+    for (int i = 0; i < (int)caixas.size(); i++) {
+        if (caixas[i]->getId() == id) {
+            Caixa* c = caixas[i];
+            caixas.erase(caixas.begin() + i);
+            delete c;
+            repo.guardarCaixas();
+            return;
+        }
+    }
+    throw NoDataException("Caixa: id = " + std::to_string(id) + " (nao encontrado)");
 }

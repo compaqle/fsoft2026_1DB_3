@@ -1,6 +1,5 @@
 #include "../../include/view/View.h"
 #include "../../include/view/Utils.h"
-#include "../../include/model/Admin.h"
 #include <iostream>
 #include <vector>
 
@@ -11,7 +10,7 @@ int View::menuPrincipal(const std::vector<CaixaDTO>& caixas) {
     std::cout << "       Supermercado " << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << "\nSelecione o perfil:" << std::endl;
-    std::cout << "  " << Admin::ADMIN_DEFAULT_ID << ". ADMIN" << std::endl;
+    std::cout << "  0. ADMIN" << std::endl;
     std::cout << " -1. Sair" << std::endl;
     
     for (size_t i = 0; i < caixas.size(); i++) {
@@ -20,7 +19,7 @@ int View::menuPrincipal(const std::vector<CaixaDTO>& caixas) {
 
     int opcao = Utils::lerInt("\nOpcao: ");
 
-    if (opcao == Admin::ADMIN_DEFAULT_ID) {
+    if (opcao == 0) {
         return 0;
     }
     if (opcao == -1) {
