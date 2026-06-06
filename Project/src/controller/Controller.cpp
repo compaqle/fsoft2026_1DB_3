@@ -14,14 +14,16 @@ void Controller::run() {
         
         if (op == -1) {
             return;
-        } else if (op == -2) {
+        }
+        else if (op == -2) {
             view.printMensagem("Opcao invalida. Tente novamente.");
             continue;
         }
 
         if (op == 0) {
             runAdmin();
-        } else {
+        }
+        else {
             runCaixa(op);
         }
     }
@@ -33,17 +35,23 @@ void Controller::runAdmin() {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             runCatalogo();
-        } else if (op == 2) {
+        }
+        else if (op == 2) {
             runCategorias();
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             runClientes();
-        } else if (op == 4) {
+        }
+        else if (op == 4) {
             runCaixas();
-        } else if (op == 5) {
+        }
+        else if (op == 5) {
             view.printMensagem("Ver Estatisticas - em desenvolvimento");
-        } else {
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
@@ -55,7 +63,8 @@ void Controller::runCatalogo() {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             std::string nome;
             double preco;
             int stock, id_categoria;
@@ -68,12 +77,15 @@ void Controller::runCatalogo() {
             try {
                 produtoService->criarProduto(nome, preco, stock, id_categoria);
                 view.printMensagem("Produto criado com sucesso!");
-            } catch (InvalidDataException& e) {
+            }
+            catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 2) {
+        }
+        else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProdutoEditar();
             
@@ -90,21 +102,26 @@ void Controller::runCatalogo() {
             try {
                 produtoService->editarProduto(id, nome, preco, stock, id_categoria);
                 view.printMensagem("Produto editado com sucesso!");
-            } catch (NoDataException& e) {
-                view.printMensagem(e.what());
-            } catch (InvalidDataException& e) {
+            }
+            catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 4) {
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 4) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProduto();
             try {
                 produtoService->removerProduto(id);
                 view.printMensagem("Produto removido com sucesso!");
-            } catch (NoDataException& e) {
+            }
+            catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else {
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
@@ -116,19 +133,23 @@ void Controller::runCategorias() {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             std::string nome;
             double taxa_iva;
             categoriaView.getDadosCriarCategoria(nome, taxa_iva);
             try {
                 categoriaService->criarCategoria(nome, taxa_iva);
                 view.printMensagem("Categoria criada com sucesso!");
-            } catch (InvalidDataException& e) {
+            }
+            catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 2) {
+        }
+        else if (op == 2) {
             categoriaView.printListaCategorias(categoriaService->getCategorias());
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             categoriaView.printListaCategorias(categoriaService->getCategorias());
             int id = categoriaView.getIdCategoriaEditar();
             
@@ -139,12 +160,15 @@ void Controller::runCategorias() {
             try {
                 categoriaService->editarCategoria(id, nome, taxa_iva);
                 view.printMensagem("Categoria editada com sucesso!");
-            } catch (NoDataException& e) {
-                view.printMensagem(e.what());
-            } catch (InvalidDataException& e) {
+            }
+            catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else {
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
@@ -156,21 +180,26 @@ void Controller::runClientes() {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             int nif;
             std::string nome;
             clienteView.getDadosCriarCliente(nif, nome);
             try {
                 clienteService->criarCliente(nif, nome);
                 view.printMensagem("Cliente criado com sucesso!");
-            } catch (InvalidDataException& e) {
-                view.printMensagem(e.what());
-            } catch (DuplicatedDataException& e) {
+            }
+            catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 2) {
+            catch (DuplicatedDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 2) {
             clienteView.printListaClientes(clienteService->getClientes());
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             clienteView.printListaClientes(clienteService->getClientes());
             int nif = clienteView.getNifCliente("editar");
             
@@ -179,21 +208,26 @@ void Controller::runClientes() {
             try {
                 clienteService->editarCliente(nif, novoNome);
                 view.printMensagem("Cliente editado com sucesso!");
-            } catch (NoDataException& e) {
-                view.printMensagem(e.what());
-            } catch (InvalidDataException& e) {
+            }
+            catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 4) {
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 4) {
             clienteView.printListaClientes(clienteService->getClientes());
             int nif = clienteView.getNifCliente("remover");
             try {
                 clienteService->removerCliente(nif);
                 view.printMensagem("Cliente removido com sucesso!");
-            } catch (NoDataException& e) {
+            }
+            catch (NoDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else {
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
@@ -205,20 +239,25 @@ void Controller::runCaixas() {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             std::string nome;
             caixaView.getDadosCriarCaixa(nome);
             try {
                 caixaService->criarCaixa(nome);
                 view.printMensagem("Caixa registado com sucesso!");
-            } catch (InvalidDataException& e) {
+            }
+            catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
             }
-        } else if (op == 2) {
+        }
+        else if (op == 2) {
             caixaView.printListaCaixas(caixaService->getCaixas());
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             view.printMensagem("Remover Caixa - a implementar");
-        } else {
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
@@ -230,13 +269,17 @@ void Controller::runCaixa(int idCaixa) {
 
         if (op == 0) {
             return;
-        } else if (op == 1) {
+        }
+        else if (op == 1) {
             view.printMensagem("Realizar Venda - em desenvolvimento");
-        } else if (op == 2) {
+        }
+        else if (op == 2) {
             view.printMensagem("Consultar Preco - em desenvolvimento");
-        } else if (op == 3) {
+        }
+        else if (op == 3) {
             view.printMensagem("Consultar Pontos Cliente - em desenvolvimento");
-        } else {
+        }
+        else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }

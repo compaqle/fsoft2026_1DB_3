@@ -407,7 +407,8 @@ void SupermercadoRepository::carregarVendas() {
                 vendaAtual->adicionarItem(ItemVenda(produtoPointer, quantidade, preco_unitario, subtotal));
             }
 
-        } else {
+        }
+        else {
             // linha de venda
             int id = std::stoi(campo);
             std::string nif_str, data_hora, total_str, metodo;

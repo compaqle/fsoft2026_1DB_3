@@ -13,7 +13,8 @@ VendaDTO VendaMapper::toDTO(Venda& v) {
     if (v.getCliente() != NULL) {
         dto.nifCliente = std::to_string(v.getCliente()->getNif());
         dto.nomeCliente = v.getCliente()->getNome();
-    } else {
+    }
+    else {
         dto.nifCliente = "";
         dto.nomeCliente = "Sem cliente";
     }
