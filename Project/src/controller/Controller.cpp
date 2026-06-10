@@ -3,6 +3,8 @@
 #include "../../include/exceptions/NoDataException.h"
 #include "../../include/exceptions/DuplicatedDataException.h"
 #include "../../include/view/Utils.h"
+#include <sstream>
+#include <iomanip>
 
 Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService, VendaService* vendaService)
     : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService), vendaService(vendaService) {
@@ -282,10 +284,34 @@ void Controller::runCaixa(int idCaixa) {
             runRealizarVenda(idCaixa);
         }
         else if (op == 2) {
-            view.printMensagem("Consultar Preco - em desenvolvimento");
+            catalogoView.printListaProdutos(produtoService->getProdutos());
+            int id_produto = Utils::lerInt("ID do produto: ");
+            try {
+                double preco = vendaService->consultarPreco(id_produto);
+                std::ostringstream oss;
+                oss << "Preco final (com IVA e descontos): " << std::fixed << std::setprecision(2) << preco << "E";
+                view.printMensagem(oss.str());
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
         }
         else if (op == 3) {
-            view.printMensagem("Consultar Pontos Cliente - em desenvolvimento");
+            int nif = Utils::lerInt("NIF do cliente: ");
+            std::vector<ClienteDTO> clientes = clienteService->getClientes();
+            bool encontrado = false;
+            for (size_t i = 0; i < clientes.size(); i++) {
+                if (std::stoi(clientes[i].nif) == nif) {
+                    std::ostringstream oss;
+                    oss << "Cliente: " << clientes[i].nome << " | Pontos: " << clientes[i].pontos;
+                    view.printMensagem(oss.str());
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                view.printMensagem("Cliente com NIF " + std::to_string(nif) + " nao encontrado.");
+            }
         }
         else {
             view.printMensagem("Opcao invalida. Tente novamente.");
