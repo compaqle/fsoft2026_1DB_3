@@ -4,8 +4,8 @@
 #include "../../include/exceptions/DuplicatedDataException.h"
 #include "../../include/view/Utils.h"
 
-Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService)
-    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService) {
+Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService, VendaService* vendaService)
+    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService), vendaService(vendaService) {
 }
 
 void Controller::run() {
@@ -279,13 +279,121 @@ void Controller::runCaixa(int idCaixa) {
             return;
         }
         else if (op == 1) {
-            view.printMensagem("Realizar Venda - em desenvolvimento");
+            runRealizarVenda(idCaixa);
         }
         else if (op == 2) {
             view.printMensagem("Consultar Preco - em desenvolvimento");
         }
         else if (op == 3) {
             view.printMensagem("Consultar Pontos Cliente - em desenvolvimento");
+        }
+        else {
+            view.printMensagem("Opcao invalida. Tente novamente.");
+        }
+    }
+}
+
+void Controller::runRealizarVenda(int idCaixa) {
+    view.printMensagem("\n--- Nova Venda ---");
+    view.printMensagem("(NIF 0 = sem cliente)");
+    int nif = Utils::lerInt("NIF do cliente: ");
+
+    try {
+        vendaService->iniciarVenda(nif);
+    }
+    catch (NoDataException& e) {
+        view.printMensagem(e.what());
+        return;
+    }
+    catch (InvalidDataException& e) {
+        view.printMensagem(e.what());
+        return;
+    }
+
+    while (true) {
+        int op = vendaView.mostrarMenuVenda();
+
+        if (op == 0) {
+            vendaService->cancelarVenda();
+            view.printMensagem("Venda cancelada.");
+            return;
+        }
+        else if (op == 1) {
+            catalogoView.printListaProdutos(produtoService->getProdutos());
+            int id_produto = Utils::lerInt("ID do produto: ");
+            int quantidade = Utils::lerInt("Quantidade: ");
+            try {
+                vendaService->adicionarItem(id_produto, quantidade);
+                view.printMensagem("Produto adicionado a venda.");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 2) {
+            try {
+                VendaDTO vendaAtual = vendaService->getVendaAtiva();
+                vendaView.printItensVendaAtual(vendaAtual);
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+                continue;
+            }
+            int id_produto = Utils::lerInt("ID do produto a remover: ");
+            try {
+                vendaService->removerItem(id_produto);
+                view.printMensagem("Produto removido da venda.");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 3) {
+            try {
+                VendaDTO vendaAtual = vendaService->getVendaAtiva();
+                vendaView.printItensVendaAtual(vendaAtual);
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 4) {
+            int metodo_op = vendaView.getMetodoPagamento();
+
+            std::string metodo;
+            if (metodo_op == 1) {
+                metodo = "Numerario";
+            }
+            else if (metodo_op == 2) {
+                metodo = "Cartao de Credito";
+            }
+            else if (metodo_op == 3) {
+                metodo = "Cartao de Debito";
+            }
+            else if (metodo_op == 4) {
+                metodo = "MB Way";
+            }
+            else {
+                metodo = "Numerario";
+            }
+
+            try {
+                VendaDTO recibo = vendaService->concluirVenda(metodo, idCaixa);
+                vendaView.printRecibo(recibo);
+                view.printMensagem("Venda concluida com sucesso!");
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+                continue;
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+                continue;
+            }
+            return;
         }
         else {
             view.printMensagem("Opcao invalida. Tente novamente.");
