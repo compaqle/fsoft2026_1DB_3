@@ -33,7 +33,7 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Categoria*>& categorias = repo.getCategorias();
     
-    Categoria* catParaEditar = NULL;
+    Categoria* catParaEditar = nullptr;
     for (size_t i = 0; i < categorias.size(); i++) {
         if (categorias[i]->getId() == id) {
             catParaEditar = categorias[i];
@@ -41,7 +41,7 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
         }
     }
     
-    if (catParaEditar == NULL) {
+    if (catParaEditar == nullptr) {
         throw NoDataException("Categoria: id = " + std::to_string(id) + " (nao encontrada)");
     }
 
@@ -62,11 +62,23 @@ void CategoriaService::editarCategoria(int id, std::string novo_nome, double nov
     repo.guardarCategorias();
 }
 
+void CategoriaService::removerCategoria(int id) {
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Categoria*>& categorias = repo.getCategorias();
+    for (size_t i = 0; i < categorias.size(); i++) {
+        if (categorias[i]->getId() == id) {
+            Categoria* c = categorias[i];
+            categorias.erase(categorias.begin() + i);
+            delete c;
+            repo.guardarCategorias();
+            return;
+        }
+    }
+    throw NoDataException("Categoria: id = " + std::to_string(id) + " (nao encontrada)");
+}
+
 std::vector<CategoriaDTO> CategoriaService::getCategorias() {
     std::vector<Categoria*>& categorias = SupermercadoRepository::getInstance().getCategorias();
-    if (categorias.empty()) {
-        throw NoDataException("Categorias: (vazio)");
-    }
     std::vector<CategoriaDTO> dtos;
     for (size_t i = 0; i < categorias.size(); i++) {
         dtos.push_back(CategoriaMapper::toDTO(*categorias[i]));

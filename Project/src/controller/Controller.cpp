@@ -170,6 +170,17 @@ void Controller::runCategorias() {
                 view.printMensagem(e.what());
             }
         }
+        else if (op == 4) {
+            categoriaView.printListaCategorias(categoriaService->getCategorias());
+            int id = categoriaView.getIdCategoria();
+            try {
+                categoriaService->removerCategoria(id);
+                view.printMensagem("Categoria removida com sucesso!");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
         else {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }

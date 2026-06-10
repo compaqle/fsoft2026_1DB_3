@@ -9,6 +9,7 @@ int CategoriaView::mostrarMenuCategorias() {
     std::cout << "1. Criar Categoria" << std::endl;
     std::cout << "2. Listar Categorias" << std::endl;
     std::cout << "3. Editar Categoria" << std::endl;
+    std::cout << "4. Remover Categoria" << std::endl;
     std::cout << "0. Voltar" << std::endl;
     return Utils::lerInt("\nOpcao: ");
 }
@@ -20,6 +21,10 @@ void CategoriaView::getDadosCriarCategoria(std::string& nome, double& taxa_iva) 
 
 int CategoriaView::getIdCategoriaEditar() {
     return Utils::lerInt("ID da categoria a editar: ");
+}
+
+int CategoriaView::getIdCategoria() {
+    return Utils::lerInt("ID da categoria a remover: ");
 }
 
 void CategoriaView::printListaCategorias(const std::vector<CategoriaDTO>& lista) {

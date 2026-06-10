@@ -13,5 +13,6 @@ public:
     CategoriaService();
     void criarCategoria(std::string nome, double taxa_iva);
     void editarCategoria(int id, std::string novo_nome, double nova_taxa);
+    void removerCategoria(int id);
     std::vector<CategoriaDTO> getCategorias();
 };
