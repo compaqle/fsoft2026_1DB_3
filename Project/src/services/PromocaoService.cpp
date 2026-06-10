@@ -5,7 +5,6 @@
 #include "../../include/model/Promocao.h"
 #include "../../include/model/Produto.h"
 #include "../../include/model/Categoria.h"
-#include <regex>
 
 PromocaoService::PromocaoService() {
     proximoId = 1;
@@ -45,7 +44,7 @@ void PromocaoService::criarPromocaoProduto(double percentagem, const std::string
     }
 
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
-    Produto* produto = NULL;
+    Produto* produto = nullptr;
     std::vector<Produto*>& produtos = repo.getProdutos();
     for (size_t i = 0; i < produtos.size(); i++) {
         if (produtos[i]->getId() == id_produto) {
@@ -53,11 +52,11 @@ void PromocaoService::criarPromocaoProduto(double percentagem, const std::string
             break;
         }
     }
-    if (produto == NULL) {
-        throw InvalidDataException("Produto: id = " + std::to_string(id_produto) + " (nao encontrado)");
+    if (produto == nullptr) {
+        throw NoDataException("Produto: id = " + std::to_string(id_produto) + " (nao encontrado)");
     }
 
-    Promocao* p = new Promocao(proximoId, percentagem, data_inicio, data_fim, produto, NULL);
+    Promocao* p = new Promocao(proximoId, percentagem, data_inicio, data_fim, produto, nullptr);
     repo.getPromocoes().push_back(p);
     proximoId++;
     repo.guardarPromocoes();
@@ -79,7 +78,7 @@ void PromocaoService::criarPromocaoCategoria(double percentagem, const std::stri
     }
 
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
-    Categoria* categoria = NULL;
+    Categoria* categoria = nullptr;
     std::vector<Categoria*>& categorias = repo.getCategorias();
     for (size_t i = 0; i < categorias.size(); i++) {
         if (categorias[i]->getId() == id_categoria) {
@@ -87,11 +86,11 @@ void PromocaoService::criarPromocaoCategoria(double percentagem, const std::stri
             break;
         }
     }
-    if (categoria == NULL) {
-        throw InvalidDataException("Categoria: id = " + std::to_string(id_categoria) + " (nao encontrada)");
+    if (categoria == nullptr) {
+        throw NoDataException("Categoria: id = " + std::to_string(id_categoria) + " (nao encontrada)");
     }
 
-    Promocao* p = new Promocao(proximoId, percentagem, data_inicio, data_fim, NULL, categoria);
+    Promocao* p = new Promocao(proximoId, percentagem, data_inicio, data_fim, nullptr, categoria);
     repo.getPromocoes().push_back(p);
     proximoId++;
     repo.guardarPromocoes();
