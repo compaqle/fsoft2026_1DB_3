@@ -9,3 +9,7 @@ int Utilizador::getId() const {
 std::string Utilizador::getNome() const {
     return nome;
 }
+
+void Utilizador::setNome(std::string novo_nome) {
+    nome = novo_nome;
+}

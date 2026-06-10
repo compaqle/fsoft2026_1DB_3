@@ -33,6 +33,25 @@ void CaixaService::criarCaixa(std::string nome) {
     repo.guardarCaixas();
 }
 
+void CaixaService::editarCaixa(int id, std::string novo_nome) {
+    if (novo_nome != "-1" && novo_nome.empty()) {
+        throw InvalidDataException("O nome do Caixa nao pode ser vazio.");
+    }
+
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Caixa*>& caixas = repo.getCaixas();
+    for (size_t i = 0; i < caixas.size(); i++) {
+        if (caixas[i]->getId() == id) {
+            if (novo_nome != "-1") {
+                caixas[i]->setNome(novo_nome);
+            }
+            repo.guardarCaixas();
+            return;
+        }
+    }
+    throw NoDataException("Caixa: id = " + std::to_string(id) + " (nao encontrado)");
+}
+
 void CaixaService::removerCaixa(int id) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Caixa*>& caixas = repo.getCaixas();

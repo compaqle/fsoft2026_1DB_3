@@ -7,6 +7,7 @@ int CaixaView::mostrarMenuCaixas() {
     std::cout << "1. Registar Caixa" << std::endl;
     std::cout << "2. Listar Caixas" << std::endl;
     std::cout << "3. Remover Caixa" << std::endl;
+    std::cout << "4. Editar Caixa" << std::endl;
     std::cout << "0. Voltar" << std::endl;
     return Utils::lerInt("Opcao: ");
 }
@@ -30,4 +31,8 @@ void CaixaView::printListaCaixas(const std::vector<CaixaDTO>& caixas) {
 int CaixaView::getIdCaixa() {
     std::cout << "Insira o ID do Caixa a remover: ";
     return Utils::lerInt("");
+}
+
+int CaixaView::getIdCaixaEditar() {
+    return Utils::lerInt("ID do Caixa a editar: ");
 }

@@ -258,7 +258,7 @@ void Controller::runCaixas() {
             caixaView.getDadosCriarCaixa(nome);
             try {
                 caixaService->criarCaixa(nome);
-                view.printMensagem("Caixa registado com sucesso!");
+                view.printMensagem("Caixa registada com sucesso!");
             }
             catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
@@ -275,6 +275,22 @@ void Controller::runCaixas() {
                 view.printMensagem("Caixa removida com sucesso!");
             }
             catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 4) {
+            caixaView.printListaCaixas(caixaService->getCaixas());
+            int id = caixaView.getIdCaixaEditar();
+            view.printMensagem("Insira os novos dados (ou -1 para manter o atual):");
+            std::string nome = Utils::lerString("Nome (-1 para manter): ");
+            try {
+                caixaService->editarCaixa(id, nome);
+                view.printMensagem("Caixa editada com sucesso!");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+            catch (InvalidDataException& e) {
                 view.printMensagem(e.what());
             }
         }

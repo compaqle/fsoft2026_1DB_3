@@ -11,4 +11,5 @@ public:
 
     int getId() const;
     std::string getNome() const;
+    void setNome(std::string novo_nome);
 };
