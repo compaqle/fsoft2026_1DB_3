@@ -259,7 +259,7 @@ void Controller::runCaixas() {
             int id = caixaView.getIdCaixa();
             try {
                 caixaService->removerCaixa(id);
-                view.printMensagem("Caixa removido com sucesso!");
+                view.printMensagem("Caixa removida com sucesso!");
             }
             catch (NoDataException& e) {
                 view.printMensagem(e.what());

@@ -10,7 +10,7 @@ VendaDTO VendaMapper::toDTO(Venda& v) {
     dto.total = v.getTotal();
     dto.metodoPagamento = v.getMetodoPagamento();
 
-    if (v.getCliente() != NULL) {
+    if (v.getCliente() != nullptr) {
         dto.nifCliente = std::to_string(v.getCliente()->getNif());
         dto.nomeCliente = v.getCliente()->getNome();
     }

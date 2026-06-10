@@ -36,7 +36,7 @@ void CaixaService::criarCaixa(std::string nome) {
 void CaixaService::removerCaixa(int id) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Caixa*>& caixas = repo.getCaixas();
-    for (int i = 0; i < (int)caixas.size(); i++) {
+    for (size_t i = 0; i < caixas.size(); i++) {
         if (caixas[i]->getId() == id) {
             Caixa* c = caixas[i];
             caixas.erase(caixas.begin() + i);
