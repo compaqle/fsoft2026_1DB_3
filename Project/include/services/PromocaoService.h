@@ -16,6 +16,8 @@ public:
                               const std::string& data_fim, int id_produto);
     void criarPromocaoCategoria(double percentagem, const std::string& data_inicio,
                                 const std::string& data_fim, int id_categoria);
+    void editarPromocao(int id, double percentagem, const std::string& data_inicio,
+                        const std::string& data_fim);
     void removerPromocao(int id);
     std::vector<PromocaoDTO> getPromocoes() const;
 };

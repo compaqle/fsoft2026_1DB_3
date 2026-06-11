@@ -96,6 +96,38 @@ void PromocaoService::criarPromocaoCategoria(double percentagem, const std::stri
     repo.guardarPromocoes();
 }
 
+void PromocaoService::editarPromocao(int id, double percentagem, const std::string& data_inicio,
+                                      const std::string& data_fim) {
+    if (percentagem != -1 && (percentagem <= 0 || percentagem > 100)) {
+        throw InvalidDataException("Percentagem invalida: " + std::to_string(percentagem));
+    }
+    if (data_inicio != "-1" && !dataValida(data_inicio)) {
+        throw InvalidDataException("Data de inicio invalida (use YYYY-MM-DD): " + data_inicio);
+    }
+    if (data_fim != "-1" && !dataValida(data_fim)) {
+        throw InvalidDataException("Data de fim invalida (use YYYY-MM-DD): " + data_fim);
+    }
+
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Promocao*>& promocoes = repo.getPromocoes();
+    for (size_t i = 0; i < promocoes.size(); i++) {
+        if (promocoes[i]->getId() == id) {
+            if (percentagem != -1) {
+                promocoes[i]->setPercentagem(percentagem);
+            }
+            if (data_inicio != "-1") {
+                promocoes[i]->setData_inicio(data_inicio);
+            }
+            if (data_fim != "-1") {
+                promocoes[i]->setData_final(data_fim);
+            }
+            repo.guardarPromocoes();
+            return;
+        }
+    }
+    throw NoDataException("Promocao: id = " + std::to_string(id) + " (nao encontrada)");
+}
+
 void PromocaoService::removerPromocao(int id) {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Promocao*>& promocoes = repo.getPromocoes();
