@@ -6,8 +6,8 @@
 #include <sstream>
 #include <iomanip>
 
-Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService, VendaService* vendaService)
-    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService), vendaService(vendaService) {
+Controller::Controller(ProdutoService* produtoService, CategoriaService* categoriaService, ClienteService* clienteService, CaixaService* caixaService, VendaService* vendaService, PromocaoService* promocaoService)
+    : produtoService(produtoService), categoriaService(categoriaService), clienteService(clienteService), caixaService(caixaService), vendaService(vendaService), promocaoService(promocaoService) {
 }
 
 void Controller::run() {
@@ -51,7 +51,10 @@ void Controller::runAdmin() {
             runCaixas();
         }
         else if (op == 5) {
-            view.printMensagem("Ver Estatisticas - em desenvolvimento");
+            runEstatisticas();
+        }
+        else if (op == 6) {
+            runPromocoes();
         }
         else {
             view.printMensagem("Opcao invalida. Tente novamente.");
@@ -452,4 +455,132 @@ void Controller::runRealizarVenda(int idCaixa) {
             view.printMensagem("Opcao invalida. Tente novamente.");
         }
     }
+}
+
+void Controller::runPromocoes() {
+    while (true) {
+        int op = promocaoView.mostrarMenuPromocoes();
+
+        if (op == 0) {
+            return;
+        }
+        else if (op == 1) {
+            double percentagem;
+            std::string data_inicio, data_fim;
+            int id_alvo, tipo;
+            promocaoView.getDadosCriarPromocao(percentagem, data_inicio, data_fim, id_alvo, tipo);
+            try {
+                if (tipo == 1) {
+                    promocaoService->criarPromocaoProduto(percentagem, data_inicio, data_fim, id_alvo);
+                }
+                else {
+                    promocaoService->criarPromocaoCategoria(percentagem, data_inicio, data_fim, id_alvo);
+                }
+                view.printMensagem("Promocao criada com sucesso!");
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 2) {
+            promocaoView.printListaPromocoes(promocaoService->getPromocoes());
+        }
+        else if (op == 3) {
+            promocaoView.printListaPromocoes(promocaoService->getPromocoes());
+            int id = promocaoView.getIdPromocao();
+            try {
+                promocaoService->removerPromocao(id);
+                view.printMensagem("Promocao removida com sucesso!");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else if (op == 4) {
+            promocaoView.printListaPromocoes(promocaoService->getPromocoes());
+            int id = promocaoView.getIdPromocao();
+            double percentagem;
+            std::string data_inicio, data_fim;
+            promocaoView.getDadosEditarPromocao(percentagem, data_inicio, data_fim);
+            try {
+                promocaoService->editarPromocao(id, percentagem, data_inicio, data_fim);
+                view.printMensagem("Promocao editada com sucesso!");
+            }
+            catch (NoDataException& e) {
+                view.printMensagem(e.what());
+            }
+            catch (InvalidDataException& e) {
+                view.printMensagem(e.what());
+            }
+        }
+        else {
+            view.printMensagem("Opcao invalida. Tente novamente.");
+        }
+    }
+}
+
+void Controller::runEstatisticas() {
+    view.printMensagem("\n========== ESTATISTICAS ==========");
+
+    std::vector<VendaDTO> vendas = vendaService->getVendas();
+    double totalFaturado = 0;
+    for (size_t i = 0; i < vendas.size(); i++) {
+        totalFaturado += vendas[i].total;
+    }
+
+    std::ostringstream oss;
+    oss << "Total de vendas realizadas: " << vendas.size();
+    view.printMensagem(oss.str());
+
+    oss.str("");
+    oss << "Faturacao total: " << std::fixed << std::setprecision(2) << totalFaturado << "E";
+    view.printMensagem(oss.str());
+
+    std::vector<CaixaDTO> caixas = caixaService->getCaixas();
+    view.printMensagem("\nFaturacao por Caixa:");
+    for (size_t i = 0; i < caixas.size(); i++) {
+        oss.str("");
+        oss << "  " << caixas[i].nome << ": " << std::fixed << std::setprecision(2) << caixas[i].totalFaturado << "E";
+        view.printMensagem(oss.str());
+    }
+
+    try {
+        std::vector<ProdutoDTO> produtos = produtoService->getProdutos();
+        oss.str("");
+        oss << "\nTotal de produtos no catalogo: " << produtos.size();
+        view.printMensagem(oss.str());
+
+        int stockTotal = 0;
+        for (size_t i = 0; i < produtos.size(); i++) {
+            stockTotal += produtos[i].stock;
+        }
+        oss.str("");
+        oss << "Stock total: " << stockTotal << " unidades";
+        view.printMensagem(oss.str());
+    }
+    catch (NoDataException&) {
+        view.printMensagem("\nTotal de produtos no catalogo: 0");
+    }
+
+    try {
+        std::vector<CategoriaDTO> categorias = categoriaService->getCategorias();
+        oss.str("");
+        oss << "Total de categorias: " << categorias.size();
+        view.printMensagem(oss.str());
+    }
+    catch (NoDataException&) {
+        view.printMensagem("Total de categorias: 0");
+    }
+
+    try {
+        std::vector<ClienteDTO> clientes = clienteService->getClientes();
+        oss.str("");
+        oss << "Total de clientes: " << clientes.size();
+        view.printMensagem(oss.str());
+    }
+    catch (NoDataException&) {
+        view.printMensagem("Total de clientes: 0");
+    }
+
+    view.printMensagem("==================================\n");
 }

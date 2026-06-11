@@ -14,7 +14,8 @@ include_directories(include/exceptions)
 include_directories(include/dto)
 include_directories(include/mappers)
 
-file(GLOB_RECURSE SOURCES 
+# App principal
+file(GLOB_RECURSE APP_SOURCES
     "src/model/*.cpp"
     "src/view/*.cpp"
     "src/controller/*.cpp"
@@ -25,4 +26,25 @@ file(GLOB_RECURSE SOURCES
     "main.cpp"
 )
 
-add_executable(supermercado_app ${SOURCES})
+add_executable(supermercado_app ${APP_SOURCES})
+
+# Testes
+find_package(GTest REQUIRED)
+
+# Mesmos ficheiros que a app, menos main.cpp
+file(GLOB_RECURSE TEST_SRC
+    "src/model/*.cpp"
+    "src/view/*.cpp"
+    "src/controller/*.cpp"
+    "src/repo/*.cpp"
+    "src/services/*.cpp"
+    "src/exceptions/*.cpp"
+    "src/mappers/*.cpp"
+)
+
+# Ficheiros de teste
+file(GLOB_RECURSE TEST_FILES "../ProjectTester/src/*.cpp")
+
+add_executable(supermercado_tester ${TEST_SRC} ${TEST_FILES})
+target_include_directories(supermercado_tester PRIVATE ${GTEST_INCLUDE_DIRS})
+target_link_libraries(supermercado_tester ${GTEST_LIBRARIES} pthread)

@@ -42,6 +42,7 @@ int View::menuAdmin() {
     std::cout << "3. Gerir Clientes" << std::endl;
     std::cout << "4. Gerir Caixas" << std::endl;
     std::cout << "5. Ver Estatisticas" << std::endl;
+    std::cout << "6. Gerir Promocoes" << std::endl;
     std::cout << "0. Sair" << std::endl;
     return Utils::lerInt("\nOpcao: ");
 }

@@ -4,6 +4,7 @@
 #include "include/services/ClienteService.h"
 #include "include/services/CaixaService.h"
 #include "include/services/VendaService.h"
+#include "include/services/PromocaoService.h"
 
 int main() {
     ProdutoService produtoService;
@@ -11,8 +12,9 @@ int main() {
     ClienteService clienteService;
     CaixaService caixaService;
     VendaService vendaService;
+    PromocaoService promocaoService;
 
-    Controller controller(&produtoService, &categoriaService, &clienteService, &caixaService, &vendaService);
+    Controller controller(&produtoService, &categoriaService, &clienteService, &caixaService, &vendaService, &promocaoService);
     controller.run();
     return 0;
 }
