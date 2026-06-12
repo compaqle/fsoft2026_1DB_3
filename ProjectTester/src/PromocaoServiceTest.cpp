@@ -5,86 +5,209 @@
 #include "exceptions/InvalidDataException.h"
 #include "exceptions/NoDataException.h"
 
-class PromocaoServiceTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+// preparar o ambiente: limpar tudo e criar dados de teste
+static void prepararAmbiente() {
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
 
-        std::vector<Promocao*>& promocoes = repo.getPromocoes();
-        for (Promocao* p : promocoes) delete p;
-
-        std::vector<Produto*>& produtos = repo.getProdutos();
-        for (Produto* p : produtos) delete p;
-
-        std::vector<Categoria*>& categorias = repo.getCategorias();
-        for (Categoria* c : categorias) delete c;
-
-        promocoes.clear();
-        produtos.clear();
-        categorias.clear();
-
-        CategoriaService cs;
-        cs.criarCategoria("Carnes", 0.23);
-
-        ProdutoService ps;
-        ps.criarProduto("Arroz", 2.0, 100, 1);
+    // limpar promocoes
+    std::vector<Promocao*>& promocoes = repo.getPromocoes();
+    for (int i = 0; i < (int)promocoes.size(); i++) {
+        delete promocoes[i];
     }
-};
+    promocoes.clear();
 
-TEST_F(PromocaoServiceTest, CriarPromocaoProdutoValida) {
-    PromocaoService service;
-    EXPECT_NO_THROW(service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 1));
-    auto promocoes = service.getPromocoes();
-    ASSERT_EQ(promocoes.size(), 1);
+    // limpar produtos
+    std::vector<Produto*>& produtos = repo.getProdutos();
+    for (int i = 0; i < (int)produtos.size(); i++) {
+        delete produtos[i];
+    }
+    produtos.clear();
+
+    // limpar categorias
+    std::vector<Categoria*>& categorias = repo.getCategorias();
+    for (int i = 0; i < (int)categorias.size(); i++) {
+        delete categorias[i];
+    }
+    categorias.clear();
+
+    // criar dados base
+    CategoriaService cs;
+    cs.criarCategoria("Carnes", 0.23);
+
+    ProdutoService ps;
+    ps.criarProduto("Arroz", 2.0, 100, 1);
 }
 
-TEST_F(PromocaoServiceTest, CriarPromocaoCategoriaValida) {
+// teste: criar promocao para um produto
+TEST(PromocaoServiceTest, CriarPromocaoProdutoValida) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_NO_THROW(service.criarPromocaoCategoria(15, "2026-06-01", "2026-06-30", 1));
-    auto promocoes = service.getPromocoes();
-    ASSERT_EQ(promocoes.size(), 1);
+
+    bool deu_erro = false;
+    try {
+        service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 1);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
+
+    std::vector<PromocaoDTO> promocoes = service.getPromocoes();
+    EXPECT_EQ(promocoes.size(), 1);
 }
 
-TEST_F(PromocaoServiceTest, CriarPromocaoPercentagemInvalida) {
+// teste: criar promocao para uma categoria
+TEST(PromocaoServiceTest, CriarPromocaoCategoriaValida) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_THROW(service.criarPromocaoProduto(150, "2026-06-01", "2026-06-30", 1), InvalidDataException);
-    EXPECT_THROW(service.criarPromocaoProduto(0, "2026-06-01", "2026-06-30", 1), InvalidDataException);
+
+    bool deu_erro = false;
+    try {
+        service.criarPromocaoCategoria(15, "2026-06-01", "2026-06-30", 1);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
+
+    std::vector<PromocaoDTO> promocoes = service.getPromocoes();
+    EXPECT_EQ(promocoes.size(), 1);
 }
 
-TEST_F(PromocaoServiceTest, CriarPromocaoDataInvalida) {
+// teste: percentagem acima de 100 ou abaixo de 0 deve falhar
+TEST(PromocaoServiceTest, CriarPromocaoPercentagemInvalida) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_THROW(service.criarPromocaoProduto(20, "01-06-2026", "2026-06-30", 1), InvalidDataException);
+
+    bool deu_erro1 = false;
+    try {
+        service.criarPromocaoProduto(150, "2026-06-01", "2026-06-30", 1);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro1 = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro1);
+
+    bool deu_erro2 = false;
+    try {
+        service.criarPromocaoProduto(0, "2026-06-01", "2026-06-30", 1);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro2 = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro2);
 }
 
-TEST_F(PromocaoServiceTest, CriarPromocaoDataFimAntesInicio) {
+// teste: formato de data errado deve falhar
+TEST(PromocaoServiceTest, CriarPromocaoDataInvalida) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_THROW(service.criarPromocaoProduto(20, "2026-06-30", "2026-06-01", 1), InvalidDataException);
+
+    bool deu_erro = false;
+    try {
+        service.criarPromocaoProduto(20, "01-06-2026", "2026-06-30", 1);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro);
 }
 
-TEST_F(PromocaoServiceTest, CriarPromocaoProdutoInexistente) {
+// teste: data de fim antes da data de inicio deve falhar
+TEST(PromocaoServiceTest, CriarPromocaoDataFimAntesInicio) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_THROW(service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 999), NoDataException);
+
+    bool deu_erro = false;
+    try {
+        service.criarPromocaoProduto(20, "2026-06-30", "2026-06-01", 1);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro);
 }
 
-TEST_F(PromocaoServiceTest, RemoverPromocaoExistente) {
+// teste: criar promocao para produto que nao existe deve falhar
+TEST(PromocaoServiceTest, CriarPromocaoProdutoInexistente) {
+    prepararAmbiente();
+
+    PromocaoService service;
+
+    bool deu_erro = false;
+    try {
+        service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 999);
+    }
+    catch (NoDataException& e) {
+        deu_erro = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro);
+}
+
+// teste: remover uma promocao que existe
+TEST(PromocaoServiceTest, RemoverPromocaoExistente) {
+    prepararAmbiente();
+
     PromocaoService service;
     service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 1);
-    auto promocoes = service.getPromocoes();
-    EXPECT_NO_THROW(service.removerPromocao(promocoes[0].id));
+
+    std::vector<PromocaoDTO> promocoes = service.getPromocoes();
+
+    bool deu_erro = false;
+    try {
+        service.removerPromocao(promocoes[0].id);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
 }
 
-TEST_F(PromocaoServiceTest, RemoverPromocaoInexistente) {
+// teste: remover uma promocao que nao existe deve falhar
+TEST(PromocaoServiceTest, RemoverPromocaoInexistente) {
+    prepararAmbiente();
+
     PromocaoService service;
-    EXPECT_THROW(service.removerPromocao(999), NoDataException);
+
+    bool deu_erro = false;
+    try {
+        service.removerPromocao(999);
+    }
+    catch (NoDataException& e) {
+        deu_erro = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro);
 }
 
-TEST_F(PromocaoServiceTest, EditarPromocao) {
+// teste: editar percentagem de uma promocao, manter datas
+TEST(PromocaoServiceTest, EditarPromocao) {
+    prepararAmbiente();
+
     PromocaoService service;
     service.criarPromocaoProduto(20, "2026-06-01", "2026-06-30", 1);
-    auto promocoes = service.getPromocoes();
+
+    std::vector<PromocaoDTO> promocoes = service.getPromocoes();
 
     service.editarPromocao(promocoes[0].id, 30, "-1", "-1");
     promocoes = service.getPromocoes();
+
     EXPECT_DOUBLE_EQ(promocoes[0].percentagem, 30);
     EXPECT_EQ(promocoes[0].dataInicio, "2026-06-01");
 }

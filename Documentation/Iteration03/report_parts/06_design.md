@@ -37,12 +37,12 @@
 O sistema foi dividido em camadas seguindo o padrão Model-View-Controller que foi estendido com Services, Repository, DTOs e Mappers:
 
 1. **Model:** Contém as classes de dados (`Produto`, `Categoria`, `Cliente`, `Venda`, `ItemVenda`, `Promocao`, `Ponto`, `Caixa`, `Admin`, `Utilizador`). Estas classes `<<entity>>`, representam as entidades do domínio e não conhecem a parte do View.
-2. **View:** Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes `View` , `CatalogoView`, `CategoriaView` e `Utils` (validar o input do utilizador).
+2. **View:** Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes `View`, `CatalogoView`, `CategoriaView`, `ClienteView`, `CaixaView`, `VendaView`, `PromocaoView` e `Utils` (validar o input do utilizador).
 3. **Controller:** A classe `Controller` é a classe que orquestra o funcionamento do sistema. Recebe os Services no construtor, gere a navegação dos menus e deixa todas as operações de negócio aos Services. Trata exceções com blocos `try/catch` e comunica resultados através da View.
-4. **Service:** As classes `ProdutoService` e `CategoriaService`  contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+4. **Service:** As classes `ProdutoService`, `CategoriaService`, `ClienteService`, `CaixaService`, `VendaService`, `PromocaoService` contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
 5. **Repository:** A classe `SupermercadoRepository`  centraliza toda a persistência de dados em ficheiros CSV. É acedida via `getInstance()` e expõe referências para os vectores internos.
 6. **DTO:** Estruturas de transferência de dados:  `ProdutoDTO`, `CategoriaDTO`, `ClienteDTO`, `CaixaDTO`, `VendaDTO`, `ItemVendaDTO`, `PromocaoDTO` que transportam dados entre camadas sem expor os Models diretamente às Views.
-7. **Mappers:** Classes `ProdutoMapper` e `CategoriaMapper` com métodos estáticos `toDTO()` que convertem Modelos em DTOs.
+7. **Mappers:** Classes `ProdutoMapper`, `CategoriaMapper`, `ClienteMapper`, `CaixaMapper`, `VendaMapper`, `PromocaoMapper` com métodos estáticos `toDTO()` que convertem Modelos em DTOs.
 8. **Exceptions:** Quatro classes de exceção `NoDataException`, `DuplicatedDataException`, `InvalidDataException`, `DataConsistencyException` que herdam de `std::exception` e são usadas  pelos Services e capturadas pelo Controller.
 
 O fluxo de uma operação típica é: **View** recolhe o input, **Controller** chama **Service**, **Service** valida e usa **Repository**, **Mapper** converte Model, DTO, **Controller** passa DTO à **View** para apresentar.
@@ -50,12 +50,12 @@ O fluxo de uma operação típica é: **View** recolhe o input, **Controller** c
 ## Arquitetura de Ficheiros
 
 - **`include/model/`** — Headers das entidades de domínio (`Produto.h`, `Categoria.h`, `Cliente.h`, `Venda.h`, etc.)
-- **`include/view/`** — Headers das classes de interface (`View.h`, `CatalogoView.h`, `CategoriaView.h`, `Utils.h`)
+- **`include/view/`** — Headers das classes de interface (`View.h`, `CatalogoView.h`, `CategoriaView.h`, `ClienteView.h`, `CaixaView.h`, `VendaView.h`, `PromocaoView.h`, `Utils.h`)
 - **`include/controller/`** — Header do orquestrador (`Controller.h`)
-- **`include/services/`** — Headers da lógica de negócio (`ProdutoService.h`, `CategoriaService.h`)
+- **`include/services/`** — Headers da lógica de negócio (`ProdutoService.h`, `CategoriaService.h`, `ClienteService.h`, `CaixaService.h`, `VendaService.h`, `PromocaoService.h`)
 - **`include/repo/`** — Header do repositório Singleton (`SupermercadoRepository.h`)
 - **`include/dto/`** — Estruturas de transferência de dados (`ProdutoDTO.h`, `CategoriaDTO.h`, etc.)
-- **`include/mappers/`** — Conversores Model-DTO (`ProdutoMapper.h`, `CategoriaMapper.h`)
+- **`include/mappers/`** — Conversores Model-DTO (`ProdutoMapper.h`, `CategoriaMapper.h`, `ClienteMapper.h`, `CaixaMapper.h`, `VendaMapper.h`, `PromocaoMapper.h`)
 - **`include/exceptions/`** — Classes de exceção (`NoDataException.h`, etc.)
 - **`src/`** — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
 

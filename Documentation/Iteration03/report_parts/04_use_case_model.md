@@ -203,7 +203,30 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 ## Diagramas de Sequência de Sistema (SSD)
 
 ### Casos de Uso Implementados
-Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
+
+Na terceira iteração, todos os 15 casos de uso foram implementados. A tabela abaixo mostra o estado final:
+
+| ID | Nome | Estado |
+|----|------|--------|
+| UC01 | Gerir Catálogo | ✅ |
+| UC02 | Consultar Estatísticas | ✅ |
+| UC03 | Gerir Utilizadores (CAIXAs) | ✅ |
+| UC04 | Repor Stock | ✅ (integrado no UC01) |
+| UC05 | Gerir CLIENTES | ✅ |
+| UC06 | Gerir PROMOÇÕES | ✅ |
+| UC07 | Gerir CATEGORIAS | ✅ |
+| UC08 | Realizar VENDA | ✅ |
+| UC09 | Consultar Preço | ✅ |
+| UC10 | Ver Info Própria | ✅ (integrado no UC14) |
+| UC11 | Associar CLIENTE | ✅ (integrado no UC08) |
+| UC12 | Consultar Pontos | ✅ |
+| UC13 | Consultar RECIBO | ✅ (integrado no UC08) |
+| UC14 | Selecionar Perfil | ✅ |
+| UC15 | Sair do Perfil | ✅ |
+
+> **Nota:** Os casos de uso UC04, UC10, UC11 e UC13 estão integrados noutros. O UC04 (Repor Stock) faz parte do menu de edição do UC01, o UC10 (Ver Info Própria) está integrado no menu do CAIXA (UC14), e os UC11 (Associar CLIENTE) e UC13 (Consultar RECIBO) estão integrados no fluxo da VENDA (UC08).
+
+Os diagramas de sequência que se seguem mostram o fluxo interno (View → Controller → Service → Repository) para cada caso de uso.
 
 #### UC01: Gerir Catálogo (Cenário de Criação)
 ![SSD UC01](../diagramas/uc01.png)
@@ -217,8 +240,9 @@ Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados 
 #### UC15: Sair do Perfil
 ![SSD UC15](../diagramas/uc15.png)
 
-### Restantes Casos de Uso
-Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
+### Restantes Diagramas de Sequência
+
+Os diagramas seguintes foram criados na iteração anterior e os casos de uso correspondentes foram implementados na terceira iteração.
 
 #### UC02: Consultar Estatísticas
 ![SSD UC02](../diagramas/uc02.png)

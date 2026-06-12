@@ -3,67 +3,122 @@
 #include "exceptions/InvalidDataException.h"
 #include "exceptions/NoDataException.h"
 
-class CaixaServiceTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        SupermercadoRepository& repo = SupermercadoRepository::getInstance();
-        std::vector<Caixa*>& caixas = repo.getCaixas();
-        for (Caixa* c : caixas) {
-            delete c;
-        }
-        caixas.clear();
+// limpar os caixas antes de cada teste
+static void limparCaixas() {
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+    std::vector<Caixa*>& caixas = repo.getCaixas();
+    for (int i = 0; i < (int)caixas.size(); i++) {
+        delete caixas[i];
     }
-};
-
-TEST_F(CaixaServiceTest, CriarCaixaValido) {
-    CaixaService service;
-    EXPECT_NO_THROW(service.criarCaixa("Andre"));
-
-    auto caixas = service.getCaixas();
-    ASSERT_EQ(caixas.size(), 1);
-    EXPECT_EQ(caixas[0].nome, "Andre");
+    caixas.clear();
 }
 
-TEST_F(CaixaServiceTest, CriarCaixaNomeVazio) {
+// teste: criar um caixa com dados normais
+TEST(CaixaServiceTest, CriarCaixaValido) {
+    limparCaixas();
+
     CaixaService service;
-    EXPECT_THROW(service.criarCaixa(""), InvalidDataException);
+
+    bool deu_erro = false;
+    try {
+        service.criarCaixa("Andre");
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
+
+    std::vector<CaixaDTO> caixas = service.getCaixas();
+    EXPECT_EQ(caixas.size(), 1);
+    if (caixas.size() > 0) {
+        EXPECT_EQ(caixas[0].nome, "Andre");
+    }
 }
 
-TEST_F(CaixaServiceTest, RemoverCaixaExistente) {
+// teste: criar caixa sem nome deve falhar
+TEST(CaixaServiceTest, CriarCaixaNomeVazio) {
+    limparCaixas();
+
+    CaixaService service;
+
+    bool deu_erro_certo = false;
+    try {
+        service.criarCaixa("");
+    }
+    catch (InvalidDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
+}
+
+// teste: remover um caixa que existe
+TEST(CaixaServiceTest, RemoverCaixaExistente) {
+    limparCaixas();
+
     CaixaService service;
     service.criarCaixa("Andre");
 
-    auto caixas = service.getCaixas();
+    std::vector<CaixaDTO> caixas = service.getCaixas();
     int id = caixas[0].id;
 
-    EXPECT_NO_THROW(service.removerCaixa(id));
+    bool deu_erro = false;
+    try {
+        service.removerCaixa(id);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
 }
 
-TEST_F(CaixaServiceTest, RemoverCaixaInexistente) {
+// teste: remover um caixa que nao existe deve falhar
+TEST(CaixaServiceTest, RemoverCaixaInexistente) {
+    limparCaixas();
+
     CaixaService service;
-    EXPECT_THROW(service.removerCaixa(999), NoDataException);
+
+    bool deu_erro_certo = false;
+    try {
+        service.removerCaixa(999);
+    }
+    catch (NoDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
 }
 
-TEST_F(CaixaServiceTest, EditarCaixa) {
+// teste: editar o nome de um caixa
+TEST(CaixaServiceTest, EditarCaixa) {
+    limparCaixas();
+
     CaixaService service;
     service.criarCaixa("Andre");
 
-    auto caixas = service.getCaixas();
+    std::vector<CaixaDTO> caixas = service.getCaixas();
     int id = caixas[0].id;
 
     service.editarCaixa(id, "Andre Silva");
     caixas = service.getCaixas();
+
     EXPECT_EQ(caixas[0].nome, "Andre Silva");
 }
 
-TEST_F(CaixaServiceTest, EditarCaixaComMenosUm) {
+// teste: passar "-1" como nome mantem o nome original
+TEST(CaixaServiceTest, EditarCaixaComMenosUm) {
+    limparCaixas();
+
     CaixaService service;
     service.criarCaixa("Andre");
 
-    auto caixas = service.getCaixas();
+    std::vector<CaixaDTO> caixas = service.getCaixas();
     int id = caixas[0].id;
 
     service.editarCaixa(id, "-1");
     caixas = service.getCaixas();
+
     EXPECT_EQ(caixas[0].nome, "Andre");
 }

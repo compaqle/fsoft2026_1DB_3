@@ -6,81 +6,173 @@
 #include "exceptions/InvalidDataException.h"
 #include "exceptions/NoDataException.h"
 
-class VendaServiceTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        SupermercadoRepository& repo = SupermercadoRepository::getInstance();
+// preparar o ambiente: limpar tudo e criar dados de teste
+static void prepararAmbiente() {
+    SupermercadoRepository& repo = SupermercadoRepository::getInstance();
 
-        std::vector<Venda*>& vendas = repo.getVendas();
-        for (Venda* v : vendas) delete v;
-
-        std::vector<Produto*>& produtos = repo.getProdutos();
-        for (Produto* p : produtos) delete p;
-
-        std::vector<Categoria*>& categorias = repo.getCategorias();
-        for (Categoria* c : categorias) delete c;
-
-        std::vector<Cliente*>& clientes = repo.getClientes();
-        for (Cliente* c : clientes) delete c;
-
-        vendas.clear();
-        produtos.clear();
-        categorias.clear();
-        clientes.clear();
-
-        CategoriaService cs;
-        cs.criarCategoria("Carnes", 0.23);
-
-        ProdutoService ps;
-        ps.criarProduto("Arroz", 2.0, 100, 1);
-
-        ClienteService cls;
-        cls.criarCliente(123456789, "Joao");
+    // limpar vendas
+    std::vector<Venda*>& vendas = repo.getVendas();
+    for (int i = 0; i < (int)vendas.size(); i++) {
+        delete vendas[i];
     }
-};
+    vendas.clear();
 
-TEST_F(VendaServiceTest, IniciarVendaSemCliente) {
+    // limpar produtos
+    std::vector<Produto*>& produtos = repo.getProdutos();
+    for (int i = 0; i < (int)produtos.size(); i++) {
+        delete produtos[i];
+    }
+    produtos.clear();
+
+    // limpar categorias
+    std::vector<Categoria*>& categorias = repo.getCategorias();
+    for (int i = 0; i < (int)categorias.size(); i++) {
+        delete categorias[i];
+    }
+    categorias.clear();
+
+    // limpar clientes
+    std::vector<Cliente*>& clientes = repo.getClientes();
+    for (int i = 0; i < (int)clientes.size(); i++) {
+        delete clientes[i];
+    }
+    clientes.clear();
+
+    // criar dados base para os testes de vendas
+    CategoriaService cs;
+    cs.criarCategoria("Carnes", 0.23);
+
+    ProdutoService ps;
+    ps.criarProduto("Arroz", 2.0, 100, 1);
+
+    ClienteService cls;
+    cls.criarCliente(123456789, "Joao");
+}
+
+// teste: iniciar venda sem cliente (cliente generico)
+TEST(VendaServiceTest, IniciarVendaSemCliente) {
+    prepararAmbiente();
+
     VendaService service;
-    EXPECT_NO_THROW(service.iniciarVenda(0));
+
+    bool deu_erro = false;
+    try {
+        service.iniciarVenda(0);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
     EXPECT_TRUE(service.temVendaAtiva());
 }
 
-TEST_F(VendaServiceTest, IniciarVendaComCliente) {
+// teste: iniciar venda com um cliente que existe
+TEST(VendaServiceTest, IniciarVendaComCliente) {
+    prepararAmbiente();
+
     VendaService service;
-    EXPECT_NO_THROW(service.iniciarVenda(123456789));
+
+    bool deu_erro = false;
+    try {
+        service.iniciarVenda(123456789);
+    }
+    catch (...) {
+        deu_erro = true;
+    }
+    EXPECT_FALSE(deu_erro);
     EXPECT_TRUE(service.temVendaAtiva());
 }
 
-TEST_F(VendaServiceTest, IniciarVendaClienteInexistente) {
+// teste: iniciar venda com cliente inexistente deve falhar
+TEST(VendaServiceTest, IniciarVendaClienteInexistente) {
+    prepararAmbiente();
+
     VendaService service;
-    EXPECT_THROW(service.iniciarVenda(999999999), NoDataException);
+
+    bool deu_erro_certo = false;
+    try {
+        service.iniciarVenda(999999999);
+    }
+    catch (NoDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
 }
 
-TEST_F(VendaServiceTest, AdicionarItemSemVendaAtiva) {
+// teste: adicionar item sem ter venda ativa deve falhar
+TEST(VendaServiceTest, AdicionarItemSemVendaAtiva) {
+    prepararAmbiente();
+
     VendaService service;
-    EXPECT_THROW(service.adicionarItem(1, 1), InvalidDataException);
+
+    bool deu_erro_certo = false;
+    try {
+        service.adicionarItem(1, 1);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
 }
 
-TEST_F(VendaServiceTest, AdicionarItemComStockInsuficiente) {
+// teste: adicionar quantidade maior que o stock deve falhar
+TEST(VendaServiceTest, AdicionarItemComStockInsuficiente) {
+    prepararAmbiente();
+
     VendaService service;
     service.iniciarVenda(0);
-    EXPECT_THROW(service.adicionarItem(1, 999), InvalidDataException);
+
+    bool deu_erro_certo = false;
+    try {
+        service.adicionarItem(1, 999);
+    }
+    catch (InvalidDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
 }
 
-TEST_F(VendaServiceTest, CancelarVenda) {
+// teste: cancelar uma venda ativa
+TEST(VendaServiceTest, CancelarVenda) {
+    prepararAmbiente();
+
     VendaService service;
     service.iniciarVenda(0);
     service.cancelarVenda();
+
     EXPECT_FALSE(service.temVendaAtiva());
 }
 
-TEST_F(VendaServiceTest, ConsultarPrecoProdutoExistente) {
+// teste: consultar preco de um produto que existe
+TEST(VendaServiceTest, ConsultarPrecoProdutoExistente) {
+    prepararAmbiente();
+
     VendaService service;
+
     double preco = service.consultarPreco(1);
     EXPECT_GT(preco, 0.0);
 }
 
-TEST_F(VendaServiceTest, ConsultarPrecoProdutoInexistente) {
+// teste: consultar preco de produto inexistente deve falhar
+TEST(VendaServiceTest, ConsultarPrecoProdutoInexistente) {
+    prepararAmbiente();
+
     VendaService service;
-    EXPECT_THROW(service.consultarPreco(999), NoDataException);
+
+    bool deu_erro_certo = false;
+    try {
+        service.consultarPreco(999);
+    }
+    catch (NoDataException& e) {
+        deu_erro_certo = true;
+    }
+    catch (...) {
+    }
+    EXPECT_TRUE(deu_erro_certo);
 }

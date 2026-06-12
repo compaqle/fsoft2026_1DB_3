@@ -220,12 +220,12 @@ O sistema foi dividido em camadas seguindo o padrão Model-View-Controller que f
 
 \begin{enumerate}
     \item \textbf{Model:} Contém as classes de dados (\texttt{Produto}, \texttt{Categoria}, \texttt{Cliente}, \texttt{Venda}, \texttt{ItemVenda}, \texttt{Promocao}, \texttt{Ponto}, \texttt{Caixa}, \texttt{Admin}, \texttt{Utilizador}). Estas classes \texttt{<<entity>>}, representam as entidades do domínio e não conhecem a parte do View.
-    \item \textbf{View:} Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes \texttt{View}, \texttt{CatalogoView}, \texttt{CategoriaView} e \texttt{Utils} (validar o input do utilizador).
+    \item \textbf{View:} Responsável por toda a interação com o utilizador seja a enviar dados ou a pedir dados. Inclui as classes \texttt{View}, \texttt{CatalogoView}, \texttt{CategoriaView}, \texttt{ClienteView}, \texttt{CaixaView}, \texttt{VendaView}, \texttt{PromocaoView} e \texttt{Utils} (validar o input do utilizador).
     \item \textbf{Controller:} A classe \texttt{Controller} é a classe que orquestra o funcionamento do sistema. Recebe os Services no construtor, gere a navegação dos menus e deixa todas as operações de negócio aos Services. Trata exceções com blocos \texttt{try/catch} e comunica resultados através da View.
-    \item \textbf{Service:} As classes \texttt{ProdutoService} e \texttt{CategoriaService}  contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
+    \item \textbf{Service:} As classes \texttt{ProdutoService}, \texttt{CategoriaService}, \texttt{ClienteService}, \texttt{CaixaService}, \texttt{VendaService}, \texttt{PromocaoService} contêm a lógica de negócio e validações. Geram IDs automáticos e coordenam a persistência através do Repository.
     \item \textbf{Repository:} A classe \texttt{SupermercadoRepository}  centraliza toda a persistência de dados em ficheiros CSV. É acedida via \texttt{getInstance()} e expõe referências para os vectores internos.
     \item \textbf{DTO:} Estruturas de transferência de dados: \texttt{ProdutoDTO}, \texttt{CategoriaDTO}, \texttt{ClienteDTO}, \texttt{CaixaDTO}, \texttt{VendaDTO}, \texttt{ItemVendaDTO}, \texttt{PromocaoDTO} que transportam dados entre camadas sem expor os Models diretamente às Views.
-    \item \textbf{Mappers:} Classes \texttt{ProdutoMapper} e \texttt{CategoriaMapper} com métodos estáticos \texttt{toDTO()} que convertem Modelos em DTOs.
+    \item \textbf{Mappers:} Classes \texttt{ProdutoMapper}, \texttt{CategoriaMapper}, \texttt{ClienteMapper}, \texttt{CaixaMapper}, \texttt{VendaMapper}, \texttt{PromocaoMapper} com métodos estáticos \texttt{toDTO()} que convertem Modelos em DTOs.
     \item \textbf{Exceptions:} Quatro classes de exceção \texttt{NoDataException}, \texttt{DuplicatedDataException}, \texttt{InvalidDataException}, \texttt{DataConsistencyException} que herdam de \texttt{std::exception} e são usadas pelos Services e capturadas pelo Controller.
 \end{enumerate}
 
@@ -235,12 +235,12 @@ O fluxo de uma operação típica é: \textbf{View} recolhe o input, \textbf{Con
 
 \begin{itemize}
     \item \textbf{\texttt{include/model/}} — Headers das entidades de domínio (\texttt{Produto.h}, \texttt{Categoria.h}, \texttt{Cliente.h}, \texttt{Venda.h}, etc.)
-    \item \textbf{\texttt{include/view/}} — Headers das classes de interface (\texttt{View.h}, \texttt{CatalogoView.h}, \texttt{CategoriaView.h}, \texttt{Utils.h})
+    \item \textbf{\texttt{include/view/}} — Headers das classes de interface (\texttt{View.h}, \texttt{CatalogoView.h}, \texttt{CategoriaView.h}, \texttt{ClienteView.h}, \texttt{CaixaView.h}, \texttt{VendaView.h}, \texttt{PromocaoView.h}, \texttt{Utils.h})
     \item \textbf{\texttt{include/controller/}} — Header do orquestrador (\texttt{Controller.h})
-    \item \textbf{\texttt{include/services/}} — Headers da lógica de negócio (\texttt{ProdutoService.h}, \texttt{CategoriaService.h})
+    \item \textbf{\texttt{include/services/}} — Headers da lógica de negócio (\texttt{ProdutoService.h}, \texttt{CategoriaService.h}, \texttt{ClienteService.h}, \texttt{CaixaService.h}, \texttt{VendaService.h}, \texttt{PromocaoService.h})
     \item \textbf{\texttt{include/repo/}} — Header do repositório Singleton (\texttt{SupermercadoRepository.h})
     \item \textbf{\texttt{include/dto/}} — Estruturas de transferência de dados (\texttt{ProdutoDTO.h}, \texttt{CategoriaDTO.h}, etc.)
-    \item \textbf{\texttt{include/mappers/}} — Conversores Model-DTO (\texttt{ProdutoMapper.h}, \texttt{CategoriaMapper.h})
+    \item \textbf{\texttt{include/mappers/}} — Conversores Model-DTO (\texttt{ProdutoMapper.h}, \texttt{CategoriaMapper.h}, \texttt{ClienteMapper.h}, \texttt{CaixaMapper.h}, \texttt{VendaMapper.h}, \texttt{PromocaoMapper.h})
     \item \textbf{\texttt{include/exceptions/}} — Classes de exceção (\texttt{NoDataException.h}, etc.)
     \item \textbf{\texttt{src/}} — Implementações correspondentes a cada header, espelhando a mesma estrutura de pastas.
 \end{itemize}
@@ -520,7 +520,29 @@ Nesta secção detalhamos as interações entre os atores e o sistema.
 
 \subsection{Casos de Uso Implementados}
 
-Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados nesta iteração: UC01 (Gerir Catálogo), UC07 (Gerir Categorias), UC14 (Selecionar Perfil) e UC15 (Sair do Perfil). Os restantes vão ser implementados na próxima iteração.
+Na terceira iteração, todos os 15 casos de uso foram implementados:
+
+\begin{itemize}
+    \item \textbf{UC01} -- Gerir Catálogo
+    \item \textbf{UC02} -- Consultar Estatísticas
+    \item \textbf{UC03} -- Gerir Utilizadores (CAIXAs)
+    \item \textbf{UC04} -- Repor Stock (integrado no UC01)
+    \item \textbf{UC05} -- Gerir CLIENTES
+    \item \textbf{UC06} -- Gerir PROMOÇÕES
+    \item \textbf{UC07} -- Gerir CATEGORIAS
+    \item \textbf{UC08} -- Realizar VENDA
+    \item \textbf{UC09} -- Consultar Preço
+    \item \textbf{UC10} -- Ver Info Própria (integrado no UC14)
+    \item \textbf{UC11} -- Associar CLIENTE (integrado no UC08)
+    \item \textbf{UC12} -- Consultar Pontos
+    \item \textbf{UC13} -- Consultar RECIBO (integrado no UC08)
+    \item \textbf{UC14} -- Selecionar Perfil
+    \item \textbf{UC15} -- Sair do Perfil
+\end{itemize}
+
+\textbf{Nota:} Os casos de uso UC04, UC10, UC11 e UC13 estão integrados noutros. O UC04 (Repor Stock) faz parte do menu de edição do UC01, o UC10 (Ver Info Própria) está integrado no menu do CAIXA (UC14), e os UC11 (Associar CLIENTE) e UC13 (Consultar RECIBO) estão integrados no fluxo da VENDA (UC08).
+
+Os diagramas de sequência que se seguem mostram o fluxo interno (View $\rightarrow$ Controller $\rightarrow$ Service $\rightarrow$ Repository) para cada caso de uso.
 
 \begin{figure}[H]
     \centering
@@ -546,9 +568,9 @@ Dos 15 casos de uso identificados na iteração anterior, 4 foram implementados 
     \caption{UC15: Sair do Perfil}
 \end{figure}
 
-\subsection{Restantes Casos de Uso}
+\subsection{Restantes Diagramas de Sequência}
 
-Os restantes casos de uso, já foram documentados com especificações e diagramas de sequência, mas ainda não foram implementados.
+Os diagramas seguintes foram criados na iteração anterior e os casos de uso correspondentes foram implementados na terceira iteração.
 
 \begin{figure}[H]
     \centering
@@ -607,6 +629,54 @@ Os restantes casos de uso, já foram documentados com especificações e diagram
     \item[UTILIZADOR] Entidade base do sistema que agrupa atributos comuns de identificação, da qual derivam os perfis específicos de operação.
     \item[VENDA] Transação que associa produtos e um método de pagamento.
 \end{description}
+
+\section{Testes Unitários}
+
+Os testes unitários foram implementados com o framework Google Test. O projeto de testes contém 40 testes organizados em 6 suites, uma por cada Service.
+
+\subsection{Estrutura dos Testes}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l c}
+        \toprule
+        \textbf{Suite} & \textbf{Testes} \\
+        \midrule
+        ProdutoServiceTest & 6 \\
+        CategoriaServiceTest & 6 \\
+        ClienteServiceTest & 5 \\
+        CaixaServiceTest & 6 \\
+        VendaServiceTest & 8 \\
+        PromocaoServiceTest & 9 \\
+        \midrule
+        \textbf{Total} & \textbf{40} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Distribuição dos testes por Service}
+\end{table}
+
+\subsection{Cobertura de Testes}
+
+Cada suite cobre cenários de sucesso e de erro:
+
+\begin{itemize}
+    \item \textbf{ProdutoService:} Criar produto válido, criar com nome vazio, criar com preço negativo, remover existente, remover inexistente, editar com -1.
+    \item \textbf{CategoriaService:} Criar categoria válida, criar com nome vazio, criar com IVA negativo, remover existente, remover inexistente, editar.
+    \item \textbf{ClienteService:} Criar cliente válido, criar com NIF duplicado, remover existente, remover inexistente, editar.
+    \item \textbf{CaixaService:} Criar caixa válido, criar com nome vazio, remover existente, remover inexistente, editar, editar com -1.
+    \item \textbf{VendaService:} Iniciar venda sem cliente, iniciar com cliente, iniciar com cliente inexistente, adicionar item sem venda ativa, adicionar com stock insuficiente, cancelar venda, consultar preço existente, consultar preço inexistente.
+    \item \textbf{PromocaoService:} Criar promoção de produto, criar de categoria, percentagem inválida, data inválida, data fim antes de início, produto inexistente, remover existente, remover inexistente, editar.
+\end{itemize}
+
+\subsection{Execução}
+
+\begin{verbatim}
+cd Project/build
+cmake .. && make supermercado_tester
+./supermercado_tester
+\end{verbatim}
+
+Resultado: 40/40 testes passam.
 
 \section{Conclusão}
 A segunda iteração foi dedicada ao design e à implementação do sistema. Usamos o padrão MVC estendido em mais camadas (Services, Exceptions, repo etc), o que nos permitiu organizar o código de forma clara e com responsabilidades bem definidas. No total, resultaram desta fase 10 classes de domínio (Model), 4 classes de interface (View), 2 Services, 1 Repository com padrão Singleton, 7 DTOs, 2 Mappers e 4 classes de exceção. Todo este design foi documentado através de 8 diagramas UML, um por cada aspeto relevante da arquitetura. Do ponto de vista da implementação, conseguimos concluir 4 dos 15 casos de uso identificados na iteração anterior: Gerir Catálogo (UC01), Gerir Categorias (UC07), Selecionar Perfil (UC14) e Sair do Perfil (UC15). Aproveitámos também para rever os diagramas de sequência, tornando-os mais detalhados e de acordo com o fluxo real do sistema, mostrando a informação que percorre as camadas, da View até ao Repository, passando pelo Controller e pelo Service. Para a próxima iteração, o objetivo é implementar os casos de uso que ainda faltam, com especial foco na gestão de Vendas, Clientes e Promoções. E realizar os testes unitários, utilizando o framework Google Test.
