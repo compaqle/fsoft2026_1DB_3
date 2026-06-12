@@ -12,6 +12,7 @@ Controller::Controller(ProdutoService* produtoService, CategoriaService* categor
 
 void Controller::run() {
     while (true) {
+        // o menuPrincipal devolve -1 para sair, -2 se a opcao for invalida, 0 para ADMIN e o id do CAIXA se for >0
         int op = view.menuPrincipal(caixaService->getCaixas());
         
         if (op == -1) {
@@ -69,6 +70,7 @@ void Controller::runCatalogo() {
         if (op == 0) {
             return;
         }
+        // criar produto
         else if (op == 1) {
             std::string nome;
             double preco;
@@ -87,9 +89,11 @@ void Controller::runCatalogo() {
                 view.printMensagem(e.what());
             }
         }
+        // listar produtos
         else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
         }
+        // editar produto
         else if (op == 3) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProdutoEditar();
@@ -115,6 +119,7 @@ void Controller::runCatalogo() {
                 view.printMensagem(e.what());
             }
         }
+        // remover produto
         else if (op == 4) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id = catalogoView.getIdProduto();
@@ -310,9 +315,11 @@ void Controller::runCaixa(int idCaixa) {
         if (op == 0) {
             return;
         }
+        // realizar venda
         else if (op == 1) {
             runRealizarVenda(idCaixa);
         }
+        // consultar preco
         else if (op == 2) {
             catalogoView.printListaProdutos(produtoService->getProdutos());
             int id_produto = Utils::lerInt("ID do produto: ");
@@ -326,6 +333,7 @@ void Controller::runCaixa(int idCaixa) {
                 view.printMensagem(e.what());
             }
         }
+        // consultar pontos do cliente
         else if (op == 3) {
             int nif = Utils::lerInt("NIF do cliente: ");
             std::vector<ClienteDTO> clientes = clienteService->getClientes();
@@ -350,6 +358,7 @@ void Controller::runCaixa(int idCaixa) {
 }
 
 void Controller::runRealizarVenda(int idCaixa) {
+    // aqui e onde a magia acontece - pede o nif, inicia a venda, depois e um loop a adicionar e remover cenas ate finalizar ou cancelar. no final desconta o stock e da os pontos ao cliente
     view.printMensagem("\n--- Nova Venda ---");
     view.printMensagem("(NIF 0 = sem cliente)");
     int nif = Utils::lerInt("NIF do cliente: ");
@@ -520,6 +529,7 @@ void Controller::runPromocoes() {
 }
 
 void Controller::runEstatisticas() {
+    // mostra um resumo de tudo - quantas vendas, quanto dinheiro, faturacao por caixa, quantos produtos e clientes etc
     view.printMensagem("\n========== ESTATISTICAS ==========");
 
     std::vector<VendaDTO> vendas = vendaService->getVendas();

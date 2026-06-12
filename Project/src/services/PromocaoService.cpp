@@ -18,11 +18,11 @@ PromocaoService::PromocaoService() {
 }
 
 bool PromocaoService::dataValida(const std::string& data) const {
-    // Formato esperado: YYYY-MM-DD
+    // ver a mao se a data tem o formato certo YYYY-MM-DD, nao quisemos usar regex porque e chato
     if (data.size() != 10) return false;
     if (data[4] != '-' || data[7] != '-') return false;
     for (int i = 0; i < 10; i++) {
-        if (i == 4 || i == 7) continue;
+        if (i == 4 || i == 7) continue; // sao as posicoes onde estao os tracos
         if (data[i] < '0' || data[i] > '9') return false;
     }
     return true;
@@ -98,6 +98,7 @@ void PromocaoService::criarPromocaoCategoria(double percentagem, const std::stri
 
 void PromocaoService::editarPromocao(int id, double percentagem, const std::string& data_inicio,
                                       const std::string& data_fim) {
+    // se mandarem -1 e para manter o que ja estava, isto funciona tanto para o double da percentagem como para as strings das datas
     if (percentagem != -1 && (percentagem <= 0 || percentagem > 100)) {
         throw InvalidDataException("Percentagem invalida: " + std::to_string(percentagem));
     }

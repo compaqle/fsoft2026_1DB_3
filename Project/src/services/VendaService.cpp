@@ -27,7 +27,7 @@ VendaService::VendaService() {
     }
 }
 
-// Calcula o desconto percentual mais alto aplicavel a um produto (RF16, RF17, RF18)
+// anda a procura da melhor promocao ativa para este produto, ve as promocoes de produto e de categoria e fica com a maior
 double VendaService::calcularMelhorDesconto(int id_produto) const {
     SupermercadoRepository& repo = SupermercadoRepository::getInstance();
     std::vector<Promocao*>& promocoes = repo.getPromocoes();
@@ -42,7 +42,7 @@ double VendaService::calcularMelhorDesconto(int id_produto) const {
     }
     if (produto == NULL) return 0.0;
 
-    // Data atual no formato YYYY-MM-DD
+    // sacar a data de hoje para ver se a promocao ainda esta ativa
     std::time_t t = std::time(NULL);
     std::tm* tm_info = std::localtime(&t);
     std::ostringstream oss;
@@ -53,11 +53,11 @@ double VendaService::calcularMelhorDesconto(int id_produto) const {
 
     for (size_t i = 0; i < promocoes.size(); i++) {
         Promocao* p = promocoes[i];
-        // Verifica se está dentro do intervalo de datas (RF16)
+        // se a promocao ja expirou ou ainda nao comecou, salta
         if (hoje < p->getData_Inicio() || hoje > p->getData_Final()) {
             continue;
         }
-        // Verifica se se aplica a este produto ou à sua categoria (RF17)
+        // ve se a promocao e para este produto ou para a categoria dele
         bool aplicavel = false;
         if (p->getProduto() != NULL && p->getProduto()->getId() == id_produto) {
             aplicavel = true;
@@ -67,7 +67,7 @@ double VendaService::calcularMelhorDesconto(int id_produto) const {
             aplicavel = true;
         }
         if (aplicavel && p->getPercentagem() > melhorDesconto) {
-            melhorDesconto = p->getPercentagem(); // RF18: só a maior
+            melhorDesconto = p->getPercentagem(); // fica so com a maior, se houver varias
         }
     }
     return melhorDesconto;
@@ -87,8 +87,8 @@ double VendaService::consultarPreco(int id_produto) const {
         throw NoDataException("Produto: id = " + std::to_string(id_produto) + " (nao encontrado)");
     }
     double desconto = calcularMelhorDesconto(id_produto);
+    // primeiro tira o desconto e so depois mete o IVA por cima, senao o desconto ia incidir sobre o IVA tambem
     double preco = produto->getPrecoBase() * (1.0 - desconto / 100.0);
-    // Aplica IVA
     if (produto->getCategoria() != NULL) {
         preco = preco * (1.0 + produto->getCategoria()->getTaxaIva() / 100.0);
     }
@@ -146,7 +146,7 @@ void VendaService::adicionarItem(int id_produto, int quantidade) {
         throw InvalidDataException("Stock insuficiente. Disponivel: " + std::to_string(produto->getStock()));
     }
 
-    // Calcula preco com desconto e IVA
+    // calcular o preco com desconto e iva (igual ao consultarPreco)
     double desconto = calcularMelhorDesconto(id_produto);
     double preco_unitario = produto->getPrecoBase() * (1.0 - desconto / 100.0);
     if (produto->getCategoria() != NULL) {
@@ -154,7 +154,7 @@ void VendaService::adicionarItem(int id_produto, int quantidade) {
     }
     double subtotal = preco_unitario * quantidade;
 
-    // Encontra a venda ativa e adiciona item
+    // procurar a venda ativa para lhe espetar o item
     std::vector<Venda*>& vendas = repo.getVendas();
     for (size_t i = 0; i < vendas.size(); i++) {
         if (vendas[i]->getId() == idVendaAtiva) {
@@ -176,9 +176,7 @@ void VendaService::removerItem(int id_produto) {
         if (vendas[i]->getId() != idVendaAtiva) continue;
 
         std::vector<ItemVenda> itens = vendas[i]->getVendas();
-        // Recria a venda sem o item
-        // Como Venda nao tem removeItem, usamos uma abordagem de reconstrucao
-        // Criamos nova venda temporaria e adicionamos todos exceto o removido
+        // nao ha removeItem na classe Venda, entao a solucao e recriar a venda toda de novo sem o item que queremos tirar. e feio mas funciona
         bool encontrado = false;
         double novoTotal = 0.0;
         Venda* vendaTemp = new Venda(vendas[i]->getId(), vendas[i]->getCliente());
@@ -187,7 +185,7 @@ void VendaService::removerItem(int id_produto) {
 
         for (size_t j = 0; j < itens.size(); j++) {
             if (itens[j].getProduto()->getId() == id_produto && !encontrado) {
-                encontrado = true; // remove apenas a primeira ocorrencia
+                encontrado = true; // so tira a primeira ocorrencia, se houver duplicates
                 continue;
             }
             vendaTemp->adicionarItem(itens[j]);
@@ -237,7 +235,7 @@ VendaDTO VendaService::concluirVenda(const std::string& metodo_pagamento, int id
         throw NoDataException("Venda ativa nao encontrada.");
     }
 
-    // Data e hora atuais
+    // mete a data e hora em que a venda foi finalizada
     std::time_t t = std::time(NULL);
     std::tm* tm_info = std::localtime(&t);
     std::ostringstream oss;
@@ -245,14 +243,14 @@ VendaDTO VendaService::concluirVenda(const std::string& metodo_pagamento, int id
     venda->setDataHora(oss.str());
     venda->setMetodoPagamento(metodo_pagamento);
 
-    // Desconta stock dos produtos (RF07)
+    // tirar os produtos do stock
     std::vector<ItemVenda> itens = venda->getVendas();
     for (size_t i = 0; i < itens.size(); i++) {
         itens[i].getProduto()->removerStock(itens[i].getQuantidade());
     }
     repo.guardarProdutos();
 
-    // Atualiza faturacao do caixa
+    // aumentar o total faturado pelo caixa que fez a venda
     std::vector<Caixa*>& caixas = repo.getCaixas();
     for (size_t i = 0; i < caixas.size(); i++) {
         if (caixas[i]->getId() == id_caixa) {
@@ -262,7 +260,7 @@ VendaDTO VendaService::concluirVenda(const std::string& metodo_pagamento, int id
     }
     repo.guardarCaixas();
 
-    // Atribui pontos ao cliente (RF13: 1 ponto por cada 10€)
+    // dar pontos ao cliente, 1 ponto por cada 10 euros gastos
     if (venda->getCliente() != NULL) {
         venda->getCliente()->ganharPontos(static_cast<int>(venda->getTotal()));
         repo.guardarClientes();
@@ -289,7 +287,7 @@ void VendaService::cancelarVenda() {
     }
     vendaEmCurso = false;
     idVendaAtiva = -1;
-    proximoId--; // liberta o id reservado
+    proximoId--; // como a venda foi cancelada, libertamos o id que tava reservado
 }
 
 bool VendaService::temVendaAtiva() const {
@@ -315,7 +313,7 @@ std::vector<VendaDTO> VendaService::getVendas() const {
     std::vector<Venda*>& vendas = repo.getVendas();
     std::vector<VendaDTO> dtos;
     for (size_t i = 0; i < vendas.size(); i++) {
-        // Nao inclui a venda em curso (ainda nao concluida)
+        // a venda que esta a decorrer agora nao conta, so as finalizadas
         if (vendaEmCurso && vendas[i]->getId() == idVendaAtiva) continue;
         dtos.push_back(VendaMapper::toDTO(*vendas[i]));
     }
@@ -323,7 +321,7 @@ std::vector<VendaDTO> VendaService::getVendas() const {
 }
 
 std::vector<VendaDTO> VendaService::getVendasDoCaixa(int id_caixa) const {
-    // Nao ha relacao direta entre venda e caixa no modelo; retorna todas as vendas concluidas
+    // nao temos ligacao entre venda e caixa, por isso devolvemos todas as vendas concluidas e o controller que filtre
     return getVendas();
 }
 

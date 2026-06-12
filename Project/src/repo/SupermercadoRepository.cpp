@@ -6,6 +6,7 @@
 SupermercadoRepository* SupermercadoRepository::instance = NULL;
 
 SupermercadoRepository::SupermercadoRepository() {
+    // a ordem aqui importa, as categorias tem de ser carregadas primeiro senao os produtos nao conseguem resolver o ponteiro para a categoria, e os clientes tem de vir antes das vendas pela mesma razao
     carregarCategorias();
     carregarProdutos();
     carregarClientes();
@@ -262,7 +263,7 @@ void SupermercadoRepository::guardarPromocoes() {
     }
 
     for (size_t i = 0; i < promocoes.size(); i++) {
-        // guarda id_produto (0 se NULL) e id_categoria (0 se NULL)
+        // mete 0 se o ponteiro for NULL, senao mete o id
         int id_produto = promocoes[i]->getProduto() ? promocoes[i]->getProduto()->getId() : 0;
         int id_categoria = promocoes[i]->getCategoria() ? promocoes[i]->getCategoria()->getId() : 0;
 
@@ -300,7 +301,7 @@ void SupermercadoRepository::carregarPromocoes() {
         std::getline(ss, campo, ','); id_produto = std::stoi(campo);
         std::getline(ss, campo, ','); id_categoria = std::stoi(campo);
 
-        // resolve ponteiros
+        // transformar os ids que estao no csv em ponteiros para os objetos
         Produto* produtoPointer = NULL;
         for (size_t i = 0; i < produtos.size(); i++) {
             if (produtos[i]->getId() == id_produto) {
@@ -336,7 +337,7 @@ void SupermercadoRepository::guardarVendas() {
     }
 
     for (size_t i = 0; i < vendas.size(); i++) {
-        // linha da venda: id, nif_cliente (0 se sem cliente), data_hora, total, metodo_pagamento
+        // as vendas sao guardadas num formato esquisito, primeiro uma linha com os dados da venda e depois uma linha por cada item a comecar com ITEM
         int nif_cliente = vendas[i]->getCliente() ? vendas[i]->getCliente()->getNif() : 0;
 
         ficheiro << vendas[i]->getId() << ","
@@ -378,7 +379,7 @@ void SupermercadoRepository::carregarVendas() {
         std::getline(ss, campo, ',');
 
         if (campo == "ITEM") {
-            // linha de item — adiciona à venda atual
+            // e um item, toca a adicionar a venda que estamos a montar
             if (vendaAtual == NULL) {
                 continue;
             }
@@ -409,7 +410,7 @@ void SupermercadoRepository::carregarVendas() {
 
         }
         else {
-            // linha de venda
+            // e uma venda nova, criar o objeto
             int id = std::stoi(campo);
             std::string nif_str, data_hora, total_str, metodo;
 
@@ -421,7 +422,7 @@ void SupermercadoRepository::carregarVendas() {
             int nif = std::stoi(nif_str);
             double total = std::stod(total_str);
 
-            // resolve ponteiro do cliente
+            // procurar o cliente pelo nif para meter o ponteiro
             Cliente* clientePointer = NULL;
             if (nif != 0) {
                 for (size_t i = 0; i < clientes.size(); i++) {
