@@ -358,7 +358,7 @@ void Controller::runCaixa(int idCaixa) {
 }
 
 void Controller::runRealizarVenda(int idCaixa) {
-    // aqui e onde a magia acontece - pede o nif, inicia a venda, depois e um loop a adicionar e remover cenas ate finalizar ou cancelar. no final desconta o stock e da os pontos ao cliente
+    // pede o nif, inicia a venda, depois e um loop a adicionar e remover cenas ate finalizar ou cancelar. no final desconta o stock e da os pontos ao cliente
     view.printMensagem("\n--- Nova Venda ---");
     view.printMensagem("(NIF 0 = sem cliente)");
     int nif = Utils::lerInt("NIF do cliente: ");
